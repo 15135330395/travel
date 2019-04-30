@@ -18,7 +18,7 @@
                             <div class="input-group">
                                 <input type="text" id="sousuo" class="form-control" placeholder="搜景点">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary" onclick="queryPlace()" style="line-height: 1;"><i class="ion-search"></i>
+                                    <button class="btn btn-primary"  style="line-height: 1;" href="<%=request.getContextPath()%>/attraction/queryOneByName/"><i class="ion-search"></i>
                                     </button>
                                 </div>
                             </div>
@@ -91,7 +91,7 @@
                         <a href="category.jsp">菜单 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li>
-                                <a href="<%=request.getContextPath()%>/desk/index.jsp">首页</a>
+                                <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
                             <%--<li>--%>
                                 <%--<a href="category.jsp">类别 </a>--%>
@@ -265,22 +265,19 @@
 
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/test/queryPlace/"+place,
+                url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
                 data: {
-
+                    "place":place
                 },
-                success: function (msg) {
+                success: function (data) {
 
-                    if (msg == "1") {
-                        alert("修改成功", function () {
-                            window.location.reload();
-                        });
+
+                    if (data != null) {
+                        alert(data.toString());
+                        location.href("<%=request.getContextPath()%>/desk/single")
                     } else {
-                        alert("申请失败")
+                        alert("没有该景点")
                     }
-                },
-                error: function () {
-                    alert("服务器忙")
                 }
             })
         }

@@ -78,4 +78,12 @@
      <mvc:resources location="/image/" mapping="/image/**"/>-->
     <mvc:resources location="/background/" mapping="/background/**"/>
     <mvc:resources location="/desk/" mapping="/desk/**"/>
+    <mvc:resources location="/js/" mapping="/js/**"/>
+    <mvc:resources location="/css/" mapping="/css/**"/>
+    <mvc:resources location="/images/" mapping="/images/**"/>
+
+
+
+    <mvc:resources location="/scripts/" mapping="/scripts/**"/>
+
 </beans>

@@ -25,6 +25,10 @@ public class Type {
     public Type() {
     }
 
+    public Type(Integer typeId) {
+        this.typeId = typeId;
+    }
+
     @Id
     @Column(name = "type_id")
     public Integer getTypeId() {

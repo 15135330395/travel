@@ -22,10 +22,6 @@ public class Visitor {
      */
     private String visitorName;
     /**
-     * 游客性别
-     */
-    private String visitorSex;
-    /**
      * 身份证号
      */
     private String cardId;
@@ -37,6 +33,15 @@ public class Visitor {
      * 订单
      */
     private Orders orders;
+
+    public Visitor() {
+    }
+
+    public Visitor(String visitorName, String cardId, String phone) {
+        this.visitorName = visitorName;
+        this.cardId = cardId;
+        this.phone = phone;
+    }
 
     @Id
     @GeneratedValue(generator = "_native")
@@ -57,15 +62,6 @@ public class Visitor {
 
     public void setVisitorName(String visitorName) {
         this.visitorName = visitorName;
-    }
-
-    @Column(name = "visitor_sex")
-    public String getVisitorSex() {
-        return visitorSex;
-    }
-
-    public void setVisitorSex(String visitorSex) {
-        this.visitorSex = visitorSex;
     }
 
     @Column(name = "card_id")

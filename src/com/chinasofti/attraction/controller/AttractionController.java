@@ -5,32 +5,18 @@ import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import com.chinasofti.role.entity.Role;
-import com.chinasofti.utils.DateUtil;
 import com.chinasofti.utils.JsonUtil;
-import com.chinasofti.utils.StringUtil;
-import jdk.management.resource.internal.inst.StaticInstrumentation;
+import com.chinasofti.utils.StringUtilss;
 import org.apache.commons.lang3.StringUtils;
-import org.quartz.Job;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.util.ContentCachingRequestWrapper;
 
-import javax.servlet.GenericFilter;
-import javax.servlet.ServletException;
-import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.Part;
-import java.io.File;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 @Controller
 @RequestMapping("/attraction")
@@ -179,6 +165,30 @@ public class AttractionController {
         ModelAndView modelAndView = new ModelAndView("/desk/place");
         modelAndView.addObject("attractionList",attractionList);
         return modelAndView;
+    }
+
+    @RequestMapping("queryOneByName")
+    @ResponseBody
+    public List queryOneByName(@RequestParam(name = "place") String place){
+
+        List list = attractionService.queryOneByName(place);
+
+
+        return list;
+    }
+    @RequestMapping("/detail/{id}")
+    public String findById(Model model, @PathVariable(name = "id") Integer id){
+        Attraction attraction = attractionService.query(id);
+        List<Attraction> list = attractionService.changePlace();
+        List<Attraction> list1=new ArrayList<>();
+        for (Attraction attraction1 : list) {
+            String s = StringUtilss.html2Text(attraction1.getAttractionDesc());
+            attraction1.setAttractionDesc(s);
+            list1.add(attraction1);
+        }
+        model.addAttribute("attraction",attraction);
+        model.addAttribute("list",list1);
+        return "/single";
     }
 }
 

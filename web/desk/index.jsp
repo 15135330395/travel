@@ -45,29 +45,26 @@
                 <%--</div>--%>
                 <%--</div>--%>
 
-                <!-- 轮播图开始 -->
-                <%--<div class="owl-carousel owl-theme slide" id="featured">--%>
-                <%--<c:forEach items="${newsByTypeList}" var="newsList">--%>
-                <%--<div class="item">--%>
-                <%--<article class="featured">--%>
-                <%--<div class="overlay"></div>--%>
-                <%--<figure>--%>
-                <%--<img src="${newsList.get(0).imageUrl}" alt="${newsList.get(0).newsTitle}">--%>
-                <%--</figure>--%>
-                <%--<div class="details">--%>
-                <%--<div class="category">--%>
-                <%--<a href="category.jsp">${newsList.get(0).newsType.typeName}</a>--%>
-                <%--</div>--%>
-                <%--<h1><a href="single.jsp">${newsList.get(0).newsTitle}</a></h1>--%>
-                <%--<div class="time">2019 年 04 月 05 日${newsList.get(0).publishTime}</div>--%>
-                <%--</div>--%>
-                <%--</article>--%>
-                <%--</div>--%>
-                <%--</c:forEach>--%>
-                <%--</div>--%>
-                <!-- 轮播图结束 -->
+                    <!-- 轮播图开始 -->
+                    <div class="owl-carousel owl-theme slide" id="featured">
+                        <c:forEach begin="0" end="3" var="i">
+                            <div class="item">
+                                <article class="featured">
+                                    <div class="overlay"></div>
+                                    <figure>
+                                        <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}" alt="${attractions[i].attractionName}">
+                                    </figure>
+                                    <div class="details">
+                                        <h1><a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">${attractions[i].attractionName}</a></h1>
+                                    </div>
+                                </article>
+                            </div>
+                        </c:forEach>
+                    </div>
+                    <!-- 轮播图结束 -->
 
-                <div class="line">
+
+                    <div class="line">
                     <div>世界风光</div>
                 </div>
                 <div class="row">
@@ -78,8 +75,8 @@
                             <article class="article col-md-12">
                                 <div class="inner">
                                     <figure>
-                                        <a href="<%=request.getContextPath()%>/desk/single.jsp">
-                                            <img src="<%=request.getContextPath()%>/desk/images/place/destination-0.jpg">
+                                        <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
+                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -88,12 +85,12 @@
                                                 <%--<a href="category.jsp">${attractions[i].attractionName}</a>--%>
                                             <%--</div>--%>
                                         <%--</div>--%>
-                                        <h2><a href="<%=request.getContextPath()%>/desk/single.jsp">${attractions[i].attractionName}</a></h2>
+                                        <h2><a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">${attractions[i].attractionName}</a></h2>
                                         <footer>
                                             <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
                                                 <%--<div>${newNewsList[i].love}</div>--%>
                                             <%--</a>--%>
-                                            <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/id=${attractions[i].attractionId}">
+                                            <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
                                                 <div>更多</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
                                             </a>
@@ -106,8 +103,8 @@
                             <article class="article col-md-12">
                                 <div class="inner">
                                     <figure>
-                                        <a href="<%=request.getContextPath()%>/desk/single.jsp">
-                                            <img src="<%=request.getContextPath()%>/desk/images/place/destination-1.jpg">
+                                        <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
+                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -116,12 +113,12 @@
                                                 <%--<a href="#${newNewsList[i].newsType.typeId}">${newNewsList[i].newsType.typeName}</a>--%>
                                             <%--</div>--%>
                                         <%--</div>--%>
-                                        <h2><a href="<%=request.getContextPath()%>/desk/single.jsp">${attractions[i].attractionName}</a></h2>
+                                            <h2><a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">${attractions[i].attractionName}</a></h2>
                                         <footer>
                                             <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
                                                 <%--<div>${newNewsList[i].love}</div>--%>
                                             <%--</a>--%>
-                                            <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/id=${attractions[i].attractionId}">
+                                           <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
                                                 <div>更多</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
                                             </a>
@@ -309,9 +306,8 @@
         </div>
     </div>
 </section>
-
 <!-- 底部开始 -->
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 <!-- 底部结束 -->
 </body>
 </html>

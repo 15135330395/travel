@@ -4,7 +4,6 @@ import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +23,8 @@ public class AttractionServiceImpl implements AttractionService {
     }
 
     @Override
-    public Attraction query(String field, Integer id) {
-        return null;
+    public Attraction query(Integer id) {
+        return attractionDao.query("attractionId",id);
     }
 
     @Override
@@ -56,5 +55,11 @@ public class AttractionServiceImpl implements AttractionService {
     @Override
     public List<Attraction> changePlace(){
         return attractionDao.changePlace();
+    }
+
+    @Override
+    public List queryOneByName(String place) {
+        List list = attractionDao.queryOneByName(place);
+        return list;
     }
 }
