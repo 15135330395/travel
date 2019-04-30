@@ -282,10 +282,9 @@
                     if (data.toString()!= "[]") {
 
                         var da = eval("("+data+")");
-                        for (var i = 0; i < da.length; i++) {
-                            alert(da[i].attractionName)
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+da[i].attractionName);
-                        }
+
+                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data);
+
 
                     } else {
                         alert("没有该景点")

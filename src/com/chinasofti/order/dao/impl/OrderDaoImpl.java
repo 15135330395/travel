@@ -5,6 +5,8 @@ import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 /**
  * @Description OrderDaoImpl
  * @Author WYR
@@ -12,4 +14,18 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
+    @Override
+    public List queryOrder(Integer userId) {
+        return null;
+    }
+
+    @Override
+    public int deleteById(Integer orderId) {
+        return 0;
+    }
+
+    @Override
+    public Orders query(String orderId, Integer orderId1) {
+        return null;
+    }
 }

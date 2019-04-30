@@ -180,8 +180,8 @@ public class AttractionController {
     }
 
 
-    @RequestMapping("/toPlace/")
-    public ModelAndView toPlace(@RequestBody String place){
+    @RequestMapping("/toPlace")
+    public ModelAndView toPlace(@RequestBody Attraction place){
 
         ModelAndView modelAndView = new ModelAndView("/desk/place");
 

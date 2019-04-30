@@ -44,6 +44,11 @@ public class OrderDaoImp extends BaseDaoImpl<Orders> implements OrderDao {
             return 0;
         }
     }
+
+    @Override
+    public Orders query(String orderId, Integer orderId1) {
+        return null;
+    }
 	
 /*
 	@Override

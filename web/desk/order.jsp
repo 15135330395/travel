@@ -42,12 +42,14 @@
             <th>导游性别</th>
             <th>导游联系方式</th>
 
-            <th>组团信息</th>
+            <%--<th>组团信息</th>--%>
 
             <th>旅游路线</th>
             <th>出发时间</th>
             <th>集合地点</th>
-            <th>退订单</th>
+            <th>旅游路线</th>
+            <th>订单金额总计</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
@@ -63,17 +65,20 @@
                 <td>${link.attraction.route}</td>
                 <td>${link.departure}</td>
                 <td>${link.place}</td>
+                <td>${link.total}</td>
                 <td>${link.state}</td>
                 <td class="td-manage">
+                    <c:if test="${link.state == 0}" >
                     <a title="退订单" onclick="member_del(this,'${link.linkId}')" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
-                    <c:if test="${link.state}==未支付" >
-                        <a title="去支付" onclick="member_del(this,'${link.linkId}')" href="javascript:;">
+                    </c:if>
+                    <c:if test="${link.state == 0}" >
+                        <a title="去支付"  href="支付页面;">
                             <i class="layui-icon">&#xe63c;</i>
                         </a>
                     </c:if>
-                    <c:if test="${link.state}!=未支付" >
+                    <c:if test="${link.state != 0}" >
                         <a title="去支付">
                             <i class="layui-icon">&#xe63c;</i>
                         </a>
@@ -117,7 +122,7 @@
 
     /*用户-删除*/
     function member_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
+        layer.confirm('确认要取消订单吗？',function(index){
             $.ajax({
                 type:"post",
                 url:"<%=request.getContextPath()%>/QueryOrderController/deleteOrder/",
