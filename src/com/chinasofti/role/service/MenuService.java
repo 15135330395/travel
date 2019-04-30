@@ -21,6 +21,7 @@ public class MenuService {
     public List<Menu> query() {
         return dao.queryAll();
     }
+
     public List<Menu> queryByPageBean(PageBean pageBean) {
         return dao.queryByPageBean(pageBean);
     }
@@ -30,8 +31,22 @@ public class MenuService {
     }
 
     public Menu queryMenu(Integer menuId) {
-        return dao.query("menuId", menuId);
+        return dao.queryById(menuId);
     }
 
+    public Integer getCount() {
+        return dao.getCount();
+    }
 
+    public void updateMenu(Menu menu) {
+        dao.update(menu);
+    }
+
+    public void deleteMenu(Integer menuId) {
+        dao.delete(dao.queryById(menuId));
+    }
+
+    public List<Menu> findMenuByUserId(Integer userId) {
+        return dao.findMenuByUserId(userId);
+    }
 }

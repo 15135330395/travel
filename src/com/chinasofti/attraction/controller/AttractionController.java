@@ -174,6 +174,8 @@ public class AttractionController {
     public List queryOneByName(@RequestParam(name = "place") String place){
 
         List list = attractionService.queryOneByName(place);
+
+
         return list;
     }
 
@@ -185,6 +187,7 @@ public class AttractionController {
 
         return modelAndView;
     }
+
 
     @RequestMapping("/detail/{id}")
     public String findById(Model model, @PathVariable(name = "id") Integer id){

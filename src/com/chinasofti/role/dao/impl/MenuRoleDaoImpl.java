@@ -21,7 +21,7 @@ public class MenuRoleDaoImpl extends BaseDaoImpl<MenuRole> implements MenuRoleDa
 
     @Override
     public List<MenuRole> findMenuByRole(Integer id) {
-        return hibernateTemplate.execute(session -> session.createQuery("select * from MenuRole where roleId = :id").setParameter("id", id).list());
+        return hibernateTemplate.execute(session -> session.createQuery("from MenuRole where roleId = :id").setParameter("id", id).list());
     }
 
     @Override

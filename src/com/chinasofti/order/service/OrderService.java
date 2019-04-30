@@ -8,15 +8,15 @@ import java.util.List;
 public interface OrderService {
 
 	void addorder(Orders orders);
-	
-	void updateOrder(Orders orders);	
-	
+
+	void updateOrder(Orders orders);
+
 	void delete(Orders orders);
-	
+
 	Orders query(Integer orderId);
-	
+
 	List<Orders> queryAll();
-	
+
 	List<Orders> queryBypage(PageBean pageBean);
 
 	List queryOrder(Integer userId);

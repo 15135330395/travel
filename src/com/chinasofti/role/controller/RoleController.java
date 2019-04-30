@@ -1,6 +1,5 @@
 package com.chinasofti.role.controller;
 
-import com.alibaba.fastjson.JSONObject;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.role.entity.Menu;
 import com.chinasofti.role.entity.MenuRole;
@@ -8,7 +7,6 @@ import com.chinasofti.role.entity.Role;
 import com.chinasofti.role.service.MenuRoleService;
 import com.chinasofti.role.service.MenuService;
 import com.chinasofti.role.service.RoleService;
-import com.chinasofti.utils.JsonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,8 +28,11 @@ public class RoleController {
     @Autowired
     private RoleService service;
     @Autowired
+    private MenuService menuService;
+    @Autowired
     private MenuRoleService menuRoleService;
 
+    /* layui数据表格无法获得行信息，改为普通表格
     @RequestMapping("all")
     @ResponseBody
     public JSONObject getAllRoleByPage(HttpServletRequest request) {
@@ -47,50 +48,105 @@ public class RoleController {
         // 总条数
         pageBean.setCount(service.getCount());
         List<Role> roleList = service.queryByPageBean(pageBean);
+        System.out.println(JsonUtil.getJsonObject(roleList, pageBean));
         return JsonUtil.getJsonObject(roleList, pageBean);
     }
+    */
+    @RequestMapping("all")
+    public String getAllRoleByPage(HttpServletRequest request, Map<String, Object> map) {
+        PageBean pageBean = new PageBean();
+        // 页码
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        pageBean.setIndex(Integer.parseInt(index));
+        // 每页条数
+        String pageCount = "10";
+        pageBean.setPageCount(Integer.parseInt(pageCount));
+        // 总条数
+        pageBean.setCount(service.getCount());
+        List<Role> roleList = service.queryByPageBean(pageBean);
+        map.put("pageBean", pageBean);
+        map.put("roleList", roleList);
+        return "/background/role/Role/RoleList";
+    }
+/*
+    @RequestMapping("query/{place}")
+    public String getAllRoleByPlace(@PathVariable(name = "place") String place, HttpServletRequest request, Map<String, Object> map) {
+        PageBean pageBean = new PageBean();
+        // 页码
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        pageBean.setIndex(Integer.parseInt(index));
+        // 每页条数
+        String pageCount = "10";
+        pageBean.setPageCount(Integer.parseInt(pageCount));
+        // 总条数
+        pageBean.setCount(service.getCountByPlace(place));
+        System.out.println(service.getCountByPlace(place));
+        List<Role> roleList = service.queryByPageBeanAndPlace(pageBean, place);
+        for (Role role : roleList) {
+            System.out.println(role);
+        }
+        map.put("pageBean", pageBean);
+        map.put("roleList", roleList);
+        return "/background/role/Role/RoleList" ;
+    }
+*/
 
-    @RequestMapping("add")
-    public Integer getAllRoleByPage(Role role) {
-        service.addRole(role);
+    @RequestMapping(value = "add")
+    @ResponseBody
+    public Integer add(HttpServletRequest request) {
+        String roleName = request.getParameter("roleName");
+        service.addRole(new Role(roleName));
         return 1;
     }
 
     @RequestMapping("{id}")
-    public String queryRole(@PathVariable(name = "id") Integer id, Map<String, Object> map) {
-        Role role = service.queryRole(id);
+    public String queryRole(@PathVariable(name = "id") String id, Map<String, Object> map) {
+        Role role = service.queryRoleById(Integer.parseInt(id));
         map.put("role", role);
-        return "edit";
+        return "/background/role/Role/EditRole";
     }
 
     @RequestMapping("update")
+    @ResponseBody
     public Integer updateRole(Role role) {
         service.updateRole(role);
         return 1;
     }
 
-    @RequestMapping("to/{id}")
-    public String toGrant(@PathVariable(name = "id") Integer id, Map<String, Object> map) {
-        Role role = service.queryRole(id);
-        map.put("role", role);
-
-        MenuService menuService = new MenuService();
-        List<Menu> menuList = menuService.query();
-        map.put("menuList", menuList);
-
-        List<MenuRole> menuByRoleId = menuRoleService.findMenuByRole(id);
-        map.put("menuByRole", menuByRoleId);
-        return "Role/GrantRole.jsp";
+    @RequestMapping("delete/{id}")
+    @ResponseBody
+    public Integer deleteRole(@PathVariable(name = "id") String id) {
+        service.delete(Integer.parseInt(id));
+        return 1;
     }
 
-    @RequestMapping("grant/{roleId}/{menuIds}")
-    public Integer grant(@PathVariable(name = "roleId") Integer roleId, @PathVariable(name = "menuIds") String ids) {
-        menuRoleService.deleteMenuRoleByRoleId(roleId);
+    @RequestMapping("to/{id}")
+    public String toGrant(@PathVariable(name = "id") Integer id, Map<String, Object> map) {
+        Role role = service.queryRoleById(id);
+        map.put("role", role);
+
+        List<Menu> menuList = menuService.query();
+        map.put("menus", menuList);
+
+        return "/background/role/Role/GrantRole";
+    }
+
+    @RequestMapping("grant/{roleId}")
+    @ResponseBody
+    public Integer grant(@PathVariable(name = "roleId") String roleId, HttpServletRequest request) {
+        menuRoleService.deleteMenuRoleByRoleId(Integer.parseInt(roleId));
+        String ids = request.getParameter("menuIds");
         String[] menuIds = ids.split(",");
         int success = 0;
-        for (int i = 0; i < menuIds.length; i++) {
-            int id = Integer.parseInt(menuIds[i]);
-            menuRoleService.addMenuRole(new MenuRole(id, roleId));
+        for (String menuId : menuIds) {
+            int id = Integer.parseInt(menuId);
+            menuRoleService.addMenuRole(new MenuRole(id, Integer.parseInt(roleId)));
             success += 1;
         }
         return success;

@@ -12,7 +12,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>添加权限表</title>
+    <title>添加权限</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -31,6 +31,14 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">
+                <span class="x-red">*</span>父节点
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="parentId" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
                 <span class="x-red">*</span>图标
             </label>
             <div class="layui-input-block">
@@ -43,14 +51,6 @@
             </label>
             <div class="layui-input-block">
                 <input type="text" name="url" class="layui-input" lay-verify="required">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">
-                <span class="x-red">*</span>父节点
-            </label>
-            <div class="layui-input-block">
-                <input type="text" name="parentId" class="layui-input" lay-verify="required">
             </div>
         </div>
 
@@ -67,19 +67,18 @@
     layui.use(['form', 'layer', 'laydate'], function () {
         $ = layui.jquery;
         var form = layui.form
-            , layer = layui.layer
+            , layer = layui.layer;
         //监听提交
         form.on('submit(add)', function (data) {
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/MenuServlet",
+                url: "<%=request.getContextPath()%>/menu/add",
                 data: {
-                    action: "addMenu",
                     menuName: data.field.menuName,
+                    parentId: data.field.parentId,
                     img: data.field.img,
-                    url: data.field.url,
-                    parentId: data.field.parentId
+                    url: data.field.url
                 },
                 success: function (msg) {
                     if (msg == 1) {
