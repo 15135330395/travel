@@ -41,7 +41,9 @@
             <th>导游姓名</th>
             <th>导游性别</th>
             <th>导游联系方式</th>
+
             <th>组团信息</th>
+
             <th>旅游路线</th>
             <th>出发时间</th>
             <th>集合地点</th>
@@ -49,16 +51,18 @@
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${linkList}" var="link">
+        <c:forEach items="${orderList}" var="link">
             <tr>
-                <td>${link.linkId}</td>
-                <td>${link.linkName}</td>
-                <td>${link.linkUrl}</td>
-                <td>${link.email}</td>
+                <td>${link.attraction}</td>
+                <td>${link.staff.staffName}</td>
+                <td>${link.staff.staffSex}</td>
+                <td>${link.staff.phone}</td>
+
                 <td>${link.linkOrder}</td>
-                <td>${link.linkUrl}</td>
-                <td>${link.email}</td>
-                <td>${link.linkOrder}</td>
+
+                <td>${link.attraction.route}</td>
+                <td>${link.departure}</td>
+                <td>${link.place}</td>
                 <td>${link.state}</td>
                 <td class="td-manage">
                     <a title="退订单" onclick="member_del(this,'${link.linkId}')" href="javascript:;">
@@ -116,18 +120,13 @@
         layer.confirm('确认要删除吗？',function(index){
             $.ajax({
                 type:"post",
-                url:"<%=request.getContextPath()%>/controller/method/",
+                url:"<%=request.getContextPath()%>/QueryOrderController/deleteOrder/",
                 data:{
-                    id:id
+                    orderId:id
                 },
                 success:function(msg){
-                    //发异步删除数据
-                    $(obj).parents("tr").remove();
-                    if(msg==1){
-                        layer.msg('退单成功!',{icon:1,time:1000});
-                    }else{
-                        layer.msg('已退单或不存在!',{icon:1,time:1000});
-                    }
+
+                    alert(msg.name);
                 }
             })
         });

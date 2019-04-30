@@ -23,6 +23,7 @@
     <![endif]-->
 </head>
 
+
 <body>
 <div class="x-nav">
       <span class="layui-breadcrumb">
@@ -39,7 +40,7 @@
         <tr>
             <th>景点名称</th>
             <th>图片</th>
-            <th>价格</th>
+            <th>路径</th>
         </tr>
         </thead>
         <tbody>
@@ -47,7 +48,7 @@
             <tr>
                 <td><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></td>
                 <td><img src="<%=request.getContextPath()%>/background/image/${list.imageUrl}"></td>
-                <td></td>
+                <td>${list.route}</td>
             </tr>
         </c:forEach>
         </tbody>

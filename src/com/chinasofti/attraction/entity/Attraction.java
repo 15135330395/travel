@@ -80,4 +80,5 @@ public class Attraction {
     public void setAttractionDesc(String attractionDesc) {
         this.attractionDesc = attractionDesc;
     }
+
 }

@@ -1,6 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
+<script type="text/javascript" src="<%=request.getContextPath()%>/desk/layui/layui.js" charset="utf-8"></script>
 <header class="primary">
     <div class="firstbar">
         <div class="container">
@@ -18,9 +19,10 @@
                             <div class="input-group">
                                 <input type="text" id="sousuo" class="form-control" placeholder="搜景点">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary"  style="line-height: 1;" href="<%=request.getContextPath()%>/attraction/queryOneByName/"><i class="ion-search"></i>
+                                    <button class="btn btn-primary"  style="line-height: 1;" onclick="queryPlace();return false"><i class="ion-search"></i>
                                     </button>
                                 </div>
+
                             </div>
                         </div>
                         <div class="help-block">
@@ -46,6 +48,11 @@
                             <li>
                                 <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
                                     <div>登陆</div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
+                                    <div>后台登陆</div>
                                 </a>
                             </li>
                         </c:if>
@@ -241,7 +248,7 @@
                                     <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
                                 <%--</li>--%>
                                 <li>
-                                    <a href="order.jsp"><i class="icon ion-settings"></i>我的订单</a>
+                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
@@ -266,15 +273,20 @@
             $.ajax({
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
+                async:"false",
                 data: {
                     "place":place
                 },
                 success: function (data) {
 
+                    if (data.toString()!= "[]") {
 
-                    if (data != null) {
-                        alert(data.toString());
-                        location.href("<%=request.getContextPath()%>/desk/single")
+                        var da = eval("("+data+")");
+                        for (var i = 0; i < da.length; i++) {
+                            alert(da[i].attractionName)
+                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+da[i].attractionName);
+                        }
+
                     } else {
                         alert("没有该景点")
                     }
