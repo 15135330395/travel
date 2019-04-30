@@ -71,7 +71,7 @@ public class RoleController {
         map.put("roleList", roleList);
         return "/background/role/Role/RoleList";
     }
-
+/*
     @RequestMapping("query/{place}")
     public String getAllRoleByPlace(@PathVariable(name = "place") String place, HttpServletRequest request, Map<String, Object> map) {
         PageBean pageBean = new PageBean();
@@ -93,8 +93,9 @@ public class RoleController {
         }
         map.put("pageBean", pageBean);
         map.put("roleList", roleList);
-        return "/background/role/Role/RoleList";
+        return "/background/role/Role/RoleList" ;
     }
+*/
 
     @RequestMapping(value = "add")
     @ResponseBody

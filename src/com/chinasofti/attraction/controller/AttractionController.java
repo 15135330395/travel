@@ -170,12 +170,10 @@ public class AttractionController {
     @RequestMapping("queryOneByName")
     @ResponseBody
     public List queryOneByName(@RequestParam(name = "place") String place){
-
         List list = attractionService.queryOneByName(place);
-
-
         return list;
     }
+
     @RequestMapping("/detail/{id}")
     public String findById(Model model, @PathVariable(name = "id") Integer id){
         Attraction attraction = attractionService.query(id);

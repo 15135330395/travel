@@ -45,7 +45,7 @@ public class RoleService {
     public void delete(Integer roleId) {
         dao.delete(dao.queryById(roleId));
     }
-
+/*
     public Integer getCountByPlace(String place) {
         return dao.getCountByPlace(place);
     }
@@ -53,4 +53,5 @@ public class RoleService {
     public List<Role> queryByPageBeanAndPlace(PageBean pageBean, String place) {
         return dao.queryByPageBeanAndPlace(pageBean, place);
     }
+    */
 }

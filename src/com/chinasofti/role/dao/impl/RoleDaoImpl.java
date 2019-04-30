@@ -20,7 +20,7 @@ import java.util.List;
  */
 @Repository
 public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
-
+    /*
     @Autowired
     private HibernateTemplate hibernateTemplate;
 
@@ -40,4 +40,5 @@ public class RoleDaoImpl extends BaseDaoImpl<Role> implements RoleDao {
                         .addEntity(Role.class)
                         .setParameter("place", place).setParameter("pageIndex", pageBean.getPageIndex()).setParameter("pageCount", pageBean.getPageCount()).list());
     }
+    */
 }

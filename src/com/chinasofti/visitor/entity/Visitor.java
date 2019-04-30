@@ -64,6 +64,7 @@ public class Visitor {
         this.visitorName = visitorName;
     }
 
+
     @Column(name = "card_id")
     public String getCardId() {
         return cardId;
