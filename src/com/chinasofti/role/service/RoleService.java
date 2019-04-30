@@ -2,7 +2,6 @@ package com.chinasofti.role.service;
 
 import com.chinasofti.base.PageBean;
 import com.chinasofti.role.dao.RoleDao;
-import com.chinasofti.role.dao.impl.RoleDaoImpl;
 import com.chinasofti.role.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -27,24 +26,31 @@ public class RoleService {
         return dao.queryByPageBean(pageBean);
     }
 
-    public Role queryRole(Integer id) {
-        return dao.query("roleId", id);
+    public Integer getCount() {
+        return dao.getCount();
     }
 
     public void addRole(Role role) {
         dao.add(role);
     }
 
-    public Integer getCount() {
-        return dao.getCount();
+    public Role queryRoleById(Integer roleId) {
+        return dao.queryById(roleId);
     }
 
     public void updateRole(Role role) {
         dao.update(role);
     }
 
-    public Role queryRoleById(Integer roleId) {
-        return dao.query("roleId", roleId);
+    public void delete(Integer roleId) {
+        dao.delete(dao.queryById(roleId));
     }
 
+    public Integer getCountByPlace(String place) {
+        return dao.getCountByPlace(place);
+    }
+
+    public List<Role> queryByPageBeanAndPlace(PageBean pageBean, String place) {
+        return dao.queryByPageBeanAndPlace(pageBean, place);
+    }
 }

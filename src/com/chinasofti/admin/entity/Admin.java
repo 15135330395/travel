@@ -2,12 +2,17 @@ package com.chinasofti.admin.entity;
 
 import com.chinasofti.role.entity.Role;
 import com.chinasofti.staff.entity.Staff;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
 
 /**
  * @Description Admin
  * @Author WYR
  * @CreateTime 2019-04-27 17:29
  */
+@Entity
+@Table(name = "admin")
 public class Admin {
     /**
      * 后台用户编号
@@ -30,6 +35,10 @@ public class Admin {
      */
     private Staff staff;
 
+    @Id
+    @GeneratedValue(generator = "_native")
+    @GenericGenerator(name = "_native", strategy = "native")
+    @Column(name = "admin_id")
     public Integer getAdminId() {
         return adminId;
     }
@@ -38,6 +47,7 @@ public class Admin {
         this.adminId = adminId;
     }
 
+    @Column(name = "admin_name")
     public String getAdminName() {
         return adminName;
     }
@@ -46,6 +56,7 @@ public class Admin {
         this.adminName = adminName;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -54,6 +65,8 @@ public class Admin {
         this.password = password;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "role_id")
     public Role getRole() {
         return role;
     }
@@ -62,6 +75,8 @@ public class Admin {
         this.role = role;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
     public Staff getStaff() {
         return staff;
     }

@@ -50,15 +50,14 @@
     layui.use(['form', 'layer'], function () {
         $ = layui.jquery;
         var form = layui.form
-            , layer = layui.layer
+            , layer = layui.layer;
         //监听提交
         form.on('submit(update)', function (data) {
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/RoleServlet",
+                url: "<%=request.getContextPath()%>/role/update",
                 data: {
-                    action: "updateRole",
                     roleId: data.field.roleId,
                     roleName: data.field.roleName
                 },

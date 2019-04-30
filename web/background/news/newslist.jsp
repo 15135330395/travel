@@ -12,7 +12,11 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <title>景点信息列表</title>
+=======
+    <title>新闻管理</title>
+>>>>>>> 角色
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"
@@ -21,9 +25,15 @@
 <body>
 <div class="x-nav">
       <span class="layui-breadcrumb">
+<<<<<<< HEAD
         <a href="/desk/index.jsp">首页</a>
         <a>
           <cite>景点信息列表</cite></a>
+=======
+        <a href="#">首页</a>
+        <a>
+          <cite>新闻管理</cite></a>
+>>>>>>> 角色
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right"
        href="javascript:location.replace(location.href);" title="刷新">
@@ -39,6 +49,7 @@
 
     <table class="layui-hide" id="test" lay-filter="test"></table>
 
+<<<<<<< HEAD
     <%--<script type="text/html" id="barDemo">--%>
         <%--<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>--%>
         <%--<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>--%>
@@ -46,6 +57,23 @@
     <%--<script type="text/html" id="publishDate">--%>
         <%--{{ dateFormat(d.publishDate) }}--%>
     <%--</script>--%>
+=======
+    <script type="text/html" id="toolbarDemo">
+        <div class="layui-btn-container">
+            <button class="layui-btn layui-btn-danger" lay-event="delAll">
+                <i class="layui-icon"></i>批量删除
+            </button>
+        </div>
+    </script>
+
+    <script type="text/html" id="barDemo">
+        <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    </script>
+    <script type="text/html" id="publishDate">
+        {{ dateFormat(d.publishDate) }}
+    </script>
+>>>>>>> 角色
     <script>
         layui.use('table', function () {
             var table = layui.table;

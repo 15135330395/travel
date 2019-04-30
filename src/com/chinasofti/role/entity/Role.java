@@ -21,6 +21,13 @@ public class Role {
      */
     private String roleName;
 
+    public Role() {
+    }
+
+    public Role(String roleName) {
+        this.roleName = roleName;
+    }
+
     @Id
     @GeneratedValue(generator = "_native")
     @GenericGenerator(name = "_native", strategy = "native")
@@ -40,5 +47,13 @@ public class Role {
 
     public void setRoleName(String roleName) {
         this.roleName = roleName;
+    }
+
+    @Override
+    public String toString() {
+        return "Role{" +
+                "roleId=" + roleId +
+                ", roleName='" + roleName + '\'' +
+                '}';
     }
 }

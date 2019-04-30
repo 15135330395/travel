@@ -49,9 +49,8 @@
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/RoleServlet",
+                url: "<%=request.getContextPath()%>/role/add",
                 data: {
-                    action: "addRole",
                     roleName: data.field.roleName
                 },
                 success: function (msg) {

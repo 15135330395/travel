@@ -9,7 +9,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!-- css和js的引用封装在info.jsp -->
 <%@ include file="/background/commons/info.jsp" %>
-
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
@@ -40,6 +39,14 @@
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">
+                <span class="x-red">*</span>父节点
+            </label>
+            <div class="layui-input-block">
+                <input type="text" name="parentId" class="layui-input" lay-verify="required" value="${menu.parentId}">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">
                 <span class="x-red">*</span>图标
             </label>
             <div class="layui-input-block">
@@ -52,14 +59,6 @@
             </label>
             <div class="layui-input-block">
                 <input type="text" name="url" class="layui-input" lay-verify="required" value="${menu.url}">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label class="layui-form-label">
-                <span class="x-red">*</span>父节点
-            </label>
-            <div class="layui-input-block">
-                <input type="text" name="parentId" class="layui-input" lay-verify="required" value="${menu.parentId}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -81,14 +80,13 @@
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/MenuServlet",
+                url: "<%=request.getContextPath()%>/menu/update",
                 data: {
-                    action: "updateMenu",
                     menuId: data.field.menuId,
                     menuName: data.field.menuName,
+                    parentId: data.field.parentId,
                     img: data.field.img,
-                    url: data.field.url,
-                    parentId: data.field.parentId
+                    url: data.field.url
                 },
                 success: function (msg) {
                     if (msg == 1) {

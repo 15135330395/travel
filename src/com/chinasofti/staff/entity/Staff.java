@@ -1,10 +1,16 @@
 package com.chinasofti.staff.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
 /**
  * @Description Staff
  * @Author WYR
  * @CreateTime 2019-04-27 17:32
  */
+@Entity
+@Table(name = "staff")
 public class Staff {
     /**
      * 员工编号
@@ -35,6 +41,10 @@ public class Staff {
      */
     private String workplace;
 
+    @Id
+    @GeneratedValue(generator = "_native")
+    @GenericGenerator(name = "_native", strategy = "native")
+    @Column(name = "staff_id")
     public Integer getStaffId() {
         return staffId;
     }
@@ -43,6 +53,7 @@ public class Staff {
         this.staffId = staffId;
     }
 
+    @Column(name = "staff_name")
     public String getStaffName() {
         return staffName;
     }
@@ -51,6 +62,7 @@ public class Staff {
         this.staffName = staffName;
     }
 
+    @Column(name = "staff_sex")
     public String getStaffSex() {
         return staffSex;
     }
@@ -59,6 +71,7 @@ public class Staff {
         this.staffSex = staffSex;
     }
 
+    @Column(name = "card_id")
     public String getCardId() {
         return cardId;
     }
@@ -67,6 +80,7 @@ public class Staff {
         this.cardId = cardId;
     }
 
+    @Column(name = "phone")
     public String getPhone() {
         return phone;
     }
@@ -75,6 +89,7 @@ public class Staff {
         this.phone = phone;
     }
 
+    @Column(name = "job")
     public String getJob() {
         return job;
     }
@@ -83,6 +98,7 @@ public class Staff {
         this.job = job;
     }
 
+    @Column(name = "workplace")
     public String getWorkplace() {
         return workplace;
     }
