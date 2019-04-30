@@ -34,7 +34,7 @@ public class VisitorService {
      * 按Id查询游客信息
      */
     public Visitor query(Integer id) {
-        return visitorDao.query("visitorId",id);
+        return visitorDao.queryById(id);
     }
     /**
      * 添加游客信息

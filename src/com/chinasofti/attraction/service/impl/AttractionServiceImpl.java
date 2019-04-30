@@ -24,7 +24,7 @@ public class AttractionServiceImpl implements AttractionService {
 
     @Override
     public Attraction query(Integer id) {
-        return attractionDao.query("attractionId",id);
+        return attractionDao.queryById(id);
     }
 
     @Override

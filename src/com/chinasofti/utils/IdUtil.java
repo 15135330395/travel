@@ -24,14 +24,13 @@ public class IdUtil {
     }
 
     /**
-     * 商品id生成
+     * 订单id生成
      */
     public static long genItemId() {
         try {
-            //加上两位随机数
+            // 加上两位随机数
             Random random = new Random();
             int end2 = random.nextInt(99);
-            //如果不足两位前面补0
             String str = DateUtil.getCurrentDateStr() + String.format("%02d", end2);
             return new Long(str);
         } catch (Exception e) {

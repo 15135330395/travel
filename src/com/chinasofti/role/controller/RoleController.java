@@ -99,9 +99,8 @@ public class RoleController {
 
     @RequestMapping(value = "add")
     @ResponseBody
-    public Integer add(HttpServletRequest request) {
-        String roleName = request.getParameter("roleName");
-        service.addRole(new Role(roleName));
+    public Integer add(Role role) {
+        service.addRole(role);
         return 1;
     }
 

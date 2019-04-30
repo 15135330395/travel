@@ -18,7 +18,7 @@ public class Orders {
     /**
      * 订单编号
      */
-    private Integer orderId;
+    private Long orderId;
     /**
      * 景点
      */
@@ -54,11 +54,11 @@ public class Orders {
 
     @Id
     @Column(name = "order_id")
-    public Integer getOrderId() {
+    public Long getOrderId() {
         return orderId;
     }
 
-    public void setOrderId(Integer orderId) {
+    public void setOrderId(Long orderId) {
         this.orderId = orderId;
     }
 
