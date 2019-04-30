@@ -2,6 +2,7 @@ package com.chinasofti.foreground.controller;
 
 
 import com.chinasofti.order.entity.Orders;
+import com.chinasofti.order.entity.Type;
 import com.chinasofti.utils.DateUtil;
 import com.chinasofti.visitor.entity.Visitor;
 import com.chinasofti.visitor.service.VisitorService;
@@ -48,9 +49,9 @@ public class ToOrderController {
         order.setCreateTime(new Date());
         order.setDeparture(DateUtil.formatString(departure,"yyyy-MM-dd HH:mm:ss"));
         if(list.size()>=20){
-            order.setTypeId(1);
+            order.setType(new Type(1));
         }else {
-            order.setTypeId(2);
+            order.setType(new Type(2));
         }
         return "/order";
     }

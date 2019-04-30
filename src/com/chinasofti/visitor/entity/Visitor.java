@@ -1,15 +1,15 @@
 package com.chinasofti.visitor.entity;
 
+import com.chinasofti.order.entity.Orders;
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
 /**
  * @Description Visitor
  * @Author WYR
  * @CreateTime 2019-04-27 17:33
  */
-
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-
 @Entity
 @Table(name = "visitor")
 public class Visitor {
@@ -30,51 +30,9 @@ public class Visitor {
      */
     private String phone;
     /**
-     * 订单编号
+     * 订单
      */
-    private Long orderId;
-
-    @Id
-    @Column(name = "visitor_id")
-    public Integer getVisitorId() {
-        return visitorId;
-    }
-
-    public void setVisitorId(Integer visitorId) {
-        this.visitorId = visitorId;
-    }
-    @Column(name = "visitor_name")
-    public String getVisitorName() {
-        return visitorName;
-    }
-
-    public void setVisitorName(String visitorName) {
-        this.visitorName = visitorName;
-    }
-    @Column(name = "card_id")
-    public String getCardId() {
-        return cardId;
-    }
-
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-    @Column(name = "order_id")
-    public Long getOrderId() {
-        return orderId;
-    }
-
-    public void setOrderId(Long orderId) {
-        this.orderId = orderId;
-    }
+    private Orders orders;
 
     public Visitor() {
     }
@@ -85,14 +43,53 @@ public class Visitor {
         this.phone = phone;
     }
 
-    @Override
-    public String toString() {
-        return "Visitor{" +
-                "visitorId=" + visitorId +
-                ", visitorName='" + visitorName + '\'' +
-                ", cardId='" + cardId + '\'' +
-                ", phone='" + phone + '\'' +
-                ", orderId=" + orderId +
-                '}';
+    @Id
+    @GeneratedValue(generator = "_native")
+    @GenericGenerator(name = "_native", strategy = "native")
+    @Column(name = "visitor_id")
+    public Integer getVisitorId() {
+        return visitorId;
+    }
+
+    public void setVisitorId(Integer visitorId) {
+        this.visitorId = visitorId;
+    }
+
+    @Column(name = "visitor_name")
+    public String getVisitorName() {
+        return visitorName;
+    }
+
+    public void setVisitorName(String visitorName) {
+        this.visitorName = visitorName;
+    }
+
+
+    @Column(name = "card_id")
+    public String getCardId() {
+        return cardId;
+    }
+
+    public void setCardId(String cardId) {
+        this.cardId = cardId;
+    }
+
+    @Column(name = "phone")
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "order_id")
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
     }
 }

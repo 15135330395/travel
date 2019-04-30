@@ -4,6 +4,7 @@ import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.user.entity.User;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -11,7 +12,8 @@ import java.util.Date;
  * @Author WYR
  * @CreateTime 2019-04-27 17:30
  */
-
+@Entity
+@Table(name = "orders")
 public class Orders {
     /**
      * 订单编号
@@ -26,9 +28,9 @@ public class Orders {
      */
     private Staff staff;
     /**
-     * 类型编号
+     * 类型
      */
-    private Integer typeId;
+    private Type type;
     /**
      * 下单时间
      */
@@ -50,6 +52,8 @@ public class Orders {
      */
     private User user;
 
+    @Id
+    @Column(name = "order_id")
     public Integer getOrderId() {
         return orderId;
     }
@@ -58,6 +62,8 @@ public class Orders {
         this.orderId = orderId;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "attraction_id")
     public Attraction getAttraction() {
         return attraction;
     }
@@ -66,6 +72,8 @@ public class Orders {
         this.attraction = attraction;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "staff_id")
     public Staff getStaff() {
         return staff;
     }
@@ -74,14 +82,17 @@ public class Orders {
         this.staff = staff;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    @ManyToOne
+    @JoinColumn(name = "type_id")
+    public Type getType() {
+        return type;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setType(Type type) {
+        this.type = type;
     }
 
+    @Column(name = "create_time")
     public Date getCreateTime() {
         return createTime;
     }
@@ -90,6 +101,7 @@ public class Orders {
         this.createTime = createTime;
     }
 
+    @Column(name = "departure")
     public Date getDeparture() {
         return departure;
     }
@@ -98,6 +110,7 @@ public class Orders {
         this.departure = departure;
     }
 
+    @Column(name = "place")
     public String getPlace() {
         return place;
     }
@@ -106,6 +119,7 @@ public class Orders {
         this.place = place;
     }
 
+    @Column(name = "state")
     public Integer getState() {
         return state;
     }
@@ -114,6 +128,8 @@ public class Orders {
         this.state = state;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "user_id")
     public User getUser() {
         return user;
     }
