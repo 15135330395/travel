@@ -26,7 +26,6 @@ public class AttractionController {
 
     @Autowired
     private AttractionDao attractionDao;
-
     /**
      * 景点查询
      * @param model
@@ -162,7 +161,6 @@ public class AttractionController {
     @RequestMapping("placeList")
     public ModelAndView placeList(){
         List<Attraction> attractionList = attractionService.queryAll();
-
 
         ModelAndView modelAndView = new ModelAndView("/desk/place");
         modelAndView.addObject("attractionList",attractionList);

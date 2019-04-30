@@ -7,8 +7,6 @@ import java.util.List;
 
 public interface OrderService {
 
-	void addorder(Orders orders);
-
 	void updateOrder(Orders orders);
 
 	void delete(Orders orders);
@@ -22,4 +20,21 @@ public interface OrderService {
 	List queryOrder(Integer userId);
 
 	int deleteById(Integer orderId);
+
+	void addorder(Orders orders,Integer count);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

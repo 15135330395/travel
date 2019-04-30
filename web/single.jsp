@@ -69,7 +69,7 @@
                 </ol>
                 <article class="article main-article">
                     <header>
-                        <h1>${attraction.attractionName}</h1>
+                        <h1 >${attraction.attractionName}</h1>
                     </header>
                     <div class="main">
                         <p>${attraction.route}</p>

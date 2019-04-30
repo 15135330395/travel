@@ -37,10 +37,25 @@ public class Visitor {
     public Visitor() {
     }
 
+    public Visitor(Integer visitorId, String visitorName, String cardId, String phone, Orders orders) {
+        this.visitorId = visitorId;
+        this.visitorName = visitorName;
+        this.cardId = cardId;
+        this.phone = phone;
+        this.orders = orders;
+    }
+
     public Visitor(String visitorName, String cardId, String phone) {
         this.visitorName = visitorName;
         this.cardId = cardId;
         this.phone = phone;
+    }
+
+    public Visitor(String visitorName, String cardId, String phone, Orders orders) {
+        this.visitorName = visitorName;
+        this.cardId = cardId;
+        this.phone = phone;
+        this.orders = orders;
     }
 
     @Id
@@ -83,7 +98,7 @@ public class Visitor {
         this.phone = phone;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "order_id")
     public Orders getOrders() {
         return orders;
@@ -91,5 +106,16 @@ public class Visitor {
 
     public void setOrders(Orders orders) {
         this.orders = orders;
+    }
+
+    @Override
+    public String toString() {
+        return "Visitor{" +
+                "visitorId=" + visitorId +
+                ", visitorName='" + visitorName + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", phone='" + phone + '\'' +
+                ", orders=" + orders +
+                '}';
     }
 }

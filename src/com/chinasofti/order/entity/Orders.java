@@ -51,6 +51,10 @@ public class Orders {
      * 下单用户
      */
     private User user;
+    /**
+     * 订单总价
+     */
+    private Double total;
 
     @Id
     @Column(name = "order_id")
@@ -136,5 +140,29 @@ public class Orders {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Double getTotal() {
+        return total;
+    }
+
+    public void setTotal(Double total) {
+        this.total = total;
+    }
+
+    @Override
+    public String toString() {
+        return "Orders{" +
+                "orderId=" + orderId +
+                ", attraction=" + attraction +
+                ", staff=" + staff +
+                ", type=" + type +
+                ", createTime=" + createTime +
+                ", departure=" + departure +
+                ", place='" + place + '\'' +
+                ", state=" + state +
+                ", user=" + user +
+                ", total=" + total +
+                '}';
     }
 }

@@ -1,17 +1,18 @@
 package com.chinasofti.order.dao;
-
 import com.chinasofti.base.BaseDao;
 import com.chinasofti.order.entity.Orders;
 
 import java.util.List;
 
-public interface OrderDao extends BaseDao<Orders>{
+public interface OrderDao extends BaseDao<Orders> {
+    public Double total(Long id);
+
     List queryOrder(Integer userId);
 
     int deleteById(Integer orderId);
 
     Orders query(String orderId, Integer orderId1);
-
+}
 //	void addorder(Order orders);
 //
 //	void updateOrder(Order orders);
@@ -30,14 +31,5 @@ public interface OrderDao extends BaseDao<Orders>{
 
 //	public int deleteOrder(int p_rId);
 
-//	public int updateOrderBuyer(String buyer,Date startDate,int p_rId);
-//	public int updateOrderInspector(String inspector,Date checkDate,int p_rId);
-//	public int updateOrderWarehouseKeeper(String warehouseKeeper,Date endkDate,int p_rId);
-//	public Order queryById(int p_rId);
-//	public List<Order> queryOrderAll();
 
 
-
-//	int addOrder2(int p_rId, String string, String proposer);
-
-}

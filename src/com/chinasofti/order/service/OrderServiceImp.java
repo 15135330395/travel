@@ -14,9 +14,10 @@ public class OrderServiceImp implements OrderService{
 	private OrderDao orderDaoImp;
 	
 	@Override
-	public void addorder(Orders orders) {
-		// TODO 自动生成的方法存根
-		orderDaoImp.add(orders);
+	public void addorder(Orders orders,Integer count) {
+        Double total = orderDaoImp.total(orders.getOrderId());
+        orders.setTotal(total*count);
+        orderDaoImp.update(orders);
 	}
 
 	@Override

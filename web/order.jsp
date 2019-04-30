@@ -3,37 +3,38 @@
 <%@ include file="data.jsp" %>
 <html>
 <head>
-    <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
+    <title>Magz旅行社</title>
     <style>
         .icon {
             font-size: 23px;
         }
     </style>
 </head>
-<%
-if (request.getSession().getAttribute("user") == null) {
-response.sendRedirect(request.getContextPath() + "/login.jsp");
-}
-%>
+<%--<%--%>
+<%--if (request.getSession().getAttribute("user") == null) {--%>
+<%--response.sendRedirect(request.getContextPath() + "/login.jsp");--%>
+<%--}--%>
+<%--%>--%>
 <body>
 <div class="container">
     <div class="row">
         <form class="row" action="<%=request.getContextPath()%>/foreground/toOrder">
+            <input type="hidden" name="attraction.attractionId" value="${attraction.attractionId}">
             <div class="col-md-12">
                 <h3 class="title">下订单</h3>
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
                 <label for="dtp_input1" class=" control-label">出发时间<span class="required"></span></label></label>
                 <div class="input-group date form_datetime" data-date="1979-09-16T05:25:07Z"
                      data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input class="form-control form_datetime" name="departure" placeholder="请输入出发时间"
+                    <input class="form-control form_datetime" name="goTime" placeholder="请输入出发时间"
                            style="background: #ffffff" type="text" value="" readonly="readonly">
                     <span class="input-group-addon"><span class="glyphicon glyphicon-remove"></span></span>
                     <span class="input-group-addon"><span class="glyphicon glyphicon-th"></span></span>
                 </div>
                 <input type="hidden" id="dtp_input1" value=""/><br/>
             </div>
-            <div class="form-group col-md-5">
+            <div class="form-group col-md-4">
                 <label for="place">集合地点 <span class="required"></span></label>
                 <select id="place" name="place" class="form-control">
                     <option value="">===请选择===</option>
@@ -42,6 +43,14 @@ response.sendRedirect(request.getContextPath() + "/login.jsp");
                     <option value="南门">南门</option>
                     <option value="北门">北门</option>
                     <option value="中门">中门</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4">
+                <label for="type">旅游类型 <span class="required"></span></label>
+                <select id="type" name="type.typeId" class="form-control">
+                    <option value="">===请选择===</option>
+                    <option value="1">个人游</option>
+                    <option value="2">组团游</option>
                 </select>
             </div>
             <div class="form-group col-md-12">
