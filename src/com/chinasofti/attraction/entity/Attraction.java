@@ -76,4 +76,15 @@ public class Attraction {
     public void setAttractionDesc(String attractionDesc) {
         this.attractionDesc = attractionDesc;
     }
+
+    @Override
+    public String toString() {
+        return "Attraction{" +
+                "attractionId=" + attractionId +
+                ", attractionName='" + attractionName + '\'' +
+                ", route='" + route + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", attractionDesc='" + attractionDesc + '\'' +
+                '}';
+    }
 }

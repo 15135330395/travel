@@ -14,4 +14,6 @@ public interface AttractionService {
     public void delete(Attraction attraction);
     public Integer getCount();
     public List<Attraction> changePlace();
+    public List queryOneByName(String place);
+
 }
