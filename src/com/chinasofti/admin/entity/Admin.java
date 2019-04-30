@@ -25,7 +25,6 @@ public class Admin {
      * 角色
      */
     private Role role;
-
     /**
      * 员工
      */

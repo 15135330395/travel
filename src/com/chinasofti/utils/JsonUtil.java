@@ -1,7 +1,7 @@
 package com.chinasofti.utils;
 
 import com.alibaba.fastjson.JSONObject;
-import com.entity.PageBean;
+import com.chinasofti.base.PageBean;
 
 import java.util.List;
 

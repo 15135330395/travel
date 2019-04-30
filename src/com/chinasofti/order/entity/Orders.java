@@ -4,6 +4,7 @@ import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.user.entity.User;
 
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -11,7 +12,9 @@ import java.util.Date;
  * @Author WYR
  * @CreateTime 2019-04-27 17:30
  */
-public class Order {
+@Entity
+@Table(name = "orders")
+public class Orders {
     /**
      * 订单编号
      */
@@ -25,9 +28,9 @@ public class Order {
      */
     private Staff staff;
     /**
-     * 类型编号
+     * 类型
      */
-    private Integer typeId;
+    private Type type;
     /**
      * 下单时间
      */
@@ -49,6 +52,8 @@ public class Order {
      */
     private User user;
 
+    @Id
+    @Column(name = "order_id")
     public Integer getOrderId() {
         return orderId;
     }
@@ -57,6 +62,7 @@ public class Order {
         this.orderId = orderId;
     }
 
+    @Column(name = "attraction_id")
     public Attraction getAttraction() {
         return attraction;
     }
@@ -65,6 +71,7 @@ public class Order {
         this.attraction = attraction;
     }
 
+    @Column(name = "staff_id")
     public Staff getStaff() {
         return staff;
     }
@@ -73,14 +80,16 @@ public class Order {
         this.staff = staff;
     }
 
-    public Integer getTypeId() {
-        return typeId;
+    @Column(name = "staff_id")
+    public Type getType() {
+        return type;
     }
 
-    public void setTypeId(Integer typeId) {
-        this.typeId = typeId;
+    public void setTypeId(Type type) {
+        this.type = type;
     }
 
+    @Column(name = "create_time")
     public Date getCreateTime() {
         return createTime;
     }
@@ -89,6 +98,7 @@ public class Order {
         this.createTime = createTime;
     }
 
+    @Column(name = "departure")
     public Date getDeparture() {
         return departure;
     }
