@@ -5,13 +5,44 @@
 <footer class="footer">
     <div class="container">
         <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="block">
+                    <h1 class="block-title">公司信息</h1>
+                    <div class="block-body">
+                        <figure class="foot-logo">
+                            <img src="<%=request.getContextPath()%>/images/logo-light.png" class="img-responsive" alt="Logo">
+                        </figure>
+                        <p class="brand-description">
+                            MAGZ旅行社 - 响应式的旅行社
+                        </p>
+                        <a href="<%=request.getContextPath()%>/page.jsp" class="btn btn-magz white">关于我们<i class="ion-ios-arrow-thin-right"></i></a>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-
+            <div class="col-md-4 col-sm-6 col-xs-12">
+                <div class="block">
+                    <h1 class="block-title">更多人喜欢
+                        <div class="right"><a href="<%=request.getContextPath()%>/attraction/placeList">查看全部<i class="ion-ios-arrow-thin-right"></i></a></div>
+                    </h1>
+                </div>
+                <div class="line"></div>
+                <div class="block">
+                    <h1 class="block-title">订阅我们</h1>
+                    <div class="block-body">
+                        <p>通过订阅，您将在电子邮件中收到最新消息。</p>
+                        <form class="newsletter">
+                            <div class="input-group">
+                                <div class="input-group-addon">
+                                    <i class="ion-ios-email-outline"></i>
+                                </div>
+                                <input type="email" class="form-control email" placeholder="你的邮箱">
+                            </div>
+                            <button class="btn btn-primary btn-block white">订阅</button>
+                        </form>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-3 col-xs-12 col-sm-6">
+            <div class="col-md-4 col-xs-12 col-sm-6">
                 <div class="block">
                     <h1 class="block-title">关注我们</h1>
                     <div class="block-body">
@@ -105,13 +136,7 @@
                     <div class="block-body no-margin">
                         <ul class="footer-nav-horizontal">
                             <li>
-                                <a href="<%=request.getContextPath()%>/page.jsp">首页</a>
-                            </li>
-                            <li>
-                                <a href="#">友情链接</a>
-                            </li>
-                            <li>
-                                <a href="<%=request.getContextPath()%>/contact.jsp">联系我们</a>
+                                <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
                             <li>
                                 <a href="<%=request.getContextPath()%>/page.jsp">关于我们</a>
@@ -135,17 +160,17 @@
 </footer>
 
 <!-- JS -->
-<script src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/js/jquery.migrate.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/bootstrap/bootstrap.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.migrate.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/bootstrap/bootstrap.min.js"></script>
 <script>
     var $target_end = $(".best-of-the-week");
 </script>
-<script src="<%=request.getContextPath()%>/desk/scripts/jquery-number/jquery.number.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/easescroll/jquery.easeScroll.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/sweetalert/dist/sweetalert.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/scripts/toast/jquery.toast.min.js"></script>
-<script src="<%=request.getContextPath()%>/desk/js/demo.js"></script>
-<script src="<%=request.getContextPath()%>/desk/js/e-magz.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/jquery-number/jquery.number.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/owlcarousel/dist/owl.carousel.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/magnific-popup/dist/jquery.magnific-popup.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/easescroll/jquery.easeScroll.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/sweetalert/dist/sweetalert.min.js"></script>
+<script src="<%=request.getContextPath()%>/scripts/toast/jquery.toast.min.js"></script>
+<script src="<%=request.getContextPath()%>/js/demo.js"></script>
+<script src="<%=request.getContextPath()%>/js/e-magz.js"></script>

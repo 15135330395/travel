@@ -1,12 +1,17 @@
 package com.chinasofti.visitor.entity;
 
-import com.chinasofti.order.entity.Order;
-
 /**
  * @Description Visitor
  * @Author WYR
  * @CreateTime 2019-04-27 17:33
  */
+
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
+@Entity
+@Table(name = "visitor")
 public class Visitor {
     /**
      * 游客编号
@@ -17,10 +22,6 @@ public class Visitor {
      */
     private String visitorName;
     /**
-     * 游客性别
-     */
-    private String visitorSex;
-    /**
      * 身份证号
      */
     private String cardId;
@@ -29,10 +30,12 @@ public class Visitor {
      */
     private String phone;
     /**
-     * 订单
+     * 订单编号
      */
-    private Order order;
+    private Long orderId;
 
+    @Id
+    @Column(name = "visitor_id")
     public Integer getVisitorId() {
         return visitorId;
     }
@@ -40,7 +43,7 @@ public class Visitor {
     public void setVisitorId(Integer visitorId) {
         this.visitorId = visitorId;
     }
-
+    @Column(name = "visitor_name")
     public String getVisitorName() {
         return visitorName;
     }
@@ -48,15 +51,7 @@ public class Visitor {
     public void setVisitorName(String visitorName) {
         this.visitorName = visitorName;
     }
-
-    public String getVisitorSex() {
-        return visitorSex;
-    }
-
-    public void setVisitorSex(String visitorSex) {
-        this.visitorSex = visitorSex;
-    }
-
+    @Column(name = "card_id")
     public String getCardId() {
         return cardId;
     }
@@ -72,12 +67,32 @@ public class Visitor {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-    public Order getOrder() {
-        return order;
+    @Column(name = "order_id")
+    public Long getOrderId() {
+        return orderId;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderId(Long orderId) {
+        this.orderId = orderId;
+    }
+
+    public Visitor() {
+    }
+
+    public Visitor(String visitorName, String cardId, String phone) {
+        this.visitorName = visitorName;
+        this.cardId = cardId;
+        this.phone = phone;
+    }
+
+    @Override
+    public String toString() {
+        return "Visitor{" +
+                "visitorId=" + visitorId +
+                ", visitorName='" + visitorName + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", phone='" + phone + '\'' +
+                ", orderId=" + orderId +
+                '}';
     }
 }

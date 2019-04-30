@@ -6,6 +6,7 @@ import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.utils.JsonUtil;
+import com.chinasofti.utils.StringUtilss;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -173,6 +175,20 @@ public class AttractionController {
 
 
         return list;
+    }
+    @RequestMapping("/detail/{id}")
+    public String findById(Model model, @PathVariable(name = "id") Integer id){
+        Attraction attraction = attractionService.query(id);
+        List<Attraction> list = attractionService.changePlace();
+        List<Attraction> list1=new ArrayList<>();
+        for (Attraction attraction1 : list) {
+            String s = StringUtilss.html2Text(attraction1.getAttractionDesc());
+            attraction1.setAttractionDesc(s);
+            list1.add(attraction1);
+        }
+        model.addAttribute("attraction",attraction);
+        model.addAttribute("list",list1);
+        return "/single";
     }
 }
 

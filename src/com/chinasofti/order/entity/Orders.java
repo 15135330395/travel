@@ -11,7 +11,8 @@ import java.util.Date;
  * @Author WYR
  * @CreateTime 2019-04-27 17:30
  */
-public class Order {
+
+public class Orders {
     /**
      * 订单编号
      */

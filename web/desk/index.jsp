@@ -307,7 +307,7 @@
     </div>
 </section>
 <!-- 底部开始 -->
-<jsp:include page="footer.jsp"/>
+<jsp:include page="../footer.jsp"/>
 <!-- 底部结束 -->
 </body>
 </html>

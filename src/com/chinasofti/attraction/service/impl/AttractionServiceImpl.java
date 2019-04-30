@@ -23,8 +23,8 @@ public class AttractionServiceImpl implements AttractionService {
     }
 
     @Override
-    public Attraction query(String field, Integer id) {
-        return null;
+    public Attraction query(Integer id) {
+        return attractionDao.query("attractionId",id);
     }
 
     @Override
