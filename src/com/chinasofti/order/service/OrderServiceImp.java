@@ -60,7 +60,7 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public int deleteById(Integer orderId) {
+	public int deleteById(String orderId) {
 		int i = orderDaoImp.deleteById(orderId);
 		return i;
 	}

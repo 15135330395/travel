@@ -4,8 +4,8 @@ import com.chinasofti.order.service.OrderService;
 import com.chinasofti.utils.MsgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -23,8 +23,8 @@ public class QueryOrderController {
     @Autowired
     private OrderService orderService;
 
-    @RequestMapping("/queryOrder")
-    public ModelAndView queryOrder(@RequestParam(name = "userId") Integer userId){
+    @RequestMapping("/queryOrder/{userId}")
+    public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId){
 
         List list = orderService.queryOrder(userId);
 
@@ -34,16 +34,18 @@ public class QueryOrderController {
         return modelAndView;
     }
 
-    @RequestMapping("/deleteOrder")
+    @RequestMapping("/deleteOrder/{orderId}")
     @ResponseBody
-    public MsgUtil deleteOrder(@RequestParam(name = "orderId") Integer orderId){
+    public MsgUtil deleteOrder(@PathVariable(name = "orderId") String orderId){
 
         int i = orderService.deleteById(orderId);
 
         if(i != 0){
-            return new MsgUtil("删除成功");
+            MsgUtil 退单成功 = new MsgUtil("退单成功");
+            return 退单成功;
         }else{
-            return new MsgUtil("删除失败");
+            MsgUtil 退单失败 = new MsgUtil("退单失败");
+            return 退单失败;
         }
     }
 }

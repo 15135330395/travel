@@ -8,6 +8,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="static/info.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,29 +48,39 @@
             <th>旅游路线</th>
             <th>出发时间</th>
             <th>集合地点</th>
-            <th>旅游路线</th>
             <th>订单金额总计</th>
+            <th>订单状态</th>
             <th>操作</th>
         </tr>
         </thead>
         <tbody>
         <c:forEach items="${orderList}" var="link">
             <tr>
-                <td>${link.attraction}</td>
+                <td>${link.attraction.attractionName}</td>
                 <td>${link.staff.staffName}</td>
                 <td>${link.staff.staffSex}</td>
                 <td>${link.staff.phone}</td>
 
-                <td>${link.linkOrder}</td>
+                <%--<td>${link.linkOrder}</td>--%>
 
                 <td>${link.attraction.route}</td>
                 <td>${link.departure}</td>
                 <td>${link.place}</td>
                 <td>${link.total}</td>
-                <td>${link.state}</td>
+
+                <c:if test="${link.state==1}">
+                    <td>已支付</td>
+                </c:if>
+                <c:if test="${link.state==0}">
+                    <td>未支付</td>
+                </c:if>
+                <c:if test="${link.state==2}">
+                    <td>退单</td>
+                </c:if>
+
                 <td class="td-manage">
                     <c:if test="${link.state == 0}" >
-                    <a title="退订单" onclick="member_del(this,'${link.linkId}')" href="javascript:;">
+                    <a title="退订单" onclick="member_del(this,'${link.orderId}')">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
                     </c:if>
@@ -125,13 +136,13 @@
         layer.confirm('确认要取消订单吗？',function(index){
             $.ajax({
                 type:"post",
-                url:"<%=request.getContextPath()%>/QueryOrderController/deleteOrder/",
+                url:"<%=request.getContextPath()%>/QueryOrderController/deleteOrder/"+id,
                 data:{
-                    orderId:id
                 },
-                success:function(msg){
+                success:function(data){
 
-                    alert(msg.name);
+                    var obj = eval("("+data+")");
+                    alert(obj.name)
                 }
             })
         });

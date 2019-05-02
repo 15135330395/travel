@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12 text-right">
                     <ul class="nav-icons">
-                        <c:if test="${user==null}">
+                        <c:if test="${user!=null}">
                             <li>
                                 <a href="<%=request.getContextPath()%>/desk/register.jsp"><i class="ion-person-add"></i>
                                     <div>注册</div>
@@ -237,7 +237,7 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-                    <c:if test="${user!=null}">
+                    <c:if test="${user==null}">
                         <li class="dropdown magz-dropdown">
                             <a href="#">${user.name} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
@@ -248,7 +248,7 @@
                                     <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
                                 <%--</li>--%>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
+                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/1"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>

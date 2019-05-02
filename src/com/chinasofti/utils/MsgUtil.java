@@ -8,20 +8,27 @@ package com.chinasofti.utils;
 
 public class MsgUtil {
 
-    private String name;
+    private String msg;
 
     public MsgUtil(String name) {
-        this.name = name;
+        this.msg = name;
     }
 
     public MsgUtil() {
     }
 
     public String getName() {
-        return name;
+        return msg;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.msg = name;
+    }
+
+    @Override
+    public String toString() {
+        return "MsgUtil{" +
+                "msg='" + msg + '\'' +
+                '}';
     }
 }

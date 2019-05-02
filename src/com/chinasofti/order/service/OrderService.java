@@ -19,7 +19,7 @@ public interface OrderService {
 
 	List queryOrder(Integer userId);
 
-	int deleteById(Integer orderId);
+	int deleteById(String orderId);
 
 	void addorder(Orders orders,Integer count);
 

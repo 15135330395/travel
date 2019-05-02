@@ -37,12 +37,13 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
         });
     }
     @Override
-    public int deleteById(Integer orderId) {
+    public int deleteById(String orderId) {
 
-        Orders orders = hibernateTemplate.get(Orders.class, orderId);
+        Orders orders = hibernateTemplate.get(Orders.class,Long.valueOf(orderId));
 
         if (orders != null) {
-            hibernateTemplate.delete(orders);
+            orders.setState(2);
+            hibernateTemplate.save(orders);
             return 1;
         } else {
             return 0;

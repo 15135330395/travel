@@ -9,7 +9,7 @@ public interface OrderDao extends BaseDao<Orders> {
 
     List queryOrder(Integer userId);
 
-    int deleteById(Integer orderId);
+    int deleteById(String orderId);
 
     Orders query(String orderId, Integer orderId1);
 }
