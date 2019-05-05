@@ -221,12 +221,7 @@ public class AttractionController {
         return mv;
     }
 
-
-
-
-
-
-
+//    前台主页随机5个地点展示方法
     @RequestMapping("/changePlace")
     public ModelAndView changePlace(){
 
@@ -241,6 +236,7 @@ public class AttractionController {
         return modelAndView;
     }
 
+//    前台景点列表查询方法
     @RequestMapping("/placeList")
     public String placeList(HttpServletRequest request, Map<String, Object> map){
         PageBean pageBean = new PageBean();
@@ -273,6 +269,7 @@ public class AttractionController {
         return "/desk/place";
     }
 
+//    搜索景点方法（暂不能用）
     @RequestMapping("queryOneByName")
     @ResponseBody
     public List queryOneByName(@RequestParam(name = "place") String place){
@@ -282,6 +279,7 @@ public class AttractionController {
         return list;
     }
 
+//    景点列表中转方法
     @RequestMapping("/toPlace")
     public ModelAndView toPlace(@RequestBody Attraction place){
         ModelAndView modelAndView = new ModelAndView("/desk/place");

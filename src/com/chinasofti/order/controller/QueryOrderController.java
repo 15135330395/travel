@@ -30,6 +30,7 @@ public class QueryOrderController {
     @Autowired
     private StaffInterface StaffService;
 
+//    前台用户查询自己订单方法
     @RequestMapping("/queryOrder/{userId}")
     public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId){
 
@@ -41,6 +42,7 @@ public class QueryOrderController {
         return modelAndView;
     }
 
+//    前台退单方法
     @RequestMapping("/deleteOrder/{orderId}")
     @ResponseBody
     public MsgUtil deleteOrder(@PathVariable(name = "orderId") String orderId){
@@ -56,6 +58,7 @@ public class QueryOrderController {
         }
     }
 
+//    前台支付订单显示方法
     @RequestMapping("/toApply/{orderId}")
     @ResponseBody
     public ModelAndView toApply(@PathVariable(name = "orderId") String orderId){
@@ -68,6 +71,7 @@ public class QueryOrderController {
         return modelAndView;
     }
 
+//    前台用户订单支付状态修改方法
     @RequestMapping("/changeState/{orderId}")
     @ResponseBody
     public ModelAndView changeState(@PathVariable(name = "orderId") String orderId, HttpSession session){

@@ -1,6 +1,7 @@
 package com.chinasofti.staff.controller;
 
 
+import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
@@ -26,7 +27,7 @@ import java.util.Map;
 public class StaffController {
     @Autowired
     StaffInterface staffService;
-//    @Autowired
+    @Autowired
 //    AdminInterface adminService;
 
 
@@ -34,22 +35,22 @@ public class StaffController {
     public String list(HttpServletRequest request, Map<String, Object> map) {
         PageBean pageBean = new PageBean();
         // 页码
-        String index = request.getParameter("index");
-        if (index == null) {
-            index = "1";
-        }
-        pageBean.setIndex(Integer.parseInt(index));
+//        String index = request.getParameter("index");
+//        if (index == null) {
+//            index = "1";
+//        }
+//        pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
         String pageCount = "5";
         pageBean.setPageCount(Integer.parseInt(pageCount));
         // 总条数
         pageBean.setCount(staffService.getCount());
-        List<Staff> staffList = staffService.queryByPageBean(pageBean);
-        for (Staff staff : staffList) {
-            System.out.println(staff);
-        }
+//        List<Staff> staffList = staffService.queryByPageBean(pageBean);
+//        for (Staff staff : staffList) {
+//            System.out.println(staff);
+//        }
         map.put("pageBean", pageBean);
-        map.put("staffList", staffList);
+//        map.put("staffList", staffList);
 
 
         return "/background/staff/stafflist";
@@ -74,15 +75,15 @@ public class StaffController {
 
     }
 
-//    @RequestMapping("/addAdmin")
-//    @ResponseBody
-//    public Integer addAdmin(Admin admin, Staff staff) {
-//        admin.setStaff(staff);
-//        staff.setAdmin(admin);
+    @RequestMapping("/addAdmin")
+    @ResponseBody
+    public Integer addAdmin(Admin admin, Staff staff) {
+        admin.setStaff(staff);
+        staff.setAdmin(admin);
 //        adminService.save(admin);
-//        staffService.save(staff);
-//        return 1;
-//    }
+        staffService.save(staff);
+        return 1;
+    }
 
 
     @Transactional
