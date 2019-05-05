@@ -21,6 +21,11 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
+	public void changeState(Long orderId) {
+		orderDaoImp.changeState(orderId);
+	}
+
+	@Override
 	public void updateOrder(Orders orders) {
 		// TODO 自动生成的方法存根
 		orderDaoImp.update(orders);
@@ -33,10 +38,10 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public Orders query(Integer orderId) {
+	public Orders query(Long orderId) {
 		// TODO 自动生成的方法存根
 		
-		return orderDaoImp.query("orderId",orderId);
+		return orderDaoImp.query(orderId);
 	}
 
 	@Override

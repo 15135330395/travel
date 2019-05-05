@@ -1,5 +1,6 @@
 package com.chinasofti.order.controller;
 
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.service.OrderService;
 import com.chinasofti.utils.MsgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,27 @@ public class QueryOrderController {
             MsgUtil 退单失败 = new MsgUtil("退单失败");
             return 退单失败;
         }
+    }
+
+    @RequestMapping("/toApply/{orderId}")
+    @ResponseBody
+    public ModelAndView toApply(@PathVariable(name = "orderId") String orderId){
+
+        Orders order = orderService.query(Long.valueOf(orderId));
+
+        ModelAndView modelAndView = new ModelAndView("/desk/apply");
+
+        modelAndView.addObject("order",order);
+        return modelAndView;
+    }
+
+    @RequestMapping("/changeState/{orderId}")
+    @ResponseBody
+    public ModelAndView changeState(@PathVariable(name = "orderId") String orderId){
+
+        orderService.changeState(Long.valueOf(orderId));
+        ModelAndView modelAndView = new ModelAndView("/index");
+
+        return modelAndView;
     }
 }

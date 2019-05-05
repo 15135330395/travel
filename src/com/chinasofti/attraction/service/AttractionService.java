@@ -13,7 +13,7 @@ public interface AttractionService {
     public void update(Attraction attraction);
     public void delete(Attraction attraction);
     public Integer getCount();
-    public List<Attraction> changePlace();
+    public List changePlace();
     public List queryOneByName(String place);
 
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class AttractionServiceImpl implements AttractionService {
@@ -53,7 +54,7 @@ public class AttractionServiceImpl implements AttractionService {
     }
 
     @Override
-    public List<Attraction> changePlace(){
+    public List changePlace(){
         return attractionDao.changePlace();
     }
 

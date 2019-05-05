@@ -11,7 +11,7 @@ public interface OrderService {
 
 	void delete(Orders orders);
 
-	Orders query(Integer orderId);
+	Orders query(Long orderId);
 
 	List<Orders> queryAll();
 
@@ -23,18 +23,6 @@ public interface OrderService {
 
 	void addorder(Orders orders,Integer count);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	void changeState(Long orderId);
 
 }

@@ -27,13 +27,13 @@
                         </div>
                         <div class="help-block">
                             <%--<div>热搜:</div>--%>
-                            <%--<ul>--%>
-                                <%--<c:forEach begin="0" end="4" var="i">--%>
-                                    <%--<li>--%>
-                                        <%--<a href="">${visitedNewsList[i].newsTitle}</a>--%>
-                                    <%--</li>--%>
-                                <%--</c:forEach>--%>
-                            <%--</ul>--%>
+                            <ul>
+                                <c:forEach begin="0" end="4" var="i">
+                                    <li>
+                                        <a href="">${visitedNewsList[i].newsTitle}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -100,7 +100,10 @@
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
-                            <c:if test="${user!=null}">
+                            <%--<li>--%>
+                                <%--<a href="category.jsp">类别 </a>--%>
+                            <%--</li>--%>
+                            <c:if test="${user==null}">
                                 <li class="dropdown magz-dropdown">
                                     <a href="#">认证<i class="ion-ios-arrow-right"></i></a>
                                     <ul class="dropdown-menu">
@@ -266,6 +269,7 @@
         function queryPlace() {
 
           var place = document.getElementById("sousuo").value;
+
             $.ajax({
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
@@ -278,7 +282,13 @@
                     if (data.toString()!= "[]") {
 
                         var da = eval("("+data+")");
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace");
+
+                        for (var i = 0; i < da.length; i++) {
+
+                            alert(da[i].attractionName)
+                        }
+                            <%--window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data.attractionName);--%>
+
 
                     } else {
                         alert("没有该景点")

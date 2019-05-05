@@ -85,7 +85,7 @@
                     </a>
                     </c:if>
                     <c:if test="${link.state == 0}" >
-                        <a title="去支付"  href="支付页面;">
+                        <a title="去支付"  href="<%=request.getContextPath()%>/QueryOrderController/toApply/${link.orderId}">
                             <i class="layui-icon">&#xe63c;</i>
                         </a>
                     </c:if>
