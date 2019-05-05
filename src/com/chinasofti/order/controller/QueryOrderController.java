@@ -96,23 +96,6 @@ public class QueryOrderController {
         return modelAndView;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     @RequestMapping("query")
     public String qureyAll(HttpServletRequest request, Map<String,Object> map) {
         String index = request.getParameter("index");
