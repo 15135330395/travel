@@ -67,10 +67,20 @@
                     <li><a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a></li>
                     <li class="active">详情介绍</li>
                 </ol>
+
                 <article class="article main-article">
                     <header>
                         <h1>${attraction.attractionName}</h1>
                     </header>
+                    <c:forEach items="${prices}" var="price">
+                        <c:if test="${price.attractionId == attraction.attractionId}">
+                            <c:forEach items="${types}" var="type">
+                                <c:if test="${type.typeId == price.typeId}">
+                                    <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
+                    </c:forEach>
                     <div class="main">
                         <h5>旅行路线</h5>
                         <p>${attraction.route}</p>
