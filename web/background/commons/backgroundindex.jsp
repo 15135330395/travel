@@ -60,15 +60,15 @@
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="member-list1.html">
+                        <a _href="<%=request.getContextPath()%>/staff/list">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>
+                            <cite>员工列表</cite>
                         </a>
                     </li>
                     <li date-refresh="1">
-                        <a _href="member-del.html">
+                        <a _href="<%=request.getContextPath()%>/admin/list">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户删除</cite>
+                            <cite>用户列表</cite>
                         </a>
                     </li>
                     <li>

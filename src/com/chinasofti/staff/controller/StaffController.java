@@ -1,19 +1,24 @@
 package com.chinasofti.staff.controller;
 
 
+import com.chinasofti.admin.entity.Admin;
+import com.chinasofti.admin.service.AdminInterface;
+import com.chinasofti.attraction.entity.Attraction;
+
 import com.chinasofti.base.PageBean;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
+
+
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
+
 
 import javax.servlet.http.HttpServletRequest;
+
 import java.util.List;
 import java.util.Map;
 
@@ -26,8 +31,8 @@ import java.util.Map;
 public class StaffController {
     @Autowired
     StaffInterface staffService;
-//    @Autowired
-//    AdminInterface adminService;
+    @Autowired
+    AdminInterface adminService;
 
 
     @RequestMapping("/list")
@@ -67,22 +72,20 @@ public class StaffController {
     @RequestMapping("/to/{staffId}")
     public String to(@PathVariable(name = "staffId") Integer staffId, Map<String, Object> map) {
         Staff staff = staffService.query(staffId);
-        System.out.println(staff + "========");
         map.put("staff", staff);
-        System.out.println(staff + "========");
         return "/background/admin/adminadd";
 
     }
 
-//    @RequestMapping("/addAdmin")
-//    @ResponseBody
-//    public Integer addAdmin(Admin admin, Staff staff) {
-//        admin.setStaff(staff);
-//        staff.setAdmin(admin);
-//        adminService.save(admin);
+    @RequestMapping("/addAdmin")
+    @ResponseBody
+    public Integer addAdmin(Admin admin, Staff staff) {
+        admin.setStaff(staff);
+        staff.setAdmin(admin);
+        adminService.save(admin);
 //        staffService.save(staff);
-//        return 1;
-//    }
+        return 1;
+    }
 
 
     @Transactional

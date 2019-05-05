@@ -30,52 +30,39 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <xblock>
-        <button class="layui-btn"
-                onclick="layer.open({
-                        title: '添加用户',
-                        type: 2,
-                        closeBtn: 1,
-                        skin: 'layui-layer-rim', // 加上边框
-                        area: ['348px', '221px'], // 宽高
-                        content: '<%=request.getContextPath()%>/background/staff/staffadd.jsp'
-                        });">
-            <i class="layui-icon"></i>添加
-        </button>
-        <span class="x-right" style="line-height:40px">共有数据：<i>${pageBean.count}</i> 条</span>
-    </xblock>
+    <%--<xblock>--%>
+        <%--<button class="layui-btn"--%>
+                <%--onclick="layer.open({--%>
+                        <%--title: '添加用户',--%>
+                        <%--type: 2,--%>
+                        <%--closeBtn: 1,--%>
+                        <%--skin: 'layui-layer-rim', // 加上边框--%>
+                        <%--area: ['348px', '221px'], // 宽高--%>
+                        <%--content: '<%=request.getContextPath()%>/background/admin/adminadd.jsp'--%>
+                        <%--});">--%>
+            <%--<i class="layui-icon"></i>添加--%>
+        <%--</button>--%>
+        <%--<span class="x-right" style="line-height:40px">共有数据：<i>${pageBean.count}</i> 条</span>--%>
+    <%--</xblock>--%>
     <table class="layui-table">
         <thead>
-        </th>
-        <th>
-            <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
-                    class="layui-icon">&#xe605;</i></div>
-        </th>
-        <th>编号</th>
-        <th>员工姓名</th>
-        <th>性别</th>
-        <th>身份证号</th>
-        <th>电话号</th>
-        <th>职位</th>
-        <th>工作地点</th>
-        <th>操作</th>
+        <tr>
+            <th>编号</th>
+            <th>用户名</th>
+            <th>密码</th>
+            <th>员工姓名</th>
+            <th>角色名</th>
+            <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${staffList}" var="link">
+        <c:forEach items="${adminList}" var="admin">
             <tr>
-                <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${link.staffId}'>
-                        <i class="layui-icon">&#xe605;</i>
-                    </div>
-                </td>
-                <td>${link.staffId}</td>
-                <td>${link.staffName}</td>
-                <td>${link.staffSex}</td>
-                <td>${link.cardId}</td>
-                <td>${link.phone}</td>
-                <td>${link.job}</td>
-                <td>${link.workplace}</td>
+                <td>${admin.adminId}</td>
+                <td>${admin.adminName}</td>
+                <td>${admin.password}</td>
+                <td>${admin.staff.staffName}</td>
+                <td>${admin.role.roleName}</td>
                 <td class="td-manage">
                     <a title="修改" class="layui-btn layui-btn-xs" onclick="layer.open({
                             title: '修改用户',
@@ -83,14 +70,14 @@
                             closeBtn: 1,
                             skin: 'layui-layer-rim', // 加上边框
                             area: ['451px', '405px'], // 宽高
-                            content: '<%=request.getContextPath()%>//staff/queryOne/${link.staffId}'
+                            content: '<%=request.getContextPath()%>/admin/queryOne/${admin.adminId}'
                             });">修改</a>
-                    <a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"
-                       onclick="admin_del(this,'$${link.staffId}')" href="javascript:;">删除
-                    </a>
+                    <%--<a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"--%>
+                       <%--onclick="admin_del(this,'${admin.adminId}')" href="javascript:;">删除--%>
+                    <%--</a>--%>
                     <a title="赋予角色" class="layui-btn layui-btn-normal layui-btn-xs"
                        onclick="layer.open({
-                               title: '设置用户名',
+                               title: '赋予角色',
                                type: 2,
                                skin: 'layui-layer-rim', // 加上边框
                                area: [$(window).width() * 0.9 + 'px', $(window).height() * 0.9 + '620px'], // 宽高
@@ -137,12 +124,12 @@
 </div>
 <script>
     /*用户-删除*/
-    function admin_del(obj, staffId) {
+    function admin_del(obj, adminId) {
         layer.confirm('确认要删除吗？', function () {
             //发异步 删除数据
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/staff/delete" + staffId,
+                url: "<%=request.getContextPath()%>/admin/delete/" + adminId,
                 data: {},
                 success: function (msg) {
                     if (msg == 1) {
