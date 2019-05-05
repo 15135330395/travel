@@ -1,6 +1,8 @@
 package com.chinasofti.attraction.service;
 
 import com.chinasofti.attraction.entity.Attraction;
+import com.chinasofti.attraction.entity.Price;
+import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.base.PageBean;
 
 import java.util.List;
@@ -15,5 +17,6 @@ public interface AttractionService {
     public Integer getCount();
     public List changePlace();
     public List queryOneByName(String place);
-
+    public List<Price> queryAttractionPrice();
+    public List<Type> queryType();
 }
