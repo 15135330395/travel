@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12 text-right">
                     <ul class="nav-icons">
-                        <c:if test="${user!=null}">
+                        <c:if test="${user==null}">
                             <li>
                                 <a href="<%=request.getContextPath()%>/desk/register.jsp"><i class="ion-person-add"></i>
                                     <div>注册</div>
@@ -59,7 +59,7 @@
                         <c:if test="${user!=null}">
                             <li>
                                 <a><i class="ion-person"></i>
-                                    欢迎您，<span>${user.name}</span>
+                                    欢迎您，<span>${user.email}</span>
                                 </a>
                             </li>
                         </c:if>
