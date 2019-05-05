@@ -1,6 +1,5 @@
 package com.chinasofti.staff.controller;
 
-
 import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.staff.entity.Staff;
@@ -27,7 +26,7 @@ import java.util.Map;
 public class StaffController {
     @Autowired
     StaffInterface staffService;
-    @Autowired
+//    @Autowired
 //    AdminInterface adminService;
 
 
@@ -68,9 +67,7 @@ public class StaffController {
     @RequestMapping("/to/{staffId}")
     public String to(@PathVariable(name = "staffId") Integer staffId, Map<String, Object> map) {
         Staff staff = staffService.query(staffId);
-        System.out.println(staff + "========");
         map.put("staff", staff);
-        System.out.println(staff + "========");
         return "/background/admin/adminadd";
 
     }

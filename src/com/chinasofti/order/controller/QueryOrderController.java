@@ -1,10 +1,12 @@
 package com.chinasofti.order.controller;
 
+import com.chinasofti.base.PageBean;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.service.OrderService;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
 import com.chinasofti.utils.MsgUtil;
+import com.chinasofti.visitor.entity.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -12,8 +14,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author：Ganlan；
@@ -91,4 +95,51 @@ public class QueryOrderController {
 
         return modelAndView;
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    @RequestMapping("query")
+    public String qureyAll(HttpServletRequest request, Map<String,Object> map) {
+        String index = request.getParameter("index");
+        if (index == null) {
+            index="1";
+        }
+        PageBean pageBean = new PageBean();
+        pageBean.setIndex(Integer.parseInt(index));
+        pageBean.setPageCount(10);
+        pageBean.setCount(orderService.queryAll().size());
+        List<Orders> orderList = orderService.queryBypage(pageBean);
+        System.out.println(orderList.toString());
+        map.put("pageBean", pageBean);
+        map.put("orderList",orderList);
+        return "/background/link/order";
+    }
+
+    @RequestMapping("queryOne")
+    public String queryOne(HttpServletRequest request,Map<String,Object> map) {
+
+        String a = request.getParameter("order_id");
+        long orderId = Long.parseLong(a);
+        Orders order = orderService.query(orderId);
+        List<Visitor> queryVisitorByOrder = orderService.queryVisitorByOrder(orderId);
+        map.put("queryVisitorByOrder", queryVisitorByOrder);
+        map.put("order", order);
+        return "/background/link/order_view";
+    }
+
 }
