@@ -10,11 +10,11 @@
         }
     </style>
 </head>
-<%--<%--%>
-<%--if (request.getSession().getAttribute("user") == null) {--%>
-<%--response.sendRedirect(request.getContextPath() + "/login.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%
+if (request.getSession().getAttribute("user") == null) {
+response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
+}
+%>
 <body>
 <div class="container">
     <div class="row">

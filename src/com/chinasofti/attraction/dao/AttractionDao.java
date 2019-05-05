@@ -10,4 +10,5 @@ public interface AttractionDao extends BaseDao<Attraction> {
     public List<Attraction> changePlace();
 
     public List queryOneByName(String place);
+
 }
