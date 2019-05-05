@@ -148,7 +148,7 @@
 
     /*数据库-删除*/
     function file_del(obj, recoverId) {
-        layer.confirm('确认要删除吗？', function () {
+        layer.confirm('确认要删除吗？（只删除表信息）', function () {
             //发异步 删除数据
             $.ajax({
                 type: "post",

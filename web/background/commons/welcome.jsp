@@ -37,21 +37,21 @@
                                 <ul class="layui-row layui-col-space10 layui-this">
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>新闻数</h3>
+                                            <h3>景点数</h3>
                                             <p>
                                                 <cite>数量${newsCount}</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>用户数</h3>
+                                            <h3>注册用户数</h3>
                                             <p>
                                                 <cite>123</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>评论数</h3>
+                                            <h3>订单数</h3>
                                             <p>
                                                 <cite>数量${commentCount}</cite></p>
                                         </a>

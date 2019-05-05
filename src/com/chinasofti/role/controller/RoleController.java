@@ -121,6 +121,7 @@ public class RoleController {
     @RequestMapping("delete/{id}")
     @ResponseBody
     public Integer deleteRole(@PathVariable(name = "id") String id) {
+        menuRoleService.deleteMenuRoleByRoleId(Integer.parseInt(id));
         service.delete(Integer.parseInt(id));
         return 1;
     }

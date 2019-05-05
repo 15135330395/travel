@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="info.jsp" %>
 <html class="x-admin-sm">
 <head>
@@ -35,14 +36,14 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">${username}</a>
+            <a href="javascript:;">${admin.admin_name}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
                 <dd><a onclick="x_admin_show('切换帐号','login.jsp')">切换帐号</a></dd>
                 <dd><a href="<%=request.getContextPath()%>/LogoutServlet">退出</a></dd>
             </dl>
         </li>
-        <li class="layui-nav-item to-index"><a onclick="x_admin_show('前台首页','<%=request.getContextPath()%>/goIndex')">前台首页</a>
+        <li class="layui-nav-item to-index"><a onclick="x_admin_show('前台首页','<%=request.getContextPath()%>/index.jsp')">前台首页</a>
         </li>
     </ul>
 </div>
@@ -52,138 +53,29 @@
 <div class="left-nav">
     <div id="side-nav">
         <ul id="nav">
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b8;</i>
-                    <cite>用户</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
+            <c:forEach items="${menus}" var="root">
+                <c:if test="${root.parentId==-1}">
                     <li>
-                        <a _href="<%=request.getContextPath()%>/staff/list">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>员工列表</cite>
+                        <a href="javascript:;">
+                            <i class="iconfont">${root.img}</i>
+                            <cite>${root.menuName}</cite>
+                            <i class="iconfont nav_right">&#xe697;</i>
                         </a>
+                        <ul class="sub-menu">
+                            <c:forEach items="${menus}" var="menu">
+                                <c:if test="${menu.parentId==root.menuId}">
+                                    <li>
+                                        <a _href="<%=request.getContextPath()%>/${menu.url}">
+                                            <i class="iconfont">${menu.img}</i>
+                                            <cite>${menu.menuName}</cite>
+                                        </a>
+                                    </li>
+                                </c:if>
+                            </c:forEach>
+                        </ul>
                     </li>
-                    <li date-refresh="1">
-                        <a _href="<%=request.getContextPath()%>/admin/list">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户列表</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="xx.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>用户权限管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>友情链接</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="<%=request.getContextPath()%>/LinkServletBg?action=getAllLink">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>友情链接管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>新闻分类</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="<%=request.getContextPath()%>/background/type/typelist.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>新闻分类管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe6b5;</i>
-                    <cite>新闻</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="<%=request.getContextPath()%>/background/news/newslist.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>新闻管理</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="<%=request.getContextPath()%>/NewsServlet?action=toAdd">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>新闻添加</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe69b;</i>
-                    <cite>新闻评论</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="<%=request.getContextPath()%>/background/comment/commentlist.jsp">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>新闻评论管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe726;</i>
-                    <cite>管理员</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="admin-list.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>管理员列表</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="admin-role.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>角色管理</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="admin-cate.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限分类</cite>
-                        </a>
-                    </li>
-                    <li>
-                        <a _href="admin-rule.html">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>权限管理</cite>
-                        </a>
-                    </li>
-                </ul>
-            </li>
-            <li>
-                <a class="layui-none" href="<%=request.getContextPath()%>/InitServlet">
-                    <i class="iconfont">&#xe6ce;</i>
-                    <cite>刷新系统缓存</cite>
-                </a>
-            </li>
+                </c:if>
+            </c:forEach>
         </ul>
     </div>
 </div>

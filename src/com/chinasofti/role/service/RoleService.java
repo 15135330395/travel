@@ -1,6 +1,7 @@
 package com.chinasofti.role.service;
 
 import com.chinasofti.base.PageBean;
+import com.chinasofti.role.dao.MenuRoleDao;
 import com.chinasofti.role.dao.RoleDao;
 import com.chinasofti.role.entity.Role;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +18,6 @@ import java.util.List;
 public class RoleService {
     @Autowired
     private RoleDao dao;
-
     public List<Role> queryAll() {
         return dao.queryAll();
     }
