@@ -1,5 +1,9 @@
 package com.chinasofti.staff.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
+import javax.persistence.*;
+
 import com.chinasofti.admin.entity.Admin;
 import com.sun.deploy.util.UpdateCheck;
 import org.hibernate.annotations.GenericGenerator;

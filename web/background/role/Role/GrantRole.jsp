@@ -100,11 +100,8 @@
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/RoleServlet",
+                url: "<%=request.getContextPath()%>/role/grant/" + data.field.roleId,
                 data: {
-                    action: "grant",
-                    roleId: data.field.roleId,
-                    roleName: data.field.roleName,
                     menuIds: data.field.menu
                 },
                 success: function (msg) {

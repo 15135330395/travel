@@ -83,13 +83,10 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public Integer getCount() {
-        return hibernateTemplate.execute(new HibernateCallback<Integer>() {
-            @Override
-            public Integer doInHibernate(Session session) throws HibernateException {
-                Query query = session.createQuery("select count(1) from " + clz.getSimpleName());
-                Long l = (Long) query.uniqueResult();
-                return l.intValue();
-            }
+        return hibernateTemplate.execute(session -> {
+            Query query = session.createQuery("select count(1) from " + clz.getSimpleName());
+            Long l = (Long) query.uniqueResult();
+            return l.intValue();
         });
     }
 }

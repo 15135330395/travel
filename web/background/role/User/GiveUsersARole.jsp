@@ -12,7 +12,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>修改用户</title>
+    <title>给用户赋予角色</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"

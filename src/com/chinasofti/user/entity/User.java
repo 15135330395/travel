@@ -1,10 +1,14 @@
 package com.chinasofti.user.entity;
 
+import javax.persistence.*;
+
 /**
  * @Description User
  * @Author WYR
  * @CreateTime 2019-04-27 17:32
  */
+@Entity
+@Table(name = "user")
 public class User {
     /**
      * 普通用户编号
@@ -27,6 +31,8 @@ public class User {
      */
     private String code;
 
+    @Id
+    @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
     }
@@ -35,6 +41,7 @@ public class User {
         this.userId = userId;
     }
 
+    @Column(name = "email")
     public String getEmail() {
         return email;
     }
@@ -43,6 +50,7 @@ public class User {
         this.email = email;
     }
 
+    @Column(name = "password")
     public String getPassword() {
         return password;
     }
@@ -51,6 +59,7 @@ public class User {
         this.password = password;
     }
 
+    @Column(name = "state")
     public Integer getState() {
         return state;
     }
@@ -59,6 +68,7 @@ public class User {
         this.state = state;
     }
 
+    @Column(name = "code")
     public String getCode() {
         return code;
     }

@@ -24,18 +24,20 @@ public class IdUtil {
     }
 
     /**
-     * 商品id生成
+     * 订单id生成
      */
     public static long genItemId() {
-        //取当前时间的长整形值包含毫秒
-        long millis = System.currentTimeMillis();
-        //long millis = System.nanoTime();
-        //加上两位随机数
-        Random random = new Random();
-        int end2 = random.nextInt(99);
-        //如果不足两位前面补0
-        String str = millis + String.format("%02d", end2);
-        return new Long(str);
+        try {
+            // 加上两位随机数
+            Random random = new Random();
+            int end2 = random.nextInt(99);
+            String str = DateUtil.getCurrentDateStr() + String.format("%02d", end2);
+            return new Long(str);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1L;
     }
+
 
 }

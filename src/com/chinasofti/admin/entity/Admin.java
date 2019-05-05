@@ -75,8 +75,6 @@ public class Admin {
         this.role = role;
     }
 
-    @OneToOne(cascade=CascadeType.ALL)
-    @JoinColumn(name = "staff_id")
     public Staff getStaff() {
         return staff;
     }
