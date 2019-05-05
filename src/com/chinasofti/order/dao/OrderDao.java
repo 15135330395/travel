@@ -11,7 +11,10 @@ public interface OrderDao extends BaseDao<Orders> {
 
     int deleteById(String orderId);
 
-    Orders query(String orderId, Integer orderId1);
+    Orders query(Long orderId1);
+
+    void changeState(Long orderId);
+
 }
 //	void addorder(Order orders);
 //

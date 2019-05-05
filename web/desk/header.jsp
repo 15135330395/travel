@@ -39,7 +39,7 @@
                 </div>
                 <div class="col-md-3 col-sm-12 text-right">
                     <ul class="nav-icons">
-                        <c:if test="${user!=null}">
+                        <c:if test="${user==null}">
                             <li>
                                 <a href="<%=request.getContextPath()%>/desk/register.jsp"><i class="ion-person-add"></i>
                                     <div>注册</div>
@@ -237,7 +237,7 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-                    <c:if test="${user==null}">
+                    <c:if test="${user!=null}">
                         <li class="dropdown magz-dropdown">
                             <a href="#">${user.name} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
@@ -283,7 +283,11 @@
 
                         var da = eval("("+data+")");
 
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data);
+                        for (var i = 0; i < da.length; i++) {
+
+                            alert(da[i].attractionName)
+                        }
+                            <%--window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data.attractionName);--%>
 
 
                     } else {

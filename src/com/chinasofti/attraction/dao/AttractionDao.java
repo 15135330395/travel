@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface AttractionDao extends BaseDao<Attraction> {
 
-    public List<Attraction> changePlace();
+    public List changePlace();
 
     public List queryOneByName(String place);
 }
