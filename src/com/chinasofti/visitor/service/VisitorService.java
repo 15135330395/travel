@@ -17,12 +17,19 @@ import java.util.List;
 public class VisitorService {
 
     @Autowired
-    private VisitorDao<Visitor> visitorDao;
+    private VisitorDao visitorDao;
     /**
      * 查询全部游客
      */
     public List<Visitor> queryAll() {
         return visitorDao.queryAll();
+    }
+    /**
+     * 通过订单编号查询全部游客
+     */
+    public List<Visitor> queryByOrderId(Long id) {
+        List<Visitor> visitors = visitorDao.queryByOrderId(id);
+        return visitors;
     }
     /**
      * 分页查询

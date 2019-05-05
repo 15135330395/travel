@@ -42,9 +42,7 @@
             <th>导游姓名</th>
             <th>导游性别</th>
             <th>导游联系方式</th>
-
-            <%--<th>组团信息</th>--%>
-
+            <th>组团信息</th>
             <th>旅游路线</th>
             <th>出发时间</th>
             <th>集合地点</th>
@@ -60,8 +58,13 @@
                 <td>${link.staff.staffName}</td>
                 <td>${link.staff.staffSex}</td>
                 <td>${link.staff.phone}</td>
-
-                <%--<td>${link.linkOrder}</td>--%>
+                <td width="240px">
+                    <c:forEach items="${link.visitorList}" var="visitor">
+                        姓名：${visitor.visitorName}<br>
+                        身份证号：${visitor.cardId}<br>
+                        联系方式：${visitor.phone} <hr>
+                    </c:forEach>
+                </td>
 
                 <td>${link.attraction.route}</td>
                 <td>${link.departure}</td>
