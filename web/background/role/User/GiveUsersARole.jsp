@@ -26,7 +26,7 @@
                 <span class="x-red"></span>编号
             </label>
             <div class="layui-input-inline">
-                <input type="text" name="userId" class="layui-input" readonly="readonly" value="${user.userId}">
+                <input type="text" name="adminId" class="layui-input" readonly="readonly" value="${admin.adminId}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -34,7 +34,8 @@
                 <span class="x-red"></span>用户名
             </label>
             <div class="layui-input-block">
-                <input type="text" name="username" class="layui-input" lay-verify="required" value="${user.username}">
+                <input type="text" name="adminName" class="layui-input" lay-verify="readonly"
+                       value="${admin.adminName}">
             </div>
         </div>
         <div class="layui-form-item">
@@ -44,7 +45,7 @@
             <div class="layui-input-block">
                 <c:forEach items="${roleList}" var="role">
                     <input type="radio" name="roleId" lay-skin="primary" value="${role.roleId}" title="${role.roleName}"
-                           lay-verify="required" <c:if test="${roleUser.roleId==role.roleId}">checked=""</c:if>>
+                           lay-verify="required" <c:if test="${admin.role.roleId==role.roleId}">checked=""</c:if>>
                 </c:forEach>
             </div>
         </div>
@@ -68,12 +69,8 @@
             //发异步，把数据提交给Servlet
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/UserServlet",
-                data: {
-                    action: "giveUsersARole",
-                    userId: data.field.userId,
-                    roleId: data.field.roleId
-                },
+                url: "<%=request.getContextPath()%>/admin/giveUsersARole/" + data.field.adminId + "/" + data.field.roleId,
+                data: {},
                 success: function (msg) {
                     if (msg == 1) {
                         layer.alert("修改成功", {icon: 6}, function () {

@@ -72,9 +72,9 @@
                             area: ['451px', '405px'], // 宽高
                             content: '<%=request.getContextPath()%>/admin/queryOne/${admin.adminId}'
                             });">修改</a>
-                    <a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"
-                       onclick="admin_del(this,'${admin.adminId}')" href="javascript:;">删除
-                    </a>
+                    <%--<a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"--%>
+                       <%--onclick="admin_del(this,'${admin.adminId}')" href="javascript:;">删除--%>
+                    <%--</a>--%>
                     <a title="赋予角色" class="layui-btn layui-btn-normal layui-btn-xs"
                        onclick="layer.open({
                                title: '赋予角色',

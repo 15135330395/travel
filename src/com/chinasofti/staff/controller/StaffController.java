@@ -36,7 +36,7 @@ public class StaffController {
 
 
     @RequestMapping("/list")
-    public String list(HttpServletRequest request, Map<String, Object> map){
+    public String list(HttpServletRequest request, Map<String, Object> map) {
         PageBean pageBean = new PageBean();
         // 页码
         String index = request.getParameter("index");
@@ -62,25 +62,24 @@ public class StaffController {
 
 
     @RequestMapping("/queryOne/{staffId}")
-    public String queryOne(@PathVariable(name = "staffId") Integer staffId, HttpServletRequest request){
+    public String queryOne(@PathVariable(name = "staffId") Integer staffId, HttpServletRequest request) {
         Staff staff = staffService.query(staffId);
-        request.setAttribute("staff",staff);
+        request.setAttribute("staff", staff);
         return "/background/staff/staffedit";
 
     }
 
     @RequestMapping("/to/{staffId}")
-    public String to(@PathVariable(name = "staffId") Integer staffId,Map<String,Object> map){
+    public String to(@PathVariable(name = "staffId") Integer staffId, Map<String, Object> map) {
         Staff staff = staffService.query(staffId);
-        System.out.println(staff+"========");
-        map.put("staff",staff);
-        System.out.println(staff+"========");
+        map.put("staff", staff);
         return "/background/admin/adminadd";
 
     }
+
     @RequestMapping("/addAdmin")
     @ResponseBody
-    public Integer addAdmin(Admin admin,Staff staff){
+    public Integer addAdmin(Admin admin, Staff staff) {
         admin.setStaff(staff);
         staff.setAdmin(admin);
         adminService.save(admin);
@@ -92,37 +91,40 @@ public class StaffController {
     @Transactional
     @RequestMapping("/add")
     @ResponseBody
-    public Integer add(Staff staff){
+    public Integer add(Staff staff) {
         staffService.save(staff);
         return 1;
     }
+
     @Transactional
     @RequestMapping("/update")
     @ResponseBody
-    public Integer update(Staff staff){
+    public Integer update(Staff staff) {
 
         staffService.update(staff);
         return 1;
 
     }
+
     /**
      * 批量删除信息
+     *
      * @param ids
      * @return
      */
     @RequestMapping("/deleteAll")
     @ResponseBody
-    public Integer deleteList(@RequestParam(name = "staffId")String ids){
+    public Integer deleteList(@RequestParam(name = "staffId") String ids) {
 
         //判断ids不为空
-        if(StringUtils.isNoneBlank(ids)){
+        if (StringUtils.isNoneBlank(ids)) {
             //分割ids
             String[] split = ids.split(",");
-            for ( String id: split ) {
+            for (String id : split) {
                 List<Staff> staffList = staffService.queryAll();
                 Staff staff = null;
-                for (Staff a:staffList){
-                    if (a.getStaffId().equals(Integer.valueOf(id))){
+                for (Staff a : staffList) {
+                    if (a.getStaffId().equals(Integer.valueOf(id))) {
                         staff = a;
                         break;
                     }
@@ -132,27 +134,20 @@ public class StaffController {
         }
         return 1;
     }
+
     /**
      * 删除信息
+     *
      * @param staffId
      * @return
      */
-    @RequestMapping("/delete")
+    @RequestMapping("/delete/{staffId}")
     @ResponseBody
-    public Integer delete(@RequestParam(value = "staffId")Integer staffId){
-
-        List<Staff> staffList = staffService.queryAll();
-        Staff staff = null;
-        for (Staff a:staffList){
-            if (a.getStaffId().equals(staffId)){
-                staff = a;
-                break;
-            }
-        }
+    public Integer delete(@PathVariable(value = "staffId") Integer staffId) {
+        Staff staff = staffService.query(staffId);
         staffService.delete(staff);
         return 1;
     }
-
 
 
 }

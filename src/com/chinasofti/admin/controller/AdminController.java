@@ -2,6 +2,8 @@ package com.chinasofti.admin.controller;
 import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.admin.service.AdminInterface;
 import com.chinasofti.base.PageBean;
+import com.chinasofti.role.entity.Role;
+import com.chinasofti.role.service.RoleService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,9 @@ public class AdminController {
 
     @Autowired
     AdminInterface adminService;
+    @Autowired
+    RoleService roleService;
+
 
     @RequestMapping("/list")
     public String query(HttpServletRequest request, Map<String, Object> map){
@@ -57,12 +62,22 @@ public class AdminController {
 
     }
     @RequestMapping("/to/{adminId}")
-    public String giant(@PathVariable(name = "adminId") Integer adminId, HttpServletRequest request){
+    public String toGiant(@PathVariable(name = "adminId") Integer adminId,Map<String,Object> map){
         Admin admin = adminService.query(adminId);
+        map.put("admin",admin);
+        List<Role> roleList = roleService.queryAll();
+        map.put("roleList",roleList);
+        return "/background/role/User/GiveUsersARole";
 
-        request.setAttribute("admin",admin);
-
-        return "/background/role/Role/GrantRole";
+    }
+    @RequestMapping("giveUsersARole/{adminId}/{roleId}")
+    @ResponseBody
+    public String giant(@PathVariable(name = "adminId") Integer adminId,@PathVariable(name = "roleId") Integer roleId){
+        Admin admin = adminService.query(adminId);
+        Role role = roleService.queryRoleById(roleId);
+        admin.setRole(role);
+        adminService.save(admin);
+        return "1";
 
     }
 
