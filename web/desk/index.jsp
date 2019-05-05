@@ -159,13 +159,13 @@
                                         </div>
                                     </div>
                                     <h1><a href="<%=request.getContextPath()%>/desk/single.jsp">${newsList.get(1).newsTitle}</a></h1>
-                                    <p>
-                                            ${newsList.get(1).newsContent}
-                                    </p>
+                                    <%--<p>--%>
+                                            <%--${newsList.get(1).newsContent}--%>
+                                    <%--</p>--%>
                                     <footer>
-                                        <a href="#" class="love"><i class="ion-android-favorite-outline"></i>
-                                            <div>${newsList.get(1).love}</div>
-                                        </a>
+                                        <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
+                                            <%--<div>${newsList.get(1).love}</div>--%>
+                                        <%--</a>--%>
                                         <a class="btn btn-primary more" href="<%=request.getContextPath()%>/${newsList.get(1).newsId}">
                                             <div>更多</div>
                                             <div><i class="ion-ios-arrow-thin-right"></i></div>

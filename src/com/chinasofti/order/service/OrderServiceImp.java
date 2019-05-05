@@ -3,6 +3,7 @@ package com.chinasofti.order.service;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
+import com.chinasofti.staff.entity.Staff;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,8 +22,8 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public void changeState(Long orderId) {
-		orderDaoImp.changeState(orderId);
+	public void changeState(Long orderId, Staff staff) {
+		orderDaoImp.changeState(orderId,staff);
 	}
 
 	@Override

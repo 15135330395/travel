@@ -1,7 +1,9 @@
 package com.chinasofti.staff.entity;
 
+import com.chinasofti.admin.entity.Admin;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
-
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 
 /**
@@ -40,6 +42,10 @@ public class Staff {
      * 工作地
      */
     private String workplace;
+    /**
+     * 用户
+     */
+    private Admin admin;
 
     @Id
     @GeneratedValue(generator = "_native")
@@ -105,5 +111,30 @@ public class Staff {
 
     public void setWorkplace(String workplace) {
         this.workplace = workplace;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "admin_id")
+    @Cascade(value = {CascadeType.SAVE_UPDATE})
+    public Admin getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Admin admin) {
+        this.admin = admin;
+    }
+
+    @Override
+    public String toString() {
+        return "Staff{" +
+                "staffId=" + staffId +
+                ", staffName='" + staffName + '\'' +
+                ", staffSex='" + staffSex + '\'' +
+                ", cardId='" + cardId + '\'' +
+                ", phone='" + phone + '\'' +
+                ", job='" + job + '\'' +
+                ", workplace='" + workplace + '\'' +
+                ", admin=" + admin +
+                '}';
     }
 }

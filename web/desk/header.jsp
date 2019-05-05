@@ -113,12 +113,12 @@
                                         <li>
                                             <a href="<%=request.getContextPath()%>/desk/register.jsp">注册</a>
                                         </li>
-                                        <li>
-                                            <a href="">忘记密码</a>
-                                        </li>
-                                        <li>
-                                            <a href="../reset.jsp">重置密码</a>
-                                        </li>
+                                        <%--<li>--%>
+                                            <%--<a href="">忘记密码</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<a href="../reset.jsp">重置密码</a>--%>
+                                        <%--</li>--%>
                                     </ul>
                                 </li>
                             </c:if>
@@ -248,7 +248,7 @@
                                     <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
                                 <%--</li>--%>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/1"><i class="icon ion-settings"></i>我的订单</a>
+                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
