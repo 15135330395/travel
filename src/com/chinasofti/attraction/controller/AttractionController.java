@@ -151,7 +151,7 @@ public class AttractionController {
     public ModelAndView changePlace(){
 
         List<Attraction> attractions = attractionService.changePlace();
-
+        System.out.println(attractions);
         ModelAndView modelAndView = new ModelAndView("/desk/index");
 
         modelAndView.addObject("attractions",attractions);
@@ -173,20 +173,23 @@ public class AttractionController {
 
         List list = attractionService.queryOneByName(place);
 
-
         return list;
     }
 
 
     @RequestMapping("/toPlace")
     public ModelAndView toPlace(@RequestBody Attraction place){
-
         ModelAndView modelAndView = new ModelAndView("/desk/place");
 
         return modelAndView;
     }
 
-
+    /**
+     * 前台查询一个景点得到详情
+     * @param model
+     * @param id
+     * @return
+     */
     @RequestMapping("/detail/{id}")
     public String findById(Model model, @PathVariable(name = "id") Integer id){
         Attraction attraction = attractionService.query(id);

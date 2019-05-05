@@ -7,6 +7,7 @@ import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.entity.Type;
 import com.chinasofti.order.service.OrderService;
 import com.chinasofti.type.service.TypeService;
+import com.chinasofti.user.entity.User;
 import com.chinasofti.utils.DateUtil;
 import com.chinasofti.utils.IdUtil;
 import com.chinasofti.visitor.entity.Visitor;
@@ -17,7 +18,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,7 +49,7 @@ public class ToOrderController {
     }
     @ResponseBody
     @RequestMapping("/toOrder")
-    public String order(Model model, Orders order, String goTime, Visitor visitor){
+    public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
 //        String[] visitorName = request.getParameterValues("visitorName");
 //        String[] cardId = request.getParameterValues("cardId");
 //        String[] phone = request.getParameterValues("phone");
@@ -59,7 +62,8 @@ public class ToOrderController {
         order.setAttraction(attraction);
         Type type = typeService.query(order.getType().getTypeId());
         order.setType(type);
-//        order.setUser();
+        User user = (User) request.getSession().getAttribute("user");
+        order.setUser(user);
         String[] split1 = visitor.getVisitorName().split(",");
         String[] split2 = visitor.getCardId().split(",");
         String[] split3 = visitor.getPhone().split(",");
@@ -71,7 +75,7 @@ public class ToOrderController {
             list.add(visitor);
         }
         orderService.addorder(order,list.size());
-
-        return "/order";
+        ModelAndView modelAndView = new ModelAndView("/index");
+        return modelAndView;
     }
 }

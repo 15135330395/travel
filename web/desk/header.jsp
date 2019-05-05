@@ -27,19 +27,19 @@
                         </div>
                         <div class="help-block">
                             <%--<div>热搜:</div>--%>
-                            <ul>
-                                <c:forEach begin="0" end="4" var="i">
-                                    <li>
-                                        <a href="">${visitedNewsList[i].newsTitle}</a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
+                            <%--<ul>--%>
+                                <%--<c:forEach begin="0" end="4" var="i">--%>
+                                    <%--<li>--%>
+                                        <%--<a href="">${visitedNewsList[i].newsTitle}</a>--%>
+                                    <%--</li>--%>
+                                <%--</c:forEach>--%>
+                            <%--</ul>--%>
                         </div>
                     </form>
                 </div>
                 <div class="col-md-3 col-sm-12 text-right">
                     <ul class="nav-icons">
-                        <c:if test="${user!=null}">
+                        <c:if test="${user==null}">
                             <li>
                                 <a href="<%=request.getContextPath()%>/desk/register.jsp"><i class="ion-person-add"></i>
                                     <div>注册</div>
@@ -59,7 +59,7 @@
                         <c:if test="${user!=null}">
                             <li>
                                 <a><i class="ion-person"></i>
-                                    欢迎您，<span>${user.name}</span>
+                                    欢迎您，<span>${user.email}</span>
                                 </a>
                             </li>
                         </c:if>
@@ -95,15 +95,12 @@
                         <a href="<%=request.getContextPath()%>/desk/register.jsp">Register</a>
                     </li>
                     <li class="dropdown magz-dropdown">
-                        <a href="category.jsp">菜单 <i class="ion-ios-arrow-right"></i></a>
+                        <a href="#">菜单 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
-                            <%--<li>--%>
-                                <%--<a href="category.jsp">类别 </a>--%>
-                            <%--</li>--%>
-                            <c:if test="${user==null}">
+                            <c:if test="${user!=null}">
                                 <li class="dropdown magz-dropdown">
                                     <a href="#">认证<i class="ion-ios-arrow-right"></i></a>
                                     <ul class="dropdown-menu">
@@ -117,7 +114,7 @@
                                             <a href="">忘记密码</a>
                                         </li>
                                         <li>
-                                            <a href="">重置密码</a>
+                                            <a href="../reset.jsp">重置密码</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -237,9 +234,9 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-                    <c:if test="${user==null}">
+                    <c:if test="${user!=null}">
                         <li class="dropdown magz-dropdown">
-                            <a href="#">${user.name} <i class="ion-ios-arrow-right"></i></a>
+                            <a href="#">${user.email} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <%--<li>--%>
                                     <%--<a href="#"><i class="icon ion-person"></i>我的账号</a>--%>
@@ -252,7 +249,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#"><i class="icon ion-log-out"></i>退出登录</a>
+                                    <a href="<%=request.getContextPath()%>/userLogout/logout"><i class="icon ion-log-out"></i>退出登录</a>
                                 </li>
                             </ul>
                         </li>
@@ -269,7 +266,6 @@
         function queryPlace() {
 
           var place = document.getElementById("sousuo").value;
-
             $.ajax({
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
@@ -282,9 +278,7 @@
                     if (data.toString()!= "[]") {
 
                         var da = eval("("+data+")");
-
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data);
-
+                            window.open("<%=request.getContextPath()%>/attraction/toPlace");
 
                     } else {
                         alert("没有该景点")

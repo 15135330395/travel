@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="info.jsp" %>
+<%@include file="../commons/info.jsp"%>
 <html>
 <head>
     <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
@@ -7,7 +7,7 @@
 
 <body>
 <!-- 头部开始 -->
-<jsp:include page="header.jsp"/>
+<%--<jsp:include page="header.jsp"/>--%>
 <!-- 头部结束 -->
 
 <section class="login first grey">
@@ -16,22 +16,14 @@
             <div class="box box-border">
                 <div class="box-body">
                     <h4>注册</h4>
-                    <div class="form-group">
-                        <label for="name">昵称</label>
-                        <input id="name" type="text" name="name" class="form-control" required="">
-                    </div>
+
                     <div class="form-group">
                         <label for="email" class="fw">电子邮箱
                             <span id="emailInfo" class="pull-right"></span>
                         </label>
                         <input id="email" type="email" name="email" class="form-control" required="">
                     </div>
-                    <div class="form-group">
-                        <label for="username" class="fw">用户名
-                            <span id="usernameInfo" class="pull-right"></span>
-                        </label>
-                        <input id="username" type="text" name="username" class="form-control" required="">
-                    </div>
+
                     <div class="form-group">
                         <label for="password" class="fw">密码</label>
                         <input id="password" type="password" name="password" class="form-control" required="">
@@ -50,7 +42,7 @@
 </section>
 
 <!-- 底部开始 -->
-<jsp:include page="footer.jsp"/>
+<%--<jsp:include page="footer.jsp"/>--%>
 <!-- 底部结束 -->
 
 </body>
@@ -63,9 +55,8 @@
             //2.去服务器异步校验该邮箱是否存在
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/LoginServlet",
+                url: "<%=request.getContextPath()%>/user/queryByEmail",
                 data: {
-                    action: "findUserByEmail",
                     email: emailInput
                 },
                 dataType: "json",
@@ -90,43 +81,11 @@
                 }
             });
         });
-        $("#username").blur(function () {
-            //1.失去焦点获得输入框的内容
-            var usernameInput = $(this).val();
-            //2.去服务器异步校验该用户名是否存在
-            $.ajax({
-                type: "post",
-                url: "<%=request.getContextPath()%>/LoginServlet",
-                data: {
-                    action: "findUserByUsername",
-                    username: usernameInput
-                },
-                dataType: "json",
-                success: function (data) {
-                    //接收到LoginServlet返回的值
-                    var isExist = data;
-                    // alert(isExist);
-                    //3.根据返回的isExist动态显示
-                    var usernameInfo = "";
-                    if (isExist) {//对返回的值进行判断
-                        usernameInfo = "该用户名已经存在";
-                        $("#usernameInfo").css("color", "red");//设置提示文本的显示颜色
-                    } else {
-                        usernameInfo = "该用户名可以使用";
-                        $("#usernameInfo").css("color", "green");
-                    }
-                    //将提示信息写到用户名输入框后面
-                    $("#usernameInfo").html(usernameInfo);
-                    $().check();
-                }
-            });
-        });
+
         $.fn.check = (function () {
-            var name = $("#name").val();
             var email = $("#email").val();
-            var username = $("#username").val();
             var password = $("#password").val();
-            if (email == "" || name == "" || username == "" || password == "") {
+            if (email == "" || password == "") {
                 $("#login").attr("disabled", true);
             }
             if (username && username.length >= 2 &&
@@ -136,23 +95,18 @@
                 $("#login").attr("disabled", true);
         });
         $("#login").click(function () {
-            var name = $("#name").val();
-            var username = $("#username").val();
             var email = $("#email").val();
             var password = $("#password").val();
-            if (email == "" || name == "" || username == "" || password == "") {
+            if (email == "" || password == "") {
                 alert("请正确输入信息");
                 return;
             }
             $("#login").attr("disabled", true);
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/LoginServlet",
+                url: "<%=request.getContextPath()%>/user/addUser",
                 data: {
-                    action: "addUser",
                     email: email,
-                    name: name,
-                    username: username,
                     password: password
                 },
                 dataType: "json",
