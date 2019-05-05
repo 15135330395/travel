@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.servlet.http.HttpSession;
+
 /**
  * @author haoyu
  * date ：2019/4/30
@@ -26,12 +28,13 @@ public class LoginController {
 
     @RequestMapping("/login/{email}/{password}")
     @ResponseBody
-    public Integer login(@PathVariable("email")String email, @PathVariable("password")String password){
+    public Integer login(HttpSession session, @PathVariable("email")String email, @PathVariable("password")String password){
         Integer i = 0;
         User user = userDao.queryByName("email", email);
         if(email.equals(user.getEmail())){
             if(password.equals(user.getPassword())){
                 i = 1;
+                session.setAttribute("user",user);
             }else{
                 i = 2;
             }
