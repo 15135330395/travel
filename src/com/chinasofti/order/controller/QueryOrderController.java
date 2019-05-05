@@ -7,6 +7,7 @@ import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
 import com.chinasofti.utils.MsgUtil;
 import com.chinasofti.visitor.entity.Visitor;
+import com.chinasofti.visitor.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,6 +31,8 @@ public class QueryOrderController {
 
     @Autowired
     private OrderService orderService;
+    @Autowired
+    private VisitorService visitorService;
 
     @Autowired
     private StaffInterface StaffService;
@@ -38,8 +41,11 @@ public class QueryOrderController {
     @RequestMapping("/queryOrder/{userId}")
     public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId){
 
-        List list = orderService.queryOrder(userId);
-
+        List<Orders> list = orderService.queryOrder(userId);
+        for (Orders orders : list) {
+            List<Visitor> visitors = visitorService.queryByOrderId(orders.getOrderId());
+            orders.setVisitorList(visitors);
+        }
         ModelAndView modelAndView = new ModelAndView("/desk/order");
 
         modelAndView.addObject("orderList",list);

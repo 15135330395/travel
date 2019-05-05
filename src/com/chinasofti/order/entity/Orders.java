@@ -3,9 +3,11 @@ package com.chinasofti.order.entity;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.user.entity.User;
+import com.chinasofti.visitor.entity.Visitor;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description Order
@@ -56,6 +58,7 @@ public class Orders {
      */
     private Double total;
 
+    private List<Visitor> visitorList;
     @Id
     @Column(name = "order_id")
     public Long getOrderId() {
@@ -148,6 +151,15 @@ public class Orders {
 
     public void setTotal(Double total) {
         this.total = total;
+    }
+
+    @Transient
+    public List<Visitor> getVisitorList() {
+        return visitorList;
+    }
+
+    public void setVisitorList(List<Visitor> visitorList) {
+        this.visitorList = visitorList;
     }
 
     @Override

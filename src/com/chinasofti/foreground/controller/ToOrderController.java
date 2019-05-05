@@ -68,7 +68,6 @@ public class ToOrderController {
         String[] split2 = visitor.getCardId().split(",");
         String[] split3 = visitor.getPhone().split(",");
         List<Visitor> list = new ArrayList<>();
-
         for (int i = 0; i < split1.length; i++) {
             visitor = new Visitor(split1[i], split2[i], split3[i],order);
             visitorService.addVisitor(visitor);

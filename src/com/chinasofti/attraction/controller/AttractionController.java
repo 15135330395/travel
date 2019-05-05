@@ -7,7 +7,8 @@ import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import com.chinasofti.utils.StringUtilss;
+import com.chinasofti.utils.JsonUtil;
+import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -85,7 +86,7 @@ public class AttractionController {
     @RequestMapping("/delete")
     @ResponseBody
     public Integer delete(@RequestParam(value = "attractionId")Integer attractionId){
-        System.out.println(attractionId+"sdasdasd");
+        System.out.println(attractionId+"==========");
         List<Attraction> attractionList = attractionService.queryAll();
         Attraction attraction = null;
         for (Attraction a:attractionList){
@@ -147,9 +148,7 @@ public class AttractionController {
 //        request.setAttribute("admins", admins);
         return "/background/attraction/attractionList";
     }
-
     /**
-     * 1
      * 景点信息修改
      * @param attraction
      * @return
@@ -288,7 +287,7 @@ public class AttractionController {
     }
 
     /**
-     * 前台查询一个景点得到详情
+     * 前台查询一个景点得到详情信息
      * @param model
      * @param id
      * @return
@@ -303,7 +302,7 @@ public class AttractionController {
         List<Type> types = attractionService.queryType();
         List<Attraction> list1=new ArrayList<>();
         for (Attraction attraction1 : list) {
-            String s = StringUtilss.html2Text(attraction1.getAttractionDesc());
+            String s = StringUtil.html2Text(attraction1.getAttractionDesc());
             attraction1.setAttractionDesc(s);
             list1.add(attraction1);
         }
