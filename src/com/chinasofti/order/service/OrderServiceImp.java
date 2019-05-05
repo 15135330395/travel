@@ -3,6 +3,8 @@ package com.chinasofti.order.service;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
+import com.chinasofti.staff.entity.Staff;
+import com.chinasofti.visitor.entity.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,6 +23,11 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
+	public void changeState(Long orderId, Staff staff) {
+		orderDaoImp.changeState(orderId,staff);
+	}
+
+	@Override
 	public void updateOrder(Orders orders) {
 		// TODO 自动生成的方法存根
 		orderDaoImp.update(orders);
@@ -33,10 +40,10 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
-	public Orders query(Integer orderId) {
+	public Orders query(Long orderId) {
 		// TODO 自动生成的方法存根
 		
-		return orderDaoImp.query("orderId",orderId);
+		return orderDaoImp.query(orderId);
 	}
 
 	@Override
@@ -65,4 +72,16 @@ public class OrderServiceImp implements OrderService{
 		return i;
 	}
 
+
+
+
+
+
+
+
+	@Override
+	public List<Visitor> queryVisitorByOrder(Long orderId) {
+		// TODO 自动生成的方法存根
+		return orderDaoImp.queryVisitorByOrder(orderId);
+	}
 }

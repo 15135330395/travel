@@ -11,16 +11,10 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>友情链接管理</title>
+    <title>景点信息管理</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
-    <!-- css和js的引用封装在info.jsp -->
-    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
-    <!--[if lt IE 9]>
-    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
-    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+
     <![endif]-->
 </head>
 <body>
@@ -35,12 +29,6 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-    <div class="layui-row">
-        <form class="layui-form layui-col-md12 x-so">
-            <input type="text" name="username" placeholder="请输入景点名称" autocomplete="off" class="layui-input">
-            <button class="layui-btn" lay-submit="" lay-filter="search"><i class="layui-icon">&#xe615;</i></button>
-        </form>
-    </div>
     <xblock>
         <button class="layui-btn"
                 onclick="x_admin_show('添加','<%=request.getContextPath()%>/background/attraction/attractionAdd.jsp')">
@@ -61,6 +49,7 @@
             <th>编号</th>
             <th>名称</th>
             <th>路径</th>
+            <th>价格</th>
             <th>图片路径</th>
             <th>操作</th>
         </tr>
@@ -76,6 +65,17 @@
                 <td>${attractionList.attractionId}</td>
                 <td>${attractionList.attractionName}</td>
                 <td>${attractionList.route}</td>
+                <td>
+                    <c:forEach items="${prices}" var="price">
+                        <c:if test="${price.attractionId == attractionList.attractionId}">
+                            <c:forEach items="${types}" var="type">
+                                <c:if test="${type.typeId == price.typeId}">
+                                    <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                    </c:if>
+                                </c:forEach>
+                            </c:if>
+                    </c:forEach>
+                </td>
                 <td>${attractionList.imageUrl}</td>
                 <td class="td-manage">
                     <a title="查看"
@@ -86,17 +86,51 @@
                     <a title="删除" onclick="link_del(this,'${attractionList.attractionId}')" href="javascript:;">
                         <i class="layui-icon">&#xe640;</i>
                     </a>
+
                 </td>
             </tr>
+
         </c:forEach>
         </tbody>
     </table>
+    <div class="page">
+        <div>
+            <c:if test="${pageBean.pageIndex>1}">
+                <a class="prev"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex-1}">&lt;&lt;</a>
+            </c:if>
+            <c:if test="${pageBean.pageIndex<=1}">
+                <a class="prev"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&lt;&lt;</a>
+            </c:if>
+            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
+                <c:if test="${i==pageBean.pageIndex}">
+                    <span class="current">
+                            ${i}
+                    </span>
+                </c:if>
+                <c:if test="${i!=pageBean.pageIndex}">
+                    <a class="num" href="<%=request.getContextPath()%>/attraction/all?index=${i}">
+                            ${i}
+                    </a>
+                </c:if>
+            </c:forEach>
+            <c:if test="${pageBean.pageIndex<pageBean.pages}">
+                <a class="next"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex+1}">&gt;&gt;</a>
+            </c:if>
+            <c:if test="${pageBean.pageIndex>=pageBean.pages}">
+                <a class="next"
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&gt;&gt;</a>
+            </c:if>
+        </div>
+    </div>
 </div>
 <script>
     /*友情链接-删除*/
     function link_del(obj, attractionId) {
         layer.confirm('确认要删除吗？', function () {
-            alert(attractionId)
+       /*alert(attractionId)*/
             //发异步 删除数据
             $.ajax({
                 type: "post",

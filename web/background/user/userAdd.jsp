@@ -22,6 +22,15 @@
 <div class="x-body">
     <form class="layui-form">
         <div class="layui-form-item">
+            <label   class="layui-form-label">
+
+            </label>
+            <div class="layui-input-inline">
+                <input type="hidden"  name="userId" required=""
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label for="email" class="layui-form-label">
                 <span class="x-red">*</span>用户邮箱
             </label>
@@ -40,6 +49,21 @@
                        autocomplete="off" class="layui-input">
             </div>
         </div>
+        <%--<div class="layui-form-item">--%>
+            <%--<label class="layui-form-label">--%>
+                <%--<span class="x-red">*</span>激活状态--%>
+            <%--</label>--%>
+            <%--<div class="layui-input-inline">--%>
+                <%--<select type="text" name="state" lay-verify="">--%>
+                    <%--<option value="">请选择激活状态</option>--%>
+                    <%--<option value="0">0</option>--%>
+                    <%--<option value="1">1</option>--%>
+                <%--</select>--%>
+
+            <%--</div>--%>
+        <%--</div>--%>
+
+
 
         <div class="layui-form-item">
             <label  class="layui-form-label">
@@ -57,15 +81,17 @@
             ,layer = layui.layer;
         //监听提交
         form.on('submit(add)', function(data){
+            var userId=data.field.userId;
             var email=data.field.email;
             var password=data.field.password;
-
+            var state=data.field.state;
             $.ajax({
                 type:"post",
                 url:"<%=request.getContextPath()%>/user/addUser",
                 data:{
                     "email":email,
-                    "password":password
+                    "password":password,
+
                 },
                 success:function(msg){
                     if(msg=="1"){

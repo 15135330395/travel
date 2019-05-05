@@ -27,13 +27,13 @@
                         </div>
                         <div class="help-block">
                             <%--<div>热搜:</div>--%>
-                            <%--<ul>--%>
-                                <%--<c:forEach begin="0" end="4" var="i">--%>
-                                    <%--<li>--%>
-                                        <%--<a href="">${visitedNewsList[i].newsTitle}</a>--%>
-                                    <%--</li>--%>
-                                <%--</c:forEach>--%>
-                            <%--</ul>--%>
+                            <ul>
+                                <c:forEach begin="0" end="4" var="i">
+                                    <li>
+                                        <a href="">${visitedNewsList[i].newsTitle}</a>
+                                    </li>
+                                </c:forEach>
+                            </ul>
                         </div>
                     </form>
                 </div>
@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
+                                <a href="<%=request.getContextPath()%>/attraction/all"><i class="ion-person"></i>
                                     <div>后台登陆</div>
                                 </a>
                             </li>
@@ -100,7 +100,10 @@
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
-                            <c:if test="${user!=null}">
+                            <%--<li>--%>
+                                <%--<a href="category.jsp">类别 </a>--%>
+                            <%--</li>--%>
+                            <c:if test="${user==null}">
                                 <li class="dropdown magz-dropdown">
                                     <a href="#">认证<i class="ion-ios-arrow-right"></i></a>
                                     <ul class="dropdown-menu">
@@ -110,12 +113,12 @@
                                         <li>
                                             <a href="<%=request.getContextPath()%>/desk/register.jsp">注册</a>
                                         </li>
-                                        <li>
-                                            <a href="">忘记密码</a>
-                                        </li>
-                                        <li>
-                                            <a href="../reset.jsp">重置密码</a>
-                                        </li>
+                                        <%--<li>--%>
+                                            <%--<a href="">忘记密码</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<a href="../reset.jsp">重置密码</a>--%>
+                                        <%--</li>--%>
                                     </ul>
                                 </li>
                             </c:if>
@@ -245,7 +248,7 @@
                                     <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
                                 <%--</li>--%>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/1"><i class="icon ion-settings"></i>我的订单</a>
+                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
@@ -266,6 +269,7 @@
         function queryPlace() {
 
           var place = document.getElementById("sousuo").value;
+
             $.ajax({
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
@@ -278,7 +282,13 @@
                     if (data.toString()!= "[]") {
 
                         var da = eval("("+data+")");
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace");
+
+                        for (var i = 0; i < da.length; i++) {
+
+                            alert(da[i].attractionName)
+                        }
+                            <%--window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data.attractionName);--%>
+
 
                     } else {
                         alert("没有该景点")

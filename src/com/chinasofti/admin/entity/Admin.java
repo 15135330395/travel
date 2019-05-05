@@ -65,7 +65,7 @@ public class Admin {
         this.password = password;
     }
 
-    @ManyToOne
+    @ManyToOne(cascade =CascadeType.ALL )
     @JoinColumn(name = "role_id")
     public Role getRole() {
         return role;
@@ -75,7 +75,7 @@ public class Admin {
         this.role = role;
     }
 
-    @ManyToOne
+    @OneToOne(cascade =CascadeType.ALL )
     @JoinColumn(name = "staff_id")
     public Staff getStaff() {
         return staff;
@@ -83,5 +83,15 @@ public class Admin {
 
     public void setStaff(Staff staff) {
         this.staff = staff;
+    }
+
+    @Override
+    public String toString() {
+        return "Admin{" +
+                "adminId=" + adminId +
+                ", adminName='" + adminName + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
     }
 }

@@ -90,6 +90,16 @@
                                             <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
                                                 <%--<div>${newNewsList[i].love}</div>--%>
                                             <%--</a>--%>
+                                                <c:forEach items="${prices}" var="price">
+                                                    <c:if test="${price.attractionId == attractions[i].attractionId}">
+                                                        <c:forEach items="${types}" var="type">
+                                                            <c:if test="${type.typeId == price.typeId}">
+                                                                <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </c:forEach>
+
                                             <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
                                                 <div>更多</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -118,6 +128,16 @@
                                             <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
                                                 <%--<div>${newNewsList[i].love}</div>--%>
                                             <%--</a>--%>
+                                                <c:forEach items="${prices}" var="price">
+                                                    <c:if test="${price.attractionId == attractions[i].attractionId}">
+                                                        <c:forEach items="${types}" var="type">
+                                                            <c:if test="${type.typeId == price.typeId}">
+                                                                <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                                            </c:if>
+                                                        </c:forEach>
+                                                    </c:if>
+                                                </c:forEach>
+
                                            <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
                                                 <div>更多</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -159,13 +179,13 @@
                                         </div>
                                     </div>
                                     <h1><a href="<%=request.getContextPath()%>/desk/single.jsp">${newsList.get(1).newsTitle}</a></h1>
-                                    <p>
-                                            ${newsList.get(1).newsContent}
-                                    </p>
+                                    <%--<p>--%>
+                                            <%--${newsList.get(1).newsContent}--%>
+                                    <%--</p>--%>
                                     <footer>
-                                        <a href="#" class="love"><i class="ion-android-favorite-outline"></i>
-                                            <div>${newsList.get(1).love}</div>
-                                        </a>
+                                        <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
+                                            <%--<div>${newsList.get(1).love}</div>--%>
+                                        <%--</a>--%>
                                         <a class="btn btn-primary more" href="<%=request.getContextPath()%>/${newsList.get(1).newsId}">
                                             <div>更多</div>
                                             <div><i class="ion-ios-arrow-thin-right"></i></div>

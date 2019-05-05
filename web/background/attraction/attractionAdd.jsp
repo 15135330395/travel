@@ -41,6 +41,21 @@
                        class="layui-input">
             </div>
         </div>
+       <%-- <div class="layui-form-item">
+            <label class="layui-form-label">景点价格：</label>
+            <div class="layui-input-block">
+                <select name="price" lay-verify="required">
+                        <option value="1">组团游</option>
+                    <input type="number" name="price1" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
+                           class="layui-input">
+                </select>
+                <select name="typeId" lay-verify="required">
+                        <option value="2">散客游</option>
+                    <input type="number" name="price2" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
+                           class="layui-input">
+                </select>
+            </div>
+        </div>--%>
         <div class="layui-form-item">
             <label class="layui-form-label">图片路径：</label>
             <div class="layui-input-block">
@@ -78,6 +93,7 @@
                 data: {
                     attractionName : data.field.attractionName,
                     route : data.field.route,
+                  /*  price : data.field.price,*/
                     imageUrl : data.field.imageUrl,
                     attractionDesc : CKEDITOR.instances.attractionDesc.getData(),
                 },

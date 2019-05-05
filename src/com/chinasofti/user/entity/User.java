@@ -1,5 +1,7 @@
 package com.chinasofti.user.entity;
 
+import org.hibernate.annotations.GenericGenerator;
+
 import javax.persistence.*;
 
 /**
@@ -32,6 +34,8 @@ public class User {
     private String code;
 
     @Id
+    @GeneratedValue(generator = "_native")
+    @GenericGenerator(name = "_native", strategy = "native")
     @Column(name = "user_id")
     public Integer getUserId() {
         return userId;
@@ -75,6 +79,23 @@ public class User {
 
     public void setCode(String code) {
         this.code = code;
+    }
+
+    public User() {
+    }
+
+    public User(Integer userId, String email, String password, Integer state, String code) {
+        this.userId = userId;
+        this.email = email;
+        this.password = password;
+        this.state = state;
+        this.code = code;
+    }
+
+    public User(String email, String password, Integer state) {
+        this.email = email;
+        this.password = password;
+        this.state = state;
     }
 
     @Override

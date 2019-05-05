@@ -47,6 +47,7 @@
             </label>
             <div class="layui-input-inline">
                 <input value="${attraction.route}" type="text" id="route" name="route" required=""
+                       style="width:1000px"
                        lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>

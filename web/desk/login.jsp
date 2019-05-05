@@ -70,7 +70,7 @@
                 success: function (data) {
                     if (data == 1) {
                         alert("登陆成功")
-                        window.location.replace("/index.jsp")
+                        window.location.replace("<%=request.getContextPath()%>/index.jsp")
                     } else if (data == 2) {
                         alert("密码错误")
                         $("#password").val("")

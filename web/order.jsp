@@ -108,9 +108,9 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
         showMeridian: 1,
         format: "yyyy-mm-dd hh:ii:ss",
     });
-    $(document).ready(function () {
-        console.log($("form").serialize()); // FirstName=Bill&LastName=Gates
-    });
+    // $(document).ready(function () {
+    //     console.log($("form").serialize()); // FirstName=Bill&LastName=Gates
+    // });
 </script>
 
 </body>

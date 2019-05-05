@@ -38,7 +38,7 @@
                         closeBtn: 1,
                         skin: 'layui-layer-rim', // 加上边框
                         area: ['348px', '221px'], // 宽高
-                        content: '<%=request.getContextPath()%>/background/admin/admin/Addadmin.jsp'
+                        content: '<%=request.getContextPath()%>/background/staff/staffadd.jsp'
                         });">
             <i class="layui-icon"></i>添加
         </button>
@@ -46,17 +46,36 @@
     </xblock>
     <table class="layui-table">
         <thead>
-        <tr>
-            <th>编号</th>
-            <th>用户名称</th>
-            <th>操作</th>
+        </th>
+        <th>
+            <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i
+                    class="layui-icon">&#xe605;</i></div>
+        </th>
+        <th>编号</th>
+        <th>员工姓名</th>
+        <th>性别</th>
+        <th>身份证号</th>
+        <th>电话号</th>
+        <th>职位</th>
+        <th>工作地点</th>
+        <th>操作</th>
         </tr>
         </thead>
         <tbody>
-        <c:forEach items="${adminList}" var="admin">
+        <c:forEach items="${staffList}" var="link">
             <tr>
-                <td>${admin.adminId}</td>
-                <td>${admin.adminName}</td>
+                <td>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${link.staffId}'>
+                        <i class="layui-icon">&#xe605;</i>
+                    </div>
+                </td>
+                <td>${link.staffId}</td>
+                <td>${link.staffName}</td>
+                <td>${link.staffSex}</td>
+                <td>${link.cardId}</td>
+                <td>${link.phone}</td>
+                <td>${link.job}</td>
+                <td>${link.workplace}</td>
                 <td class="td-manage">
                     <a title="修改" class="layui-btn layui-btn-xs" onclick="layer.open({
                             title: '修改用户',
@@ -64,14 +83,14 @@
                             closeBtn: 1,
                             skin: 'layui-layer-rim', // 加上边框
                             area: ['451px', '405px'], // 宽高
-                            content: '<%=request.getContextPath()%>/admin/${admin.adminId}'
+                            content: '<%=request.getContextPath()%>//staff/queryOne/${link.staffId}'
                             });">修改</a>
                     <a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"
-                       onclick="admin_del(this,'${admin.adminId}')" href="javascript:;">删除
+                       onclick="admin_del(this,'$${link.staffId}')" href="javascript:;">删除
                     </a>
                     <a title="赋予角色" class="layui-btn layui-btn-normal layui-btn-xs"
                        onclick="layer.open({
-                               title: '赋予角色',
+                               title: '设置用户名',
                                type: 2,
                                skin: 'layui-layer-rim', // 加上边框
                                area: [$(window).width() * 0.9 + 'px', $(window).height() * 0.9 + '620px'], // 宽高
@@ -87,11 +106,11 @@
         <div>
             <c:if test="${pageBean.index>1}">
                 <a class="prev"
-                   href="<%=request.getContextPath()%>/admin/all?index=${pageBean.index-1}">&lt;&lt;</a>
+                   href="<%=request.getContextPath()%>/admin/list?index=${pageBean.index-1}">&lt;&lt;</a>
             </c:if>
             <c:if test="${pageBean.index<=1}">
                 <a class="prev"
-                   href="<%=request.getContextPath()%>/admin/all?index=${pageBean.index}">&lt;&lt;</a>
+                   href="<%=request.getContextPath()%>/admin/list?index=${pageBean.index}">&lt;&lt;</a>
             </c:if>
             <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
                 <c:if test="${i==pageBean.index}">
@@ -100,30 +119,30 @@
                     </span>
                 </c:if>
                 <c:if test="${i!=pageBean.index}">
-                    <a class="num" href="<%=request.getContextPath()%>/admin/all?index=${i}">
+                    <a class="num" href="<%=request.getContextPath()%>/admin/list?index=${i}">
                             ${i}
                     </a>
                 </c:if>
             </c:forEach>
             <c:if test="${pageBean.index<pageBean.pages}">
                 <a class="next"
-                   href="<%=request.getContextPath()%>/admin/all?index=${pageBean.index+1}">&gt;&gt;</a>
+                   href="<%=request.getContextPath()%>/admin/list?index=${pageBean.index+1}">&gt;&gt;</a>
             </c:if>
             <c:if test="${pageBean.index>=pageBean.pages}">
                 <a class="next"
-                   href="<%=request.getContextPath()%>/admin/all?index=${pageBean.index}">&gt;&gt;</a>
+                   href="<%=request.getContextPath()%>/admin/list?index=${pageBean.index}">&gt;&gt;</a>
             </c:if>
         </div>
     </div>
 </div>
 <script>
     /*用户-删除*/
-    function admin_del(obj, adminId) {
+    function admin_del(obj, staffId) {
         layer.confirm('确认要删除吗？', function () {
             //发异步 删除数据
             $.ajax({
                 type: "post",
-                url: "<%=request.getContextPath()%>/admin/delete/" + adminId,
+                url: "<%=request.getContextPath()%>/staff/delete" + staffId,
                 data: {},
                 success: function (msg) {
                     if (msg == 1) {
