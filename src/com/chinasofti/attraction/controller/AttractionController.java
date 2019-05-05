@@ -151,7 +151,6 @@ public class AttractionController {
     public ModelAndView changePlace(){
 
         List<Attraction> attractions = attractionService.changePlace();
-        System.out.println(attractions);
         ModelAndView modelAndView = new ModelAndView("/desk/index");
 
         modelAndView.addObject("attractions",attractions);
