@@ -19,7 +19,7 @@ import javax.servlet.http.HttpSession;
 public class LoginController {
 
     @Autowired
-    private UserDao<User> userDao;
+    private UserDao userDao;
 
     @RequestMapping("/getCode")
     public void getCode(){
