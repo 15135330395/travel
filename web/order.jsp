@@ -10,11 +10,11 @@
         }
     </style>
 </head>
-<%--<%--%>
-<%--if (request.getSession().getAttribute("user") == null) {--%>
-<%--response.sendRedirect(request.getContextPath() + "/login.jsp");--%>
-<%--}--%>
-<%--%>--%>
+<%
+if (request.getSession().getAttribute("user") == null) {
+response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
+}
+%>
 <body>
 <div class="container">
     <div class="row">
@@ -108,9 +108,9 @@
         showMeridian: 1,
         format: "yyyy-mm-dd hh:ii:ss",
     });
-    $(document).ready(function () {
-        console.log($("form").serialize()); // FirstName=Bill&LastName=Gates
-    });
+    // $(document).ready(function () {
+    //     console.log($("form").serialize()); // FirstName=Bill&LastName=Gates
+    // });
 </script>
 
 </body>

@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
+                                <a href="<%=request.getContextPath()%>/attraction/all"><i class="ion-person"></i>
                                     <div>后台登陆</div>
                                 </a>
                             </li>
@@ -95,7 +95,7 @@
                         <a href="<%=request.getContextPath()%>/desk/register.jsp">Register</a>
                     </li>
                     <li class="dropdown magz-dropdown">
-                        <a href="category.jsp">菜单 <i class="ion-ios-arrow-right"></i></a>
+                        <a href="#">菜单 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
@@ -113,12 +113,12 @@
                                         <li>
                                             <a href="<%=request.getContextPath()%>/desk/register.jsp">注册</a>
                                         </li>
-                                        <li>
-                                            <a href="">忘记密码</a>
-                                        </li>
-                                        <li>
-                                            <a href="">重置密码</a>
-                                        </li>
+                                        <%--<li>--%>
+                                            <%--<a href="">忘记密码</a>--%>
+                                        <%--</li>--%>
+                                        <%--<li>--%>
+                                            <%--<a href="../reset.jsp">重置密码</a>--%>
+                                        <%--</li>--%>
                                     </ul>
                                 </li>
                             </c:if>
@@ -237,9 +237,9 @@
                             <%--</div>--%>
                         <%--</div>--%>
                     <%--</li>--%>
-                    <c:if test="${user==null}">
+                    <c:if test="${user!=null}">
                         <li class="dropdown magz-dropdown">
-                            <a href="#">${user.name} <i class="ion-ios-arrow-right"></i></a>
+                            <a href="#">${user.email} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <%--<li>--%>
                                     <%--<a href="#"><i class="icon ion-person"></i>我的账号</a>--%>
@@ -248,11 +248,11 @@
                                     <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
                                 <%--</li>--%>
                                 <li>
-                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/1"><i class="icon ion-settings"></i>我的订单</a>
+                                    <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#"><i class="icon ion-log-out"></i>退出登录</a>
+                                    <a href="<%=request.getContextPath()%>/userLogout/logout"><i class="icon ion-log-out"></i>退出登录</a>
                                 </li>
                             </ul>
                         </li>
@@ -283,7 +283,11 @@
 
                         var da = eval("("+data+")");
 
-                            window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data);
+                        for (var i = 0; i < da.length; i++) {
+
+                            alert(da[i].attractionName)
+                        }
+                            <%--window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data.attractionName);--%>
 
 
                     } else {

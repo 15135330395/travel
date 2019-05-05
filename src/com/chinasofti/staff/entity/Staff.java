@@ -1,14 +1,9 @@
 package com.chinasofti.staff.entity;
 
-import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
-
 import com.chinasofti.admin.entity.Admin;
-import com.sun.deploy.util.UpdateCheck;
+import org.hibernate.annotations.Cascade;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.sql.Update;
-
+import org.hibernate.annotations.CascadeType;
 import javax.persistence.*;
 
 /**
@@ -118,8 +113,9 @@ public class Staff {
         this.workplace = workplace;
     }
 
-    @OneToOne(cascade= CascadeType.ALL)
+    @OneToOne
     @JoinColumn(name = "admin_id")
+    @Cascade(value = {CascadeType.SAVE_UPDATE})
     public Admin getAdmin() {
         return admin;
     }

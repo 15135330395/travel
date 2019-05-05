@@ -3,6 +3,7 @@ package com.chinasofti.order.dao.impl;
 import com.chinasofti.base.impl.BaseDaoImpl;
 import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
+import com.chinasofti.staff.entity.Staff;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -51,8 +52,18 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
     }
 
     @Override
-    public Orders query(String orderId, Integer orderId1) {
-        return null;
+    public Orders query(Long orderId1) {
+
+        Orders orders = hibernateTemplate.get(Orders.class, orderId1);
+        return orders;
+    }
+
+    @Override
+    public void changeState(Long orderId, Staff staff) {
+        Orders orders = hibernateTemplate.get(Orders.class,Long.valueOf(orderId));
+        orders.setState(1);
+        orders.setStaff(staff);
+        hibernateTemplate.save(orders);
     }
 
     @Override

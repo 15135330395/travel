@@ -2,6 +2,7 @@ package com.chinasofti.order.service;
 
 import com.chinasofti.base.PageBean;
 import com.chinasofti.order.entity.Orders;
+import com.chinasofti.staff.entity.Staff;
 
 import java.util.List;
 
@@ -11,7 +12,7 @@ public interface OrderService {
 
 	void delete(Orders orders);
 
-	Orders query(Integer orderId);
+	Orders query(Long orderId);
 
 	List<Orders> queryAll();
 
@@ -23,18 +24,6 @@ public interface OrderService {
 
 	void addorder(Orders orders,Integer count);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	void changeState(Long orderId, Staff staff);
 
 }

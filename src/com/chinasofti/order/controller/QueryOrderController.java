@@ -1,6 +1,9 @@
 package com.chinasofti.order.controller;
 
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.service.OrderService;
+import com.chinasofti.staff.entity.Staff;
+import com.chinasofti.staff.service.StaffInterface;
 import com.chinasofti.utils.MsgUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -22,6 +26,9 @@ public class QueryOrderController {
 
     @Autowired
     private OrderService orderService;
+
+    @Autowired
+    private StaffInterface StaffService;
 
     @RequestMapping("/queryOrder/{userId}")
     public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId){
@@ -47,5 +54,37 @@ public class QueryOrderController {
             MsgUtil 退单失败 = new MsgUtil("退单失败");
             return 退单失败;
         }
+    }
+
+    @RequestMapping("/toApply/{orderId}")
+    @ResponseBody
+    public ModelAndView toApply(@PathVariable(name = "orderId") String orderId){
+
+        Orders order = orderService.query(Long.valueOf(orderId));
+
+        ModelAndView modelAndView = new ModelAndView("/desk/apply");
+
+        modelAndView.addObject("order",order);
+        return modelAndView;
+    }
+
+    @RequestMapping("/changeState/{orderId}")
+    @ResponseBody
+    public ModelAndView changeState(@PathVariable(name = "orderId") String orderId, HttpSession session){
+
+        List<Staff> staffList = StaffService.queryAll();
+
+        int id = (int) (Math.random() * (staffList.size()));
+
+        Staff staff = staffList.get(id);
+
+
+        orderService.changeState(Long.valueOf(orderId),staff);
+
+
+
+        ModelAndView modelAndView = new ModelAndView("/desk/center");
+
+        return modelAndView;
     }
 }
