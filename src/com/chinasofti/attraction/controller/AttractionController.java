@@ -231,19 +231,46 @@ public class AttractionController {
     public ModelAndView changePlace(){
 
         List<Attraction> attractions = attractionService.changePlace();
+        List<Price> prices = attractionService.queryAttractionPrice();
+        List<Type> types = attractionService.queryType();
         ModelAndView modelAndView = new ModelAndView("/desk/index");
 
         modelAndView.addObject("attractions",attractions);
+        modelAndView.addObject("prices",prices);
+        modelAndView.addObject("types",types);
         return modelAndView;
     }
 
-    @RequestMapping("placeList")
-    public ModelAndView placeList(){
-        List<Attraction> attractionList = attractionService.queryAll();
+    @RequestMapping("/placeList")
+    public String placeList(HttpServletRequest request, Map<String, Object> map){
+        PageBean pageBean = new PageBean();
+        // 页码
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        pageBean.setIndex(Integer.parseInt(index));
+        // 每页条数
+        String pageCount = "5";
+        pageBean.setPageCount(Integer.parseInt(pageCount));
+        // 总条数
+        pageBean.setCount((int) attractionService.getCount());
 
-        ModelAndView modelAndView = new ModelAndView("/desk/place");
-        modelAndView.addObject("attractionList",attractionList);
-        return modelAndView;
+        List<Attraction> attractionList = attractionService.queryByPageBean(pageBean );
+
+        //查询景点价格
+        List<Price> prices = attractionService.queryAttractionPrice();
+        //查询组团类型
+        List<Type> types = attractionService.queryType();
+        for (Attraction attraction : attractionList) {
+            System.out.println(attraction);
+        }
+        map.put("pageBean", pageBean);
+        map.put("attractionList", attractionList);
+        map.put("prices",prices);
+        map.put("types",types);
+//        request.setAttribute("admins", admins);
+        return "/desk/place";
     }
 
     @RequestMapping("queryOneByName")
@@ -272,6 +299,10 @@ public class AttractionController {
     public String findById(Model model, @PathVariable(name = "id") Integer id){
         Attraction attraction = attractionService.query(id);
         List<Attraction> list = attractionService.changePlace();
+        //查询景点价格
+        List<Price> prices = attractionService.queryAttractionPrice();
+        //查询组团类型
+        List<Type> types = attractionService.queryType();
         List<Attraction> list1=new ArrayList<>();
         for (Attraction attraction1 : list) {
             String s = StringUtilss.html2Text(attraction1.getAttractionDesc());
@@ -280,6 +311,8 @@ public class AttractionController {
         }
         model.addAttribute("attraction",attraction);
         model.addAttribute("list",list1);
+        model.addAttribute("prices",prices);
+        model.addAttribute("types",types);
         return "/single";
     }
 }

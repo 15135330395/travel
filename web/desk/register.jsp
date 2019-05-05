@@ -17,22 +17,14 @@
             <div class="box box-border">
                 <div class="box-body">
                     <h4>注册</h4>
-                    <div class="form-group">
-                        <label for="name">昵称</label>
-                        <input id="name" type="text" name="name" class="form-control" required="">
-                    </div>
+
                     <div class="form-group">
                         <label for="email" class="fw">电子邮箱
                             <span id="emailInfo" class="pull-right"></span>
                         </label>
                         <input id="email" type="email" name="email" class="form-control" required="">
                     </div>
-                    <div class="form-group">
-                        <label for="username" class="fw">用户名
-                            <span id="usernameInfo" class="pull-right"></span>
-                        </label>
-                        <input id="username" type="text" name="username" class="form-control" required="">
-                    </div>
+
                     <div class="form-group">
                         <label for="password" class="fw">密码</label>
                         <input id="password" type="password" name="password" class="form-control" required="">
