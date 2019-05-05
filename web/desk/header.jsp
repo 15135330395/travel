@@ -59,7 +59,7 @@
                         <c:if test="${user!=null}">
                             <li>
                                 <a><i class="ion-person"></i>
-                                    欢迎您，<span>${user.name}</span>
+                                    欢迎您，<span>${user.email}</span>
                                 </a>
                             </li>
                         </c:if>
@@ -95,7 +95,7 @@
                         <a href="<%=request.getContextPath()%>/desk/register.jsp">Register</a>
                     </li>
                     <li class="dropdown magz-dropdown">
-                        <a href="category.jsp">菜单 <i class="ion-ios-arrow-right"></i></a>
+                        <a href="#">菜单 <i class="ion-ios-arrow-right"></i></a>
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
@@ -117,7 +117,7 @@
                                             <a href="">忘记密码</a>
                                         </li>
                                         <li>
-                                            <a href="">重置密码</a>
+                                            <a href="../reset.jsp">重置密码</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -239,7 +239,7 @@
                     <%--</li>--%>
                     <c:if test="${user!=null}">
                         <li class="dropdown magz-dropdown">
-                            <a href="#">${user.name} <i class="ion-ios-arrow-right"></i></a>
+                            <a href="#">${user.email} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
                                 <%--<li>--%>
                                     <%--<a href="#"><i class="icon ion-person"></i>我的账号</a>--%>
@@ -252,7 +252,7 @@
                                 </li>
                                 <li class="divider"></li>
                                 <li>
-                                    <a href="#"><i class="icon ion-log-out"></i>退出登录</a>
+                                    <a href="<%=request.getContextPath()%>/userLogout/logout"><i class="icon ion-log-out"></i>退出登录</a>
                                 </li>
                             </ul>
                         </li>

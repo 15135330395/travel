@@ -189,7 +189,7 @@
                                      style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img15.jpg');">
                                     <div class="badges">
                                         <div class="badge-item"><i
-                                                class="ion-star"></i>${user==null?"您还没有登录":user.name}
+                                                class="ion-star"></i>${user==null?"您还没有登录":user.email}
                                         </div>
                                     </div>
                                     <div class="featured-author-center">
@@ -197,88 +197,88 @@
                                             <img src="<%=request.getContextPath()%>/desk/images/img01.jpg" alt="Sample Article">
                                         </figure>
                                         <div class="featured-author-info">
-                                            <h2 class="name">${user==null?"尚未登录":user.username}</h2>
+                                            <h2 class="name">${user==null?"尚未登录":user.email}</h2>
                                             <div class="desc">${user.email}</div>
                                         </div>
                                     </div>
                                 </div>
-                                <c:if test="${user!=null}">
-                                    <div class="featured-author-body">
-                                        <div class="featured-author-count">
-                                            <div class="item">
-                                                <a href="#">
-                                                    <div class="name">点赞的新闻</div>
-                                                    <div class="value">数量</div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#">
-                                                    <div class="name">评论数</div>
-                                                    <div class="value">数量</div>
-                                                </a>
-                                            </div>
-                                            <div class="item">
-                                                <a href="#">
-                                                    <div class="icon">
-                                                        <div>更多</div>
-                                                        <i class="ion-chevron-right"></i>
-                                                    </div>
-                                                </a>
-                                            </div>
-                                        </div>
-                                        <div class="featured-author-quote">
-                                            "${user}"
-                                        </div>
-                                        <div class="block">
-                                            <h2 class="block-title">浏览历史</h2>
-                                            <div class="block-body">
-                                                <ul class="item-list-round" data-magnific="gallery">
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img06.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img06.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img07.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img07.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img08.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img08.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>images/news/img09.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img09.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img10.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img10.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img11.jpg"
-                                                           style="background-image: url('/desk/images/news/img11.jpg');"></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img12.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img12.jpg');">
-                                                            <div class="more">+2</div>
-                                                        </a>
-                                                    </li>
-                                                    <li class="hidden">
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img13.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img13.jpg');"></a>
-                                                    </li>
-                                                    <li class="hidden">
-                                                        <a href="<%=request.getContextPath()%>/desk/images/news/img14.jpg"
-                                                           style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img14.jpg');"></a>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                        <div class="featured-author-footer">
-                                            <a href="#">查看全部信息</a>
-                                        </div>
-                                    </div>
-                                </c:if>
+                                <%--<c:if test="${user!=null}">--%>
+                                    <%--<div class="featured-author-body">--%>
+                                        <%--<div class="featured-author-count">--%>
+                                            <%--<div class="item">--%>
+                                                <%--<a href="#">--%>
+                                                    <%--<div class="name">点赞的新闻</div>--%>
+                                                    <%--<div class="value">数量</div>--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="item">--%>
+                                                <%--<a href="#">--%>
+                                                    <%--<div class="name">评论数</div>--%>
+                                                    <%--<div class="value">数量</div>--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                            <%--<div class="item">--%>
+                                                <%--<a href="#">--%>
+                                                    <%--<div class="icon">--%>
+                                                        <%--<div>更多</div>--%>
+                                                        <%--<i class="ion-chevron-right"></i>--%>
+                                                    <%--</div>--%>
+                                                <%--</a>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="featured-author-quote">--%>
+                                            <%--"${user}"--%>
+                                        <%--</div>--%>
+                                        <%--<div class="block">--%>
+                                            <%--<h2 class="block-title">浏览历史</h2>--%>
+                                            <%--<div class="block-body">--%>
+                                                <%--<ul class="item-list-round" data-magnific="gallery">--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img06.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img06.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img07.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img07.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img08.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img08.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>images/news/img09.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img09.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img10.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img10.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img11.jpg"--%>
+                                                           <%--style="background-image: url('/desk/images/news/img11.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li>--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img12.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img12.jpg');">--%>
+                                                            <%--<div class="more">+2</div>--%>
+                                                        <%--</a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li class="hidden">--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img13.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img13.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                    <%--<li class="hidden">--%>
+                                                        <%--<a href="<%=request.getContextPath()%>/desk/images/news/img14.jpg"--%>
+                                                           <%--style="background-image: url('<%=request.getContextPath()%>/desk/images/news/img14.jpg');"></a>--%>
+                                                    <%--</li>--%>
+                                                <%--</ul>--%>
+                                            <%--</div>--%>
+                                        <%--</div>--%>
+                                        <%--<div class="featured-author-footer">--%>
+                                            <%--<a href="#">查看全部信息</a>--%>
+                                        <%--</div>--%>
+                                    <%--</div>--%>
+                                <%--</c:if>--%>
                             </div>
                         </div>
                     </div>

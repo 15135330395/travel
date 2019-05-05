@@ -150,7 +150,7 @@ public class AttractionController {
     @RequestMapping("/changePlace")
     public ModelAndView changePlace(){
 
-        List attractions = attractionService.changePlace();
+        List<Attraction> attractions = attractionService.changePlace();
 
         ModelAndView modelAndView = new ModelAndView("/desk/index");
 
@@ -201,6 +201,5 @@ public class AttractionController {
         model.addAttribute("list",list1);
         return "/single";
     }
-
 }
 

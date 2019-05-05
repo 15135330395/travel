@@ -34,7 +34,7 @@
                                     </a>
                                 </figure>
                                 <div class="details">
-                                    <h5><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></h5>
+                                    <h6><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></h6>
                                     <p>
                                             ${fn:length(list.attractionDesc)>20?fn:substring(list.attractionDesc, 0, 20).concat("..."):list.attractionDesc}
                                     </p>
@@ -69,9 +69,10 @@
                 </ol>
                 <article class="article main-article">
                     <header>
-                        <h1 >${attraction.attractionName}</h1>
+                        <h1>${attraction.attractionName}</h1>
                     </header>
                     <div class="main">
+                        <h5>旅行路线</h5>
                         <p>${attraction.route}</p>
                         <div class="featured">
                             <figure>

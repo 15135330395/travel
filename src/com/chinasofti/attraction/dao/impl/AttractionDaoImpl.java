@@ -18,10 +18,8 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
 
     @Autowired
     private HibernateTemplate hibernateTemplate;
-
     @Autowired
     private AttractionDao attractionDao;
-
 
     @Override
     public List<Attraction> changePlace() {
@@ -39,7 +37,6 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
         }
         return attractionList;
     }
-
 
     @Override
     public List queryOneByName(String place) {

@@ -2,12 +2,12 @@
 <%@ include file="info.jsp" %>
 <html>
 <head>
-    <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
+    <title>Magz &mdash; 旅行社</title>
 </head>
 
 <body>
 <!-- 头部开始 -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="desk/header.jsp"/>
 <!-- 头部结束 -->
 
 <section class="login first grey">

@@ -84,7 +84,11 @@ public class Attraction {
     @Override
     public String toString() {
         return "Attraction{" +
+                "attractionId=" + attractionId +
                 ", attractionName='" + attractionName + '\'' +
+                ", route='" + route + '\'' +
+                ", imageUrl='" + imageUrl + '\'' +
+                ", attractionDesc='" +  + '\'' +
                 '}';
     }
 }
