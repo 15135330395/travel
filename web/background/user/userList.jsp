@@ -31,7 +31,7 @@
 <div class="x-body">
     <xblock>
         <%--<button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>--%>
-        <button class="layui-btn" onclick="x_admin_show('添加游客','<%=request.getContextPath()%>/user/background/visitor/visitorAdd.jsp')"><i class="layui-icon"></i>添加</button>
+        <button class="layui-btn" onclick="x_admin_show('添加用户','<%=request.getContextPath()%>/background/user/userAdd.jsp')"><i class="layui-icon"></i>添加</button>
         <span class="x-right" style="line-height:40px">共有数据：${pageBean.count} 条</span>
     </xblock>
     <table class="layui-table">
@@ -52,7 +52,7 @@
         <c:forEach items="${userList}" var="user">
             <tr>
                 <td>
-                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${visitor.visitorId}'><i class="layui-icon">&#xe605;</i></div>
+                    <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='${user.userId}'><i class="layui-icon">&#xe605;</i></div>
                 </td>
                 <td>${user.userId}</td>
                 <td>${user.email}</td>
@@ -74,25 +74,22 @@
     </table>
     <div class="page">
         <div>
-
-            <c:if test="${pageBean.pageIndex!=1}">
-                <a class="prev" href="<%=request.getContextPath()%>/user/userByPageBean/${pageBean.pageIndex-1}">&lt;&lt;</a>
+            <c:if test="${pageBean.index>1}">
+                <a class="prev" href="<%=request.getContextPath()%>/user/userByPageBean?index=${pageBean.index-1}">&lt;&lt;</a>
             </c:if>
 
-            <c:forEach
-                    var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
-                    <span class="current">${i}</span>
+            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
+                <c:if test="${pageBean.index==i}">
+                     ${i}
                 </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
-                    <a class="num" href="<%=request.getContextPath()%>/user/userByPageBean/${i}">${i}</a>
+                <c:if test="${pageBean.index!=i}">
+                    <a class="num" href="<%=request.getContextPath()%>/user/userByPageBean?index=${i}">${i}</a>
                 </c:if>
             </c:forEach>
 
-            <c:if test="${pageBean.pageIndex < pageBean.pages}">
-                <a class="next" href="<%=request.getContextPath()%>/user/userByPageBean/${pageBean.pageIndex+1}">&gt;&gt;</a>
+            <c:if test="${pageBean.index < pageBean.pages}">
+                <a class="next" href="<%=request.getContextPath()%>/user/userByPageBean?index=${pageBean.index+1}">&gt;&gt;</a>
             </c:if>
-
         </div>
     </div>
 
@@ -113,20 +110,24 @@
     });
 
     /*用户-删除*/
-    function member_del(obj,id){
-        layer.confirm('确认要删除吗？',function(index){
+    function member_del(obj,userId){
+        layer.confirm('确认要删除吗？',function(){
             $.ajax({
                 type:"post",
                 url:"<%=request.getContextPath()%>/user/deleteUser",
-                data:id,
+                data:{
+                    userId:userId
+                },
                 success:function(msg){
                     //发异步删除数据
-                    $(obj).parents("tr").remove();
+
                     if(msg==1){
                         layer.msg('删除成功!',{icon:1,time:1000});
                     }else{
                         layer.msg('已删除或不存在!',{icon:1,time:1000});
                     }
+                    location.replace(location.href);
+                    $(obj).parents("tr").remove();
                 }
             })
         });

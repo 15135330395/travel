@@ -18,7 +18,7 @@ import java.util.List;
 public class UserService {
 
     @Autowired
-    private UserDao<User> userDao;
+    private UserDao userDao;
     /**
      * 查询全部用户
      */
@@ -66,6 +66,11 @@ public class UserService {
     @Transactional
     public void deleteUser(User user) {
         userDao.delete(user);
+    }
+
+
+    public Integer getCount(){
+        return userDao.getCount();
     }
 
 }

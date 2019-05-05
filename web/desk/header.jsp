@@ -51,7 +51,7 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="<%=request.getContextPath()%>/desk/login.jsp"><i class="ion-person"></i>
+                                <a href="<%=request.getContextPath()%>/attraction/all"><i class="ion-person"></i>
                                     <div>后台登陆</div>
                                 </a>
                             </li>

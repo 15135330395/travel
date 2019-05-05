@@ -11,5 +11,5 @@ import org.springframework.stereotype.Repository;
  */
 // 持久层
 @Repository
-public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao<User> {
+public class UserDaoImpl extends BaseDaoImpl<User> implements UserDao {
 }

@@ -2,13 +2,14 @@ package com.chinasofti.attraction.service.impl;
 
 import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
+import com.chinasofti.attraction.entity.Price;
+import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
 
 @Service
 public class AttractionServiceImpl implements AttractionService {
@@ -62,5 +63,12 @@ public class AttractionServiceImpl implements AttractionService {
     public List queryOneByName(String place) {
         List list = attractionDao.queryOneByName(place);
         return list;
+    }
+    @Override
+    public List<Price> queryAttractionPrice() { return attractionDao.queryAttractionPrice(); }
+
+    @Override
+    public List<Type> queryType() {
+        return attractionDao.queryType();
     }
 }

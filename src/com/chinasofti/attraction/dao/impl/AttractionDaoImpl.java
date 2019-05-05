@@ -2,6 +2,8 @@ package com.chinasofti.attraction.dao.impl;
 
 import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
+import com.chinasofti.attraction.entity.Price;
+import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.base.impl.BaseDaoImpl;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -52,5 +54,13 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
                 return list;
             }
         });
+    }
+    @Override
+    public List<Price> queryAttractionPrice() {
+        return hibernateTemplate.execute(session -> session.createQuery("from Price").list());
+    }
+    @Override
+    public List<Type> queryType() {
+        return hibernateTemplate.execute(session -> session.createQuery("from Type").list());
     }
 }

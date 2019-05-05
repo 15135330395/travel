@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 public class RegisterController {
 
     @Autowired
-    private UserDao<User> userDao;
+    private UserDao userDao;
     @Autowired
     UserService userService;
 
