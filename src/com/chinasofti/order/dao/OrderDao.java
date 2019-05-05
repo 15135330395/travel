@@ -3,6 +3,7 @@ package com.chinasofti.order.dao;
 import com.chinasofti.base.BaseDao;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
+import com.chinasofti.visitor.entity.Visitor;
 
 import java.util.List;
 
@@ -17,6 +18,12 @@ public interface OrderDao extends BaseDao<Orders> {
 
     void changeState(Long orderId, Staff staff);
 
+
+
+
+    Orders queryById(Long orderId);
+
+    List<Visitor> queryVisitorByOrder(Long orderId);
 }
 //	void addorder(Order orders);
 //

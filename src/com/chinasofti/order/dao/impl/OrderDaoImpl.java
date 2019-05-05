@@ -4,6 +4,7 @@ import com.chinasofti.base.impl.BaseDaoImpl;
 import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
+import com.chinasofti.visitor.entity.Visitor;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -75,4 +76,25 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
             return (Double) id1.uniqueResult();
         });
     }
+
+
+
+
+
+
+
+
+
+    @Override
+    public Orders queryById(Long orderId) {
+        return hibernateTemplate.get(Orders.class, orderId);
+    }
+
+    @Override
+    public List<Visitor> queryVisitorByOrder(Long orderId) {
+        return hibernateTemplate.execute(session -> session.createQuery("from Visitor where order_id=:id")
+                .setParameter("id", orderId)
+                .list());
+    }
+
 }
