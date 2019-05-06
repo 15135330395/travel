@@ -72,15 +72,6 @@
                     <header>
                         <h1>${attraction.attractionName}</h1>
                     </header>
-                    <c:forEach items="${prices}" var="price">
-                        <c:if test="${price.attractionId == attraction.attractionId}">
-                            <c:forEach items="${types}" var="type">
-                                <c:if test="${type.typeId == price.typeId}">
-                                    <option value="${price.price}">${type.typeName}:${price.price}</option>
-                                </c:if>
-                            </c:forEach>
-                        </c:if>
-                    </c:forEach>
                     <div class="main">
                         <h5>旅行路线</h5>
                         <p>${attraction.route}</p>
@@ -92,16 +83,25 @@
                         </div>
                         <p>${attraction.attractionDesc} </p>
                     </div>
-                    <%--<footer>--%>
+                    <footer>
                         <%--<div class="col">--%>
                             <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
                                 <%--<div>1220</div>--%>
                             <%--</a>--%>
                         <%--</div>--%>
-                    <%--</footer>--%>
+                    <c:forEach items="${prices}" var="price">
+                        <c:if test="${price.attractionId == attraction.attractionId}">
+                            <c:forEach items="${types}" var="type">
+                                <c:if test="${type.typeId == price.typeId}">
+                                    <h5><option value="${price.price}">${type.typeName}:${price.price}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option></h5>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
+                    </c:forEach>
+                    </footer>
                 </article>
                     <div class="col-md-12">
-                        <a href="<%=request.getContextPath()%>/foreground/order/${attraction.attractionId}"><h2 class="title">想要亲身体验么，就赶快下单吧，不要错过哦！！！</h2></a>
+                        <a href="<%=request.getContextPath()%>/foreground/order/${attraction.attractionId}"><h3>想要亲身体验么，就赶快下单吧，不要错过哦！！！</h3></a>
                     </div>
                 </div>
             </div>

@@ -27,7 +27,7 @@
 <body>
 <div class="x-nav">
       <span class="layui-breadcrumb">
-        <a href="index.jsp"><cite>首页</cite></a>
+        <a href="<%=request.getContextPath()%>/index.jsp"><cite>首页</cite></a>
         <a><cite>我的订单</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
