@@ -58,15 +58,6 @@
                         autocomplete="off" class="layui-input">
             </div>
         </div>
-        <div class="layui-form-item">
-            <label for="orderId" class="layui-form-label">
-                <span class="x-red">*</span>订单编号
-            </label>
-            <div class="layui-input-inline">
-                <input  value="${visitor.orderId}" type="number" id="orderId" name="orderId" required="" lay-verify="number"
-                        autocomplete="off" class="layui-input">
-            </div>
-        </div>
 
         <div class="layui-form-item">
             <label  class="layui-form-label">
@@ -88,7 +79,6 @@
             var visitorName=data.field.visitorName;
             var cardId=data.field.cardId;
             var phone=data.field.phone;
-            var orderId=data.field.orderId;
             console.log(data)
             $.ajax({
                 type:"post",
@@ -97,8 +87,7 @@
                     "visitorId":visitorId,
                     "visitorName":visitorName,
                     "cardId":cardId,
-                    "phone":phone,
-                    "orderId":orderId
+                    "phone":phone
                 },
                 success:function(msg){
                     if(msg=="1"){
