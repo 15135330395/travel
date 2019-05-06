@@ -7,7 +7,6 @@ import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import com.chinasofti.utils.JsonUtil;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -241,9 +240,12 @@ public class AttractionController {
         PageBean pageBean = new PageBean();
         // 页码
         String index = request.getParameter("index");
+
+        System.out.println("======================"+index);
         if (index == null) {
             index = "1";
         }
+        System.out.println("+++++++++++++++++++++++++"+index);
         pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
         String pageCount = "5";
@@ -257,9 +259,8 @@ public class AttractionController {
         List<Price> prices = attractionService.queryAttractionPrice();
         //查询组团类型
         List<Type> types = attractionService.queryType();
-        for (Attraction attraction : attractionList) {
-            System.out.println(attraction);
-        }
+
+        System.out.println(pageBean);
         map.put("pageBean", pageBean);
         map.put("attractionList", attractionList);
         map.put("prices",prices);

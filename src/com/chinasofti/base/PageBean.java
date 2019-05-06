@@ -57,5 +57,13 @@ public class PageBean {
         this.pageCount = pageCount;
     }
 
+    @Override
+    public String toString() {
+        return "PageBean{" +
+                "index=" + index +
+                ", count=" + count +
+                ", pageCount=" + pageCount +
+                '}';
+    }
 }
 
