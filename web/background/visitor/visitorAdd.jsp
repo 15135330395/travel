@@ -81,7 +81,7 @@
 
             $.ajax({
                 type:"post",
-                url:"<%=request.getContextPath()%>/visitor/addVisitor"+visitorName+"/"+cardId+"/"+phone+"/"+orderId,
+                url:"<%=request.getContextPath()%>/visitor/addVisitor"+"/"+visitorName+"/"+cardId+"/"+phone+"/"+orderId,
                 data:{},
                 success:function(msg){
                     if(msg=="1"){

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author haoyu
@@ -23,26 +24,25 @@ public class VisitorController {
     @Autowired
     VisitorService visitorService;
 
-    @RequestMapping("/queryAllVisitor")
-    public ModelAndView queryAll() {
-        ModelAndView modelAndView = new ModelAndView("visitor");
-        modelAndView.addObject("visitorList",visitorService.queryAll());
-        return modelAndView;
-    }
-
     @RequestMapping("/visitorByPageBean")
     @ResponseBody
-    public String queryByPageBean(HttpServletRequest request) {
+    public ModelAndView queryByPageBean(HttpServletRequest request) {
         PageBean pageBean = new PageBean();
-        String pageIndex = request.getParameter("pageIndex");
-        if(pageIndex!=null){
-            pageBean.setIndex(Integer.parseInt(pageIndex));
+        String index="1";
+        String strIndex = request.getParameter("index");
+        if(strIndex!=null){
+            index=strIndex;
         }
-        String pageCount = request.getParameter("pageCount");
-        pageBean.setPageCount(Integer.parseInt(pageCount));
-
-        visitorService.queryByPageBean(pageBean);
-        return "visitorList";
+        pageBean.setIndex(Integer.parseInt(index));
+        System.out.println("index===="+index);
+        Integer pageCount=5;
+        pageBean.setPageCount(pageCount);
+        pageBean.setCount(visitorService.getCount());
+        List<Visitor> visitors = visitorService.queryByPageBean(pageBean);
+        ModelAndView modelAndView = new ModelAndView("/background/user/userList");
+        modelAndView.addObject("visitorList",visitors);
+        modelAndView.addObject("pageBean",pageBean);
+        return modelAndView;
     }
 
     @RequestMapping("/visitorById/${id}")
@@ -52,9 +52,9 @@ public class VisitorController {
     }
 
     @RequestMapping("/addVisitor")
-    public String addVisitor(Visitor visitor) {
+    public Integer addVisitor(Visitor visitor) {
         visitorService.addVisitor(visitor);
-        return "visitorAdd";
+        return 1;
     }
 
     @RequestMapping("/updateVisitor")

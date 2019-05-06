@@ -38,7 +38,7 @@ public class UserController {
 
         System.out.println("userByPageBean...");
         PageBean pageBean = new PageBean();
-         String index="1";
+        String index="1";
         String strIndex = request.getParameter("index");
         if(strIndex!=null){
             index=strIndex;
@@ -55,7 +55,6 @@ public class UserController {
         modelAndView.addObject("userList",users);
         modelAndView.addObject("pageBean",pageBean);
         return modelAndView;
-
     }
 
     @RequestMapping("/userById/{id}")
@@ -75,7 +74,6 @@ public class UserController {
     public Integer addUser(User user) {
         System.out.println("add...."+user);
         userService.addUser(user);
-
         return 1;
     }
 

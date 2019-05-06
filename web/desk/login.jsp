@@ -47,13 +47,6 @@
 <!-- 底部结束 -->
 </body>
 <script>
-    /*function changeImg() {
-        var imgSrc = $("#imgObj");
-        var src = imgSrc.attr("src");
-        // 时间戳
-        // 为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
-        imgSrc.attr("src", "${pageContext.request.contextPath}/getCode?timestamp=" + (new Date()).valueOf());
-    }*/
 
     $(document).ready(function () {
         //为输入框绑定事件
@@ -68,7 +61,10 @@
                 data: {},
                 dataType: "json",
                 success: function (data) {
-                    if (data == 1) {
+                    if (data == 0){
+                        alert("账户没有激活")
+                        location.replace(location.href);
+                    }else if(data == 1) {
                         alert("登陆成功")
                         window.location.replace("<%=request.getContextPath()%>/index.jsp")
                     } else if (data == 2) {
