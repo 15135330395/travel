@@ -7,6 +7,7 @@ import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
+import com.chinasofti.utils.JsonUtil;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,10 +36,8 @@ public class AttractionController {
 
     @Autowired
     private AttractionDao attractionDao;
-
     /**
      * 景点查询
-     *
      * @param model
      * @return
      */
@@ -52,10 +51,8 @@ public class AttractionController {
 
         return "/background/attraction/attractionList";
     }
-
     /**
      * 批量删除景点信息
-     *
      * @param ids
      * @return
      */
@@ -81,10 +78,8 @@ public class AttractionController {
         }
         return 1;
     }
-
     /**
      * 删除景点信息
-     *
      * @param attractionId
      * @return
      */
@@ -107,20 +102,31 @@ public class AttractionController {
 
     /**
      * 添加景点信息
-     *
      * @param attraction
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
-    public Integer add(Attraction attraction, Price price) {
+    public Integer add(Attraction attraction, HttpServletRequest request) {
         attractionService.add(attraction);
+        System.out.println(attraction);
+        String price1 = request.getParameter("price1");
+        Price p1 = new Price();
+        p1.setAttractionId(attraction.getAttractionId());
+        p1.setTypeId(1);
+        p1.setPrice(Double.parseDouble(price1));
+        attractionService.add1(p1);
+        String price2 = request.getParameter("price2");
+        Price p2 = new Price();
+        p2.setAttractionId(attraction.getAttractionId());
+        p2.setTypeId(2);
+        p2.setPrice(Double.parseDouble(price2));
+        attractionService.add1(p2);
         return 1;
     }
 
     /**
      * 分页查询景点信息
-     *
      * @param request
      * @return
      */
@@ -153,23 +159,43 @@ public class AttractionController {
 
         return "/background/attraction/attractionList";
     }
-
     /**
      * 景点信息修改
-     *
      * @param attraction
      * @return
      */
-    @RequestMapping("save")
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
-    public Integer update(Attraction attraction) {
+    public Integer update(Attraction attraction, HttpServletRequest request) {
         attractionService.update(attraction);
+        String price = request.getParameter("price1");
+        String price3 = request.getParameter("price2");
+        List<Price> prices = attractionService.queryAttractionPrice();
+        Price price1 = null;
+        Price price2 = null;
+        for (Price p : prices) {
+            if (p.getTypeId()==1&&p.getAttractionId().equals(attraction.getAttractionId())) {
+                price1 = p;
+            }else if(p.getTypeId()==2&&p.getAttractionId().equals(attraction.getAttractionId())){
+                price2 = p;
+            }
+        }
+        price1.getId();
+        price1.getAttractionId();
+        price1.getTypeId();
+        price1.setPrice(Double.parseDouble(price));
+        attractionService.update1(price1);
+        price2.getId();
+        price2.getAttractionId();
+        price2.getTypeId();
+        price2.setPrice(Double.parseDouble(price3));
+        attractionService.update1(price2);
+
         return 1;
     }
 
     /**
      * 富文本编辑器图片上传
-     *
      * @param
      * @return
      */
@@ -211,18 +237,37 @@ public class AttractionController {
         return 1;
     }
 
+    /**
+     * 进入修改页面
+     * @param id
+     * @return
+     */
     @RequestMapping(value = "update/{attractionId}")
     public ModelAndView toUpdate(@PathVariable(name = "attractionId") Integer id) {
         List<Attraction> attractionList = attractionService.queryAll();
+        List<Type> types = attractionService.queryType();
+        List<Price> prices = attractionService.queryAttractionPrice();
         Attraction attraction = null;
+        Type type = null;
+        Price price1 = null;
+        Price price2 = null;
         for (Attraction a : attractionList) {
             if (a.getAttractionId().equals(id)) {
                 attraction = a;
                 break;
             }
         }
+        for (Price p : prices) {
+            if (p.getTypeId()==1&&p.getAttractionId().equals(attraction.getAttractionId())) {
+                price1 = p;
+            }else if(p.getTypeId()==2&&p.getAttractionId().equals(attraction.getAttractionId())){
+                price2 = p;
+            }
+        }
         ModelAndView mv = new ModelAndView("/background/attraction/attractionUpdate");
         mv.addObject("attraction", attraction);
+        mv.addObject("price1", price1);
+        mv.addObject("price2", price2);
         return mv;
     }
 
@@ -243,17 +288,13 @@ public class AttractionController {
 
     //    前台景点列表查询方法
     @RequestMapping("/placeList")
-    public String placeList(HttpServletRequest request, Map<String, Object> map) {
-
+    public String placeList(HttpServletRequest request, Map<String, Object> map){
         PageBean pageBean = new PageBean();
-
         // 页码
         String index = request.getParameter("index");
-
         if (index == null) {
             index = "1";
         }
-
         pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
         String pageCount = "5";
@@ -293,7 +334,6 @@ public class AttractionController {
 
     /**
      * 前台查询一个景点得到详情信息
-     *
      * @param model
      * @param id
      * @return

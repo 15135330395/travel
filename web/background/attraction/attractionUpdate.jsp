@@ -53,6 +53,26 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">组团价格：</label>
+            <div class="layui-input-block">
+                <c:if test="${price1.attractionId == attraction.attractionId&&price1.typeId==1}">
+                    <input value="${price1.price}" type="number" id="price1" name="price1" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </c:if>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">散客价格：</label>
+            <div class="layui-input-block">
+                <c:if test="${price2.attractionId == attraction.attractionId&&price2.typeId==2}">
+                    <input value="${price2.price}" type="number" id="price2" name="price2" required=""
+                           lay-verify="required"
+                           autocomplete="off" class="layui-input">
+                </c:if>
+            </div>
+        </div>
+        <div class="layui-form-item">
             <label for="imageUrl" class="layui-form-label">
                 <span class="x-red">*</span>景点图片路径
             </label>
@@ -93,10 +113,11 @@
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/save",
                 data: {
-
                     attractionId: data.field.attractionId,
                     attractionName: data.field.attractionName,
                     route: data.field.route,
+                    price1 : data.field.price1,
+                    price2 : data.field.price2,
                     imageUrl: data.field.imageUrl,
                     attractionDesc : CKEDITOR.instances.attractionDesc.getData(),
                 },

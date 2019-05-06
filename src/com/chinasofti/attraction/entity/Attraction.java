@@ -32,10 +32,9 @@ public class Attraction {
      * 旅游路线
      */
     private String attractionDesc;
-
     @Id
     @GeneratedValue(generator = "_native")
-    @GenericGenerator(name = "_native", strategy = "native")
+    @GenericGenerator(name = "_native",strategy = "native")
     @Column(name = "attraction_id")
     public Integer getAttractionId() {
         return attractionId;
@@ -44,7 +43,6 @@ public class Attraction {
     public void setAttractionId(Integer attractionId) {
         this.attractionId = attractionId;
     }
-
     @Column(name = "attraction_name")
     public String getAttractionName() {
         return attractionName;
@@ -53,7 +51,6 @@ public class Attraction {
     public void setAttractionName(String attractionName) {
         this.attractionName = attractionName;
     }
-
     @Column
     public String getRoute() {
         return route;
@@ -62,7 +59,6 @@ public class Attraction {
     public void setRoute(String route) {
         this.route = route;
     }
-
     @Column(name = "image_url")
     public String getImageUrl() {
         return imageUrl;
@@ -88,7 +84,7 @@ public class Attraction {
                 ", attractionName='" + attractionName + '\'' +
                 ", route='" + route + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", attractionDesc='" +  + '\'' +
+                ", attractionDesc='" + attractionDesc + '\'' +
                 '}';
     }
 }

@@ -74,7 +74,7 @@
                         location.replace(location.href);
                     } else if (data == 2) {
                         alert("注册成功，请接收邮件前往激活")
-                        window.location.replace("/desk/login.jsp")
+                        window.location.replace("<%=request.getContextPath()%>/desk/login.jsp")
                     }
                 }
             });
@@ -82,4 +82,3 @@
     });
 
 </script>
-</html>

@@ -184,13 +184,36 @@
                     <h1 class="aside-title">友情链接</h1>
                     <div class="aside-body">
                         <ul class="sponsored">
-                            <c:forEach begin="1" end="6" var="i">
-                                <li>
-                                    <a href="https://www.bilibili.com/">
-                                        <img src="<%=request.getContextPath()%>/desk/images/link/${i}.jpg" alt="${i}.jpg">
-                                    </a>
-                                </li>
-                            </c:forEach>
+                            <li>
+                                <a href="https://www.bilibili.com/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/timg.jpg" alt="${1}.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.baidu.com/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/${2}.jpg" alt="${2}.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.csdn.net/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/${3}.jpg" alt="${3}.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://github.com/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/${4}.jpg" alt="${4}.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://www.google.cn/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/${5}.jpg" alt="${5}.jpg">
+                                </a>
+                            </li>
+                            <li>
+                                <a href="https://im.qq.com/">
+                                    <img src="<%=request.getContextPath()%>/desk/images/link/${6}.jpg" alt="${6}.jpg">
+                                </a>
+                            </li>
                         </ul>
                     </div>
                 </aside>

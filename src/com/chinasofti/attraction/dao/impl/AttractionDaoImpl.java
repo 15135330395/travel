@@ -4,6 +4,7 @@ import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
+import com.chinasofti.base.PageBean;
 import com.chinasofti.base.impl.BaseDaoImpl;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
@@ -67,4 +68,27 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
     public List<Type> queryType() {
         return hibernateTemplate.execute(session -> session.createQuery("from Type").list());
     }
+
+    @Override
+    public List<Attraction> queryByPageBean(PageBean pageBean) {
+        /*return hibernateTemplate.execute(session ->
+                session.createQuery("from Attraction").list());*/
+        return hibernateTemplate.execute(session -> session.createQuery("from Attraction")
+                .setFirstResult(pageBean.getPageIndex())
+                .setMaxResults(pageBean.getPageCount())
+                .list());
+    }
+
+    @Override
+    public void delete1(Price price) {
+        hibernateTemplate.delete(price);
+    }
+
+    @Override
+    public void update1(Price price) {
+        hibernateTemplate.update(price);
+    }
+
+    @Override
+    public void add1(Price price){ hibernateTemplate.save(price); }
 }

@@ -4,6 +4,6 @@
  */
 
 CKEDITOR.editorConfig = function( config ) {
-    config.filebrowserUploadUrl="/travel_war_exploded/uploadImage";
+    config.filebrowserUploadUrl="/travel/uploadImage";
     config.image_previewText=' ';
 };

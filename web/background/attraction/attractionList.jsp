@@ -95,33 +95,33 @@
     </table>
     <div class="page">
         <div>
-            <c:if test="${pageBean.pageIndex>1}">
+            <c:if test="${pageBean.index>1}">
                 <a class="prev"
-                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex-1}">&lt;&lt;</a>
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index-1}">上一页</a>
             </c:if>
-            <c:if test="${pageBean.pageIndex<=1}">
+            <c:if test="${pageBean.index<=1}">
                 <a class="prev"
-                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&lt;&lt;</a>
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index}">上一页</a>
             </c:if>
             <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
+                <c:if test="${i==pageBean.index}">
                     <span class="current">
                             ${i}
                     </span>
                 </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
+                <c:if test="${i!=pageBean.index}">
                     <a class="num" href="<%=request.getContextPath()%>/attraction/all?index=${i}">
                             ${i}
                     </a>
                 </c:if>
             </c:forEach>
-            <c:if test="${pageBean.pageIndex<pageBean.pages}">
+            <c:if test="${pageBean.index<pageBean.pages}">
                 <a class="next"
-                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex+1}">&gt;&gt;</a>
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index+1}">下一页</a>
             </c:if>
             <c:if test="${pageBean.pageIndex>=pageBean.pages}">
                 <a class="next"
-                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.pageIndex}">&gt;&gt;</a>
+                   href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index}">下一页</a>
             </c:if>
         </div>
     </div>

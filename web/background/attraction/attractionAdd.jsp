@@ -23,17 +23,7 @@
                        class="layui-input">
             </div>
         </div>
-        <%--<div class="layui-form-item">
-            <label class="layui-form-label">新闻类型：</label>
-            <div class="layui-input-block">
-                <select name="typeId" lay-verify="required">
-                    <option value=""></option>
-                    <c:forEach items="${typeList}" var="type">
-                        <option value="${type.typeId}">${type.typeName}</option>
-                    </c:forEach>
-                </select>
-            </div>
-        </div>--%>
+
         <div class="layui-form-item">
             <label class="layui-form-label">景点路线：</label>
             <div class="layui-input-block">
@@ -41,21 +31,15 @@
                        class="layui-input">
             </div>
         </div>
-       <%-- <div class="layui-form-item">
+        <div class="layui-form-item">
             <label class="layui-form-label">景点价格：</label>
             <div class="layui-input-block">
-                <select name="price" lay-verify="required">
-                        <option value="1">组团游</option>
-                    <input type="number" name="price1" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
-                           class="layui-input">
-                </select>
-                <select name="typeId" lay-verify="required">
-                        <option value="2">散客游</option>
-                    <input type="number" name="price2" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
-                           class="layui-input">
-                </select>
+                组团游<input type="number" name="price1" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
+                          class="layui-input">
+                散客游<input type="number" name="price2" required lay-verify="required" placeholder="请输入景点价格" autocomplete="off"
+                          class="layui-input">
             </div>
-        </div>--%>
+        </div>
         <div class="layui-form-item">
             <label class="layui-form-label">图片路径：</label>
             <div class="layui-input-block">
@@ -93,9 +77,10 @@
                 data: {
                     attractionName : data.field.attractionName,
                     route : data.field.route,
-                  /*  price : data.field.price,*/
+                    price1 : data.field.price1,
+                    price2 : data.field.price2,
                     imageUrl : data.field.imageUrl,
-                    attractionDesc : CKEDITOR.instances.attractionDesc.getData(),
+                    attractionDesc : CKEDITOR.instances.attractionDesc.getData()
                 },
                 success: function (msgData) {
                     layer.msg("添加成功", {icon: 1, time: 2000});

@@ -71,4 +71,13 @@ public class AttractionServiceImpl implements AttractionService {
     public List<Type> queryType() {
         return attractionDao.queryType();
     }
+
+    @Override
+    public void delete1(Price price){ attractionDao.delete1(price); }
+
+    @Override
+    public void update1(Price price){ attractionDao.update1(price); }
+
+    @Override
+    public void add1(Price price){ attractionDao.add1(price); }
 }

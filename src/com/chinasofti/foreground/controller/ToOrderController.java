@@ -65,10 +65,6 @@ public class ToOrderController {
     @ResponseBody
     @RequestMapping("/toOrder")
     public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
-//        String[] visitorName = request.getParameterValues("visitorName");
-//        String[] cardId = request.getParameterValues("cardId");
-//        String[] phone = request.getParameterValues("phone");
-
         order.setOrderId(IdUtil.genItemId());
         order.setCreateTime(new Date());
         order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
