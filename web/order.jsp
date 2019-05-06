@@ -19,7 +19,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
 
 <div class="container">
     <div class="row">
-        <form class="row" action="<%=request.getContextPath()%>/foreground/toOrder">
+        <form class="row" action="<%=request.getContextPath()%>/foreground/toOrder" id="signupForm">
             <input type="hidden" name="attraction.attractionId" value="${attraction.attractionId}">
             <div class="col-md-12">
                 <h3 class="title">下订单</h3>
@@ -48,7 +48,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
             </div>
             <div class="form-group col-md-4">
                 <label for="type">旅游类型 <span class="required"></span></label>
-                <select id="type" name="type.typeId" class="form-control">
+                <select id="type" name="type.typeId " class="form-control">
                     <option value="">===请选择===</option>
                     <option value="1">个人游</option>
                     <option value="2">组团游</option>
@@ -112,6 +112,50 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
     // $(document).ready(function () {
     //     console.log($("form").serialize()); // FirstName=Bill&LastName=Gates
     // });
+    $().ready(function() {
+// 在键盘按下并释放及提交后验证提交表单
+       return $("#signupForm").validate({
+
+           rules: {
+                goTime: "required",
+                place: "required",
+                visitorName:"required",
+                cardId: {
+                    required: true,
+                    minlength:18
+                },
+                phone: {
+                    required: true,
+                    minlength:11
+                },
+            },
+                messages: {
+                    goTime: "请输入集合时间",
+                    place: "请输入集合地点",
+                    visitorName:"请输入游客姓名",
+                    cardId: {
+                        required: "请输入身份证号",
+                        minlength: "请输入正确的身份证号"
+                    },
+                    phone: {
+                        required: "请输入手机号",
+                        minlength: "请输入正确的手机号"
+                    }
+                },
+           onsubmit:true,
+           //重写showErrors
+           showErrors: function (errorMap, errorList) {
+               var msg = "";
+               $.each(errorList, function (i, v) {
+                   layer.tips(v.message , v.element, {
+                       tips: [3, '#FFD700'],
+                       time: 2000
+                   });
+                   return false;
+               });
+           },
+        })
+    });
 </script>
 
 </body>

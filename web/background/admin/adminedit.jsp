@@ -36,7 +36,7 @@
             </label>
             <div class="layui-input-inline">
                 <input value="${admin.adminName}" type="text" id="adminName" name="adminName" required=""
-                       lay-verify="required"
+                       lay-verify="adminName"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -46,7 +46,7 @@
             </label>
             <div class="layui-input-inline">
                 <input value="${admin.password}" type="text" id="password" name="password"  required=""
-                       lay-verify="required"
+                       lay-verify="password"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
