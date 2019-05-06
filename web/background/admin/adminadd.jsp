@@ -97,7 +97,7 @@
                 <span class="x-red">*</span>用户名
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="adminName" name="adminName" required="" lay-verify=""
+                <input type="text" id="adminName" name="adminName" required="" lay-verify="adminName"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -106,7 +106,7 @@
                 <span class="x-red">*</span>密码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="password" name="password" required="" lay-verify="number"
+                <input type="text" id="password" name="password" required="" lay-verify="password"
                        autocomplete="off" class="layui-input">
             </div>
         </div>

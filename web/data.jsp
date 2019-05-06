@@ -7,3 +7,6 @@
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.min.js"></script>
 <script src="<%=request.getContextPath()%>/js/bootstrap-datetimepicker.fr.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.validate.js"></script>
+<script src="<%=request.getContextPath()%>/js/jquery.validate.min.js"></script>
+<script src="<%=request.getContextPath()%>/background/static/lib/layui/lay/modules/layer.js"></script>
