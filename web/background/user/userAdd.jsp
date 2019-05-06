@@ -8,7 +8,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
-
 <head>
     <meta charset="UTF-8">
     <title>游客管理系统</title>
@@ -17,13 +16,11 @@
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
     <%@include file="../commons/info.jsp"%>
 </head>
-
 <body>
 <div class="x-body">
     <form class="layui-form">
         <div class="layui-form-item">
             <label   class="layui-form-label">
-
             </label>
             <div class="layui-input-inline">
                 <input type="hidden"  name="userId" required=""
@@ -39,7 +36,6 @@
                        autocomplete="off" class="layui-input">
             </div>
         </div>
-
         <div class="layui-form-item">
             <label for="password" class="layui-form-label">
                 <span class="x-red">*</span>用户密码
@@ -62,14 +58,11 @@
 
             <%--</div>--%>
         <%--</div>--%>
-
-
-
         <div class="layui-form-item">
             <label  class="layui-form-label">
             </label>
             <button  class="layui-btn" lay-filter="add" lay-submit="">
-                增加
+                添加
             </button>
         </div>
     </form>
@@ -96,7 +89,7 @@
                 success:function(msg){
                     if(msg=="1"){
                         //发异步，把数据提交给java
-                        layer.alert("增加成功", {icon: 6},function () {
+                        layer.alert("添加成功", {icon: 6},function () {
                             // 获得frame索引
                             var index = parent.layer.getFrameIndex(window.name);
                             //关闭当前frame

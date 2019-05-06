@@ -23,7 +23,7 @@
     <form class="layui-form">
         <div class="layui-form-item">
             <label for="userId" class="layui-form-label">
-                <span class="x-red"></span>
+
             </label>
             <div class="layui-input-inline">
                 <input value="${user.userId}" type="hidden" id="userId" name="userId" required="" lay-verify=""
@@ -33,7 +33,7 @@
 
         <div class="layui-form-item">
             <label for="email" class="layui-form-label">
-                <span class="x-red"></span>
+
             </label>
             <div class="layui-input-inline">
                 <input value="${user.email}" type="hidden" id="email" name="email"  required="" lay-verify="email"
@@ -52,7 +52,7 @@
         </div>
         <div class="layui-form-item">
             <label for="code" class="layui-form-label">
-                <span class="x-red"></span>
+
             </label>
             <div class="layui-input-inline">
                 <input  value="${user.code}" type="hidden" id="code" name="code" required="" lay-verify="text"
@@ -66,7 +66,7 @@
         </label>
         <div class="layui-input-inline">
         <select type="text" name="state" lay-verify="">
-        <option value="">请选择激活状态</option>
+        <option value="${user.state}">${user.state}</option>
         <option value="0">0</option>
         <option value="1">1</option>
         </select>

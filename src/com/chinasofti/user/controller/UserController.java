@@ -3,6 +3,7 @@ package com.chinasofti.user.controller;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.user.service.UserService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,18 +26,10 @@ public class UserController {
     @Autowired
     UserService userService;
 
-//    @RequestMapping("/queryAllUser")
-//    public ModelAndView queryAll() {
-//        ModelAndView modelAndView = new ModelAndView("user");
-//        modelAndView.addObject("UserList",userService.queryAll());
-//        return modelAndView;
-//    }
-
     @RequestMapping("/userByPageBean")
     @ResponseBody
     public ModelAndView queryByPageBean( HttpServletRequest request ) {
-
-        System.out.println("userByPageBean...");
+//        System.out.println("userByPageBean...");
         PageBean pageBean = new PageBean();
         String index="1";
         String strIndex = request.getParameter("index");
@@ -46,29 +39,14 @@ public class UserController {
         pageBean.setIndex(Integer.parseInt(index));
         System.out.println("index===="+index);
         Integer pageCount=5;
-//        String pageCount = request.getParameter("pageCount");
         pageBean.setPageCount(pageCount);
         pageBean.setCount(userService.getCount());
-//        request.setAttribute("pageBean",pageBean);
         List<User> users = userService.queryByPageBean(pageBean);
         ModelAndView modelAndView = new ModelAndView("/background/user/userList");
         modelAndView.addObject("userList",users);
         modelAndView.addObject("pageBean",pageBean);
         return modelAndView;
     }
-
-    @RequestMapping("/userById/{id}")
-    public String query(@PathVariable(name = "id") Integer id) {
-        userService.queryById(id);
-        return "userUpdate";
-    }
-
-    @RequestMapping("/queryByEmail/{email}")
-    public String queryByEmail(@PathVariable(name = "email") String email) {
-        userService.queryByEmail(email);
-        return "userUpdate";
-    }
-
     @RequestMapping("/addUser")
     @ResponseBody
     public Integer addUser(User user) {
@@ -89,7 +67,7 @@ public class UserController {
     @RequestMapping("/deleteUser")
     @ResponseBody
     public Integer deleteUser(@RequestParam(name = "userId") Integer id) {
-        System.out.println("delete....."+id);
+//        System.out.println("delete....."+id);
         List<User> list = userService.queryAll();
         User user=null;
         for(User u:list){
@@ -99,13 +77,13 @@ public class UserController {
             }
         }
         userService.deleteUser(user);
-        System.out.println("toupdate..."+user);
+//        System.out.println("toupdate..."+user);
         return 1;
     }
 
     @RequestMapping("/toupdate/{userId}")
     public ModelAndView toupdate(@PathVariable(name = "userId")Integer userId){
-        System.out.println("toupdate...."+userId);
+//        System.out.println("toupdate...."+userId);
         List<User> list = userService.queryAll();
         User user=null;
         for(User u:list){
@@ -117,7 +95,32 @@ public class UserController {
         ModelAndView mv=new ModelAndView("/background/user/userUpdate");
         mv.addObject("user",user);
         return mv;
-
     }
+
+    @RequestMapping("/deleteAll")
+    @ResponseBody
+    public Integer deleteAll(@RequestParam(value = "ids") String ids){
+//        System.out.println("deleteALl..."+ids);
+        int sum=0;
+        if(StringUtils.isNoneBlank(ids)) {
+            String[] idArr = ids.split(",");
+            for (String id : idArr) {
+                User user = null;
+                List<User> list = userService.queryAll();
+                for (User u : list) {
+                    if (u.getUserId().equals(Integer.valueOf(id))) {
+                        user = u;
+                        break;
+                    }
+                }
+                userService.deleteUser(user);
+                sum += 1;
+            }
+        }
+
+       return sum;
+    }
+
+
 
 }
