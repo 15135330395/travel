@@ -47,7 +47,7 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
 
             public List doInHibernate(Session session) throws HibernateException {
 
-                String hql = "select orderId from Attraction where attractionName like '%" + place + "%'";
+                String hql = "from Attraction where attractionName like '%" + place + "%'";
 
                 Query query = session.createQuery(hql);
                 List list = query.list();

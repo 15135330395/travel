@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/20
-  Time: 14:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="static/info.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -136,32 +129,6 @@
             })
         });
     }
-
-    <%--function delAll (argument) {--%>
-
-        <%--var data = tableCheck.getData();--%>
-        <%--if(data==""){--%>
-            <%--layer.msg('请至少选择1条数据');--%>
-            <%--return;--%>
-        <%--}--%>
-        <%--layer.confirm('确认要删除这些信息吗？',function(index){--%>
-            <%--$.ajax({--%>
-                <%--type:"post",--%>
-                <%--url:"<%=request.getContextPath()%>/LinkServlet",--%>
-                <%--data:"action=deleteAll&ids="+data,--%>
-                <%--success:function(msg){--%>
-                    <%--if(msg>0){--%>
-                        <%--//捉到所有被选中的，发异步进行删除--%>
-                        <%--layer.msg('成功删除'+msg+'条数据', {icon: 1})--%>
-                    <%--}else{--%>
-                        <%--layer.msg('已删除或不存在!',{icon:1,time:1000});--%>
-                    <%--}--%>
-                    <%--$(".layui-form-checked").not('.header').parents('tr').remove();--%>
-                <%--}--%>
-            <%--});--%>
-
-        <%--});--%>
-    <%--}--%>
 </script>
 </body>
 
