@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019-05-05
-  Time: 9:26
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
@@ -25,14 +18,6 @@
             <td align="center">订单总额:</td>
             <td align="center">${order.total}</td>
         </tr>
-        <%--<tr>--%>
-            <%--<td colspan="2">--%>
-            <%--<select>--%>
-                <%--<option>===请选择您的导游===</option>--%>
-                <%--<option></option>--%>
-            <%--</select>--%>
-            <%--</td>--%>
-        <%--</tr>--%>
         <tr>
             <td colspan="2" align="center"><input type="submit" value="支付" name="apply"></td>
         </tr>

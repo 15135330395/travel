@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/20
-  Time: 14:49
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="static/info.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -27,7 +20,7 @@
 <body>
 <div class="x-nav">
       <span class="layui-breadcrumb">
-        <a href="index.jsp"><cite>首页</cite></a>
+        <a href="<%=request.getContextPath()%>/index.jsp"><cite>首页</cite></a>
         <a><cite>我的订单</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
@@ -103,20 +96,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
-                    <span class="current">${i}</span>
-                </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
-                    <a class="num" href="<%=request.getContextPath()%>/controllr/method/${i}">${i}</a>
-                </c:if>
-            </c:forEach>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
 
 </div>
 <script>
@@ -150,32 +129,6 @@
             })
         });
     }
-
-    <%--function delAll (argument) {--%>
-
-        <%--var data = tableCheck.getData();--%>
-        <%--if(data==""){--%>
-            <%--layer.msg('请至少选择1条数据');--%>
-            <%--return;--%>
-        <%--}--%>
-        <%--layer.confirm('确认要删除这些信息吗？',function(index){--%>
-            <%--$.ajax({--%>
-                <%--type:"post",--%>
-                <%--url:"<%=request.getContextPath()%>/LinkServlet",--%>
-                <%--data:"action=deleteAll&ids="+data,--%>
-                <%--success:function(msg){--%>
-                    <%--if(msg>0){--%>
-                        <%--//捉到所有被选中的，发异步进行删除--%>
-                        <%--layer.msg('成功删除'+msg+'条数据', {icon: 1})--%>
-                    <%--}else{--%>
-                        <%--layer.msg('已删除或不存在!',{icon:1,time:1000});--%>
-                    <%--}--%>
-                    <%--$(".layui-form-checked").not('.header').parents('tr').remove();--%>
-                <%--}--%>
-            <%--});--%>
-
-        <%--});--%>
-    <%--}--%>
 </script>
 </body>
 

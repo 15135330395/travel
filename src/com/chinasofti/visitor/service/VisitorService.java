@@ -65,4 +65,8 @@ public class VisitorService {
         visitorDao.delete(visitor);
     }
 
+    public Integer getCount(){
+        return visitorDao.getCount();
+    }
+
 }

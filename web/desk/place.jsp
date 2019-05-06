@@ -1,10 +1,3 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: Administrator
-  Date: 2019/3/20 0020
-  Time: 15:54
-  To change this template use File | Settings | File Templates.
---%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ include file="../background/commons/info.jsp" %>
@@ -43,7 +36,9 @@
         <tbody>
         <c:forEach items="${attractionList}" var="attractionList">
             <tr>
-                <td><a href="<%=request.getContextPath()%>/attraction/detail/${attractionList.attractionId}">${attractionList.attractionName}</a></td>
+                <td>
+                    <a href="<%=request.getContextPath()%>/attraction/detail/${attractionList.attractionId}">${attractionList.attractionName}</a>
+                </td>
                 <td>${attractionList.route}</td>
                 <td>
                     <c:forEach items="${prices}" var="price">
@@ -51,9 +46,9 @@
                             <c:forEach items="${types}" var="type">
                                 <c:if test="${type.typeId == price.typeId}">
                                     <option value="${price.price}">${type.typeName}:${price.price}</option>
-                                    </c:if>
-                                </c:forEach>
-                            </c:if>
+                                </c:if>
+                            </c:forEach>
+                        </c:if>
                     </c:forEach>
                 </td>
             </tr>
@@ -63,33 +58,29 @@
     </table>
     <div class="page">
         <div>
-            <c:if test="${pageBean.pageIndex>1}">
-                <a class="prev"
-                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.pageIndex-1}">&lt;&lt;</a>
+            <c:if test="${pageBean.index>1}">
+                <a class="上一页"
+                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.index-1}">上一页</a>
             </c:if>
-            <c:if test="${pageBean.pageIndex<=1}">
-                <a class="prev"
-                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.pageIndex}">&lt;&lt;</a>
+            <c:if test="${pageBean.index<=1 || pageBean.index == 0}">
             </c:if>
             <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
+                <c:if test="${i==pageBean.index}">
                     <span class="current">
                             ${i}
                     </span>
                 </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
+                <c:if test="${i!=pageBean.index}">
                     <a class="num" href="<%=request.getContextPath()%>/attraction/placeList?index=${i}">
                             ${i}
                     </a>
                 </c:if>
             </c:forEach>
-            <c:if test="${pageBean.pageIndex<pageBean.pages}">
-                <a class="next"
-                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.pageIndex+1}">&gt;&gt;</a>
+            <c:if test="${pageBean.index < pageBean.pages}">
+                <a class="下一页"
+                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.index+1}">下一页</a>
             </c:if>
-            <c:if test="${pageBean.pageIndex>=pageBean.pages}">
-                <a class="next"
-                   href="<%=request.getContextPath()%>/attraction/placeList?index=${pageBean.pageIndex}">&gt;&gt;</a>
+            <c:if test="${pageBean.index >= pageBean.pages || pageBean.index == 0}">
             </c:if>
         </div>
     </div>

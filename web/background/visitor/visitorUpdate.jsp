@@ -22,39 +22,39 @@
 <div class="x-body">
     <form class="layui-form">
         <div class="layui-form-item">
-            <label for="userId" class="layui-form-label">
+            <label for="visitorId" class="layui-form-label">
                 <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input value="${user.userId}" type="hidden" id="userId" name="userId" required="" lay-verify=""
+                <input value="${visitor.visitorId}" type="hidden" id="visitorId" name="visitorId" required="" lay-verify=""
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="email" class="layui-form-label">
-                <span class="x-red">*</span>用户邮箱
+            <label for="visitorName" class="layui-form-label">
+                <span class="x-red">*</span>游客姓名
             </label>
             <div class="layui-input-inline">
-                <input value="${user.email}" type="email" id="email" name="email" required="" lay-verify="email"
+                <input value="${visitor.visitorName}" type="text" id="visitorName" name="visitorName" required="" lay-verify="required"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label for="password" class="layui-form-label">
-                <span class="x-red">*</span>用户密码
+            <label for="cardId" class="layui-form-label">
+                <span class="x-red">*</span>身份证号
             </label>
             <div class="layui-input-inline">
-                <input value="${user.password}" type="text" id="password" name="password" required="" lay-verify="text"
+                <input value="${visitor.cardId}" type="number" id="cardId" name="cardId" required="" lay-verify="number"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="code" class="layui-form-label">
-                <span class="x-red">*</span>激活码
+            <label for="phone" class="layui-form-label">
+                <span class="x-red">*</span>手机号码
             </label>
             <div class="layui-input-inline">
-                <input  value="${user.code}" type="text" id="code" name="code" required="" lay-verify="text"
+                <input  value="${visitor.phone}" type="number" id="phone" name="phone" required="" lay-verify="number"
                         autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -75,17 +75,19 @@
             ,layer = layui.layer;
         //监听提交
         form.on('submit(update)', function(data){
-            var userId=data.field.userId;
-            var email=data.field.email;
-            var password=data.field.password;
+            var visitorId=data.field.visitorId;
+            var visitorName=data.field.visitorName;
+            var cardId=data.field.cardId;
+            var phone=data.field.phone;
             console.log(data)
             $.ajax({
                 type:"post",
                 url:"<%=request.getContextPath()%>/visitor/updateVisitor",
                 data:{
-                    "userId":userId,
-                    "email":email,
-                    "password":password
+                    "visitorId":visitorId,
+                    "visitorName":visitorName,
+                    "cardId":cardId,
+                    "phone":phone
                 },
                 success:function(msg){
                     if(msg=="1"){

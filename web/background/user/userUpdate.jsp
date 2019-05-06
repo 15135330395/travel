@@ -22,50 +22,55 @@
 <div class="x-body">
     <form class="layui-form">
         <div class="layui-form-item">
-            <label for="visitorId" class="layui-form-label">
+            <label for="userId" class="layui-form-label">
                 <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input value="${visitor.visitorId}" type="hidden" id="visitorId" name="visitorId" required="" lay-verify=""
-                       autocomplete="off" class="layui-input">
-            </div>
-        </div>
-        <div class="layui-form-item">
-            <label for="visitorName" class="layui-form-label">
-                <span class="x-red">*</span>游客姓名
-            </label>
-            <div class="layui-input-inline">
-                <input value="${visitor.visitorName}" type="text" id="visitorName" name="visitorName" required="" lay-verify="required"
+                <input value="${user.userId}" type="hidden" id="userId" name="userId" required="" lay-verify=""
                        autocomplete="off" class="layui-input">
             </div>
         </div>
 
         <div class="layui-form-item">
-            <label for="cardId" class="layui-form-label">
-                <span class="x-red">*</span>身份证号
+            <label for="email" class="layui-form-label">
+                <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input value="${visitor.cardId}" type="number" id="cardId" name="cardId" required="" lay-verify="number"
+                <input value="${user.email}" type="hidden" id="email" name="email"  required="" lay-verify="email"
+                       autocomplete="off" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label for="password" class="layui-form-label">
+                <span class="x-red">*</span>用户密码
+            </label>
+            <div class="layui-input-inline">
+                <input value="${user.password}" type="text" id="password" name="password" required="" lay-verify="text"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item">
-            <label for="phone" class="layui-form-label">
-                <span class="x-red">*</span>手机号码
+            <label for="code" class="layui-form-label">
+                <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input  value="${visitor.phone}" type="number" id="phone" name="phone" required="" lay-verify="number"
+                <input  value="${user.code}" type="hidden" id="code" name="code" required="" lay-verify="text"
                         autocomplete="off" class="layui-input">
             </div>
         </div>
+
         <div class="layui-form-item">
-            <label for="orderId" class="layui-form-label">
-                <span class="x-red">*</span>订单编号
-            </label>
-            <div class="layui-input-inline">
-                <input  value="${visitor.orderId}" type="number" id="orderId" name="orderId" required="" lay-verify="number"
-                        autocomplete="off" class="layui-input">
-            </div>
+        <label class="layui-form-label">
+        <span class="x-red">*</span>激活状态
+        </label>
+        <div class="layui-input-inline">
+        <select type="text" name="state" lay-verify="">
+        <option value="">请选择激活状态</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        </select>
+        </div>
         </div>
 
         <div class="layui-form-item">
@@ -84,21 +89,21 @@
             ,layer = layui.layer;
         //监听提交
         form.on('submit(update)', function(data){
-            var visitorId=data.field.visitorId;
-            var visitorName=data.field.visitorName;
-            var cardId=data.field.cardId;
-            var phone=data.field.phone;
-            var orderId=data.field.orderId;
+            var userId=data.field.userId;
+            var email=data.field.email;
+            var password=data.field.password;
+            var state=data.field.state;
+            var code=data.field.code;
             console.log(data)
             $.ajax({
                 type:"post",
-                url:"<%=request.getContextPath()%>/visitor/updateVisitor",
+                url:"<%=request.getContextPath()%>/user/update",
                 data:{
-                    "visitorId":visitorId,
-                    "visitorName":visitorName,
-                    "cardId":cardId,
-                    "phone":phone,
-                    "orderId":orderId
+                    "userId":userId ,
+                    "email":email,
+                    "password":password,
+                    "state":state,
+                    "code":code
                 },
                 success:function(msg){
                     if(msg=="1"){

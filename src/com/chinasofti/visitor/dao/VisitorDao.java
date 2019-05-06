@@ -11,4 +11,6 @@ import java.util.List;
  */
 public interface VisitorDao extends BaseDao<Visitor> {
     public List<Visitor> queryByOrderId(Long id);
+
+
 }

@@ -14,12 +14,12 @@
                     </div>
                 </div>
                 <div class="col-md-6 col-sm-12">
-                    <form class="search" autocomplete="off">
+                    <form class="search" autocomplete="off" action="<%=request.getContextPath()%>/attraction/queryOneByName/">
                         <div class="form-group">
                             <div class="input-group">
-                                <input type="text" id="sousuo" class="form-control" placeholder="搜景点">
+                                <input type="text" name="place" id="sousuo" class="form-control" placeholder="搜景点">
                                 <div class="input-group-btn">
-                                    <button class="btn btn-primary"  style="line-height: 1;" onclick="queryPlace();return false"><i class="ion-search"></i>
+                                    <button class="btn btn-primary"  type="submit" style="line-height: 1;"><i class="ion-search"></i>
                                     </button>
                                 </div>
 
@@ -100,9 +100,6 @@
                             <li>
                                 <a href="<%=request.getContextPath()%>/attraction/changePlace">首页</a>
                             </li>
-                            <%--<li>--%>
-                                <%--<a href="category.jsp">类别 </a>--%>
-                            <%--</li>--%>
                             <c:if test="${user==null}">
                                 <li class="dropdown magz-dropdown">
                                     <a href="#">认证<i class="ion-ios-arrow-right"></i></a>
@@ -113,27 +110,9 @@
                                         <li>
                                             <a href="<%=request.getContextPath()%>/desk/register.jsp">注册</a>
                                         </li>
-                                        <%--<li>--%>
-                                            <%--<a href="">忘记密码</a>--%>
-                                        <%--</li>--%>
-                                        <%--<li>--%>
-                                            <%--<a href="../reset.jsp">重置密码</a>--%>
-                                        <%--</li>--%>
                                     </ul>
                                 </li>
                             </c:if>
-                            <%--<li>--%>
-                                <%--<a href="single.jsp">景点</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="search.jsp">搜索</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="page.jsp">关于我们</a>--%>
-                            <%--</li>--%>
-                            <%--<li>--%>
-                                <%--<a href="contact.jsp">联系我们</a>--%>
-                            <%--</li>--%>
                             <li class="dropdown magz-dropdown">
                                 <a href="#">错误页面<i class="ion-ios-arrow-right"></i></a>
                                 <ul class="dropdown-menu">
@@ -157,96 +136,10 @@
                     <li>
                         <a href="<%=request.getContextPath()%>/attraction/placeList">景点 </a>
                     </li>
-                    <%--<li class="dropdown magz-dropdown magz-dropdown-megamenu">--%>
-                        <%--<a href="#">景点 <i class="ion-ios-arrow-right"></i>--%>
-                            <%--<div class="badge">热</div>--%>
-                        <%--</a>--%>
-                        <%--<div class="dropdown-menu megamenu">--%>
-                            <%--<div class="megamenu-inner">--%>
-                                <%--<div class="row">--%>
-                                    <%--<div class="col-md-3">--%>
-                                        <%--<div class="row">--%>
-                                            <%--<div class="col-md-12">--%>
-                                                <%--<h2 class="megamenu-title">${newsByTypeList[1].get(0).newsType.typeName}</h2>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<ul class="vertical-menu">--%>
-                                            <%--<c:forEach items="${newsByTypeList[1]}" var="news">--%>
-                                                <%--<li>--%>
-                                                    <%--<a href="#${news.newsId}">--%>
-                                                        <%--<i class="ion-ios-circle-outline"></i>${news.newsTitle}--%>
-                                                    <%--</a>--%>
-                                                <%--</li>--%>
-                                            <%--</c:forEach>--%>
-                                        <%--</ul>--%>
-                                    <%--</div>--%>
-                                    <%--<div class="col-md-9">--%>
-                                        <%--<div class="row">--%>
-                                            <%--<div class="col-md-12">--%>
-                                                <%--<h2 class="megamenu-title">精选</h2>--%>
-                                            <%--</div>--%>
-                                        <%--</div>--%>
-                                        <%--<div class="row">--%>
-                                            <%--<c:forEach begin="0" end="2" var="i">--%>
-                                                <%--<article class="article col-md-4 mini">--%>
-                                                    <%--<div class="inner">--%>
-                                                        <%--<figure>--%>
-                                                            <%--<a href="#${newNewsList[i].newsId}">--%>
-                                                                <%--<img src="${newNewsList[i].imageUrl}"--%>
-                                                                     <%--alt="${newNewsList[i].newsTitle}">--%>
-                                                            <%--</a>--%>
-                                                        <%--</figure>--%>
-                                                        <%--<div class="padding">--%>
-                                                            <%--<div class="detail">--%>
-                                                                <%--<div class="time">2019 年 03 月 31--%>
-                                                                    <%--日${newNewsList[i].publishTime}</div>--%>
-                                                                <%--<div class="category">--%>
-                                                                    <%--<a href="category.jsp#${newNewsList[i].newsType.typeId}">${newNewsList[i].newsType.typeName}</a>--%>
-                                                                <%--</div>--%>
-                                                            <%--</div>--%>
-                                                            <%--<h2><a href="single.jsp">${newNewsList[i].newsTitle}</a>--%>
-                                                            <%--</h2>--%>
-                                                        <%--</div>--%>
-                                                    <%--</div>--%>
-                                                <%--</article>--%>
-                                            <%--</c:forEach>--%>
-                                        <%--</div>--%>
-                                    <%--</div>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
-                    <%--<li class="dropdown magz-dropdown magz-dropdown-megamenu">--%>
-                        <%--<a href="#">详细 <i class="ion-ios-arrow-right"></i></a>--%>
-                        <%--<div class="dropdown-menu megamenu">--%>
-                            <%--<div class="megamenu-inner">--%>
-                                <%--<div class="row">--%>
-                                    <%--<c:forEach begin="6" end="9" var="i">--%>
-                                        <%--<div class="col-md-3">--%>
-                                            <%--<h2 class="megamenu-title">${newsByTypeList[i].get(0).newsType.typeName}</h2>--%>
-                                            <%--<ul class="vertical-menu">--%>
-                                                <%--<c:forEach items="${newsByTypeList[i]}" var="news">--%>
-                                                    <%--<li>--%>
-                                                        <%--<a href="#${news.newsId}">${news.newsTitle}</a>--%>
-                                                    <%--</li>--%>
-                                                <%--</c:forEach>--%>
-                                            <%--</ul>--%>
-                                        <%--</div>--%>
-                                    <%--</c:forEach>--%>
-                                <%--</div>--%>
-                            <%--</div>--%>
-                        <%--</div>--%>
-                    <%--</li>--%>
                     <c:if test="${user!=null}">
                         <li class="dropdown magz-dropdown">
                             <a href="#">${user.email} <i class="ion-ios-arrow-right"></i></a>
                             <ul class="dropdown-menu">
-                                <%--<li>--%>
-                                    <%--<a href="#"><i class="icon ion-person"></i>我的账号</a>--%>
-                                <%--</li>--%>
-                                <%--<li>--%>
-                                    <%--<a href="#"><i class="icon ion-key"></i>更改密码</a>--%>
-                                <%--</li>--%>
                                 <li>
                                     <a href="<%=request.getContextPath()%>/QueryOrderController/queryOrder/${user.userId}"><i class="icon ion-settings"></i>我的订单</a>
                                 </li>
@@ -262,40 +155,4 @@
         </div>
     </nav>
     <!-- 导航结束 -->
-
-    <script>
-
-        <%--搜索按钮--%>
-        function queryPlace() {
-
-          var place = document.getElementById("sousuo").value;
-
-            $.ajax({
-                type: "post",
-                url: "<%=request.getContextPath()%>/attraction/queryOneByName/",
-                async:"false",
-                data: {
-                    "place":place
-                },
-                success: function (data) {
-
-                    if (data.toString()!= "[]") {
-
-                        var da = eval("("+data+")");
-
-                        for (var i = 0; i < da.length; i++) {
-
-                            alert(da[i].attractionName)
-                        }
-                            <%--window.open("<%=request.getContextPath()%>/attraction/toPlace/"+data.attractionName);--%>
-
-
-                    } else {
-                        alert("没有该景点")
-                    }
-                }
-            })
-        }
-
-    </script>
 </header>
