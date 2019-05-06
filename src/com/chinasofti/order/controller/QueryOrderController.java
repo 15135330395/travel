@@ -39,9 +39,10 @@ public class QueryOrderController {
 
 //    前台用户查询自己订单方法
     @RequestMapping("/queryOrder/{userId}")
-    public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId){
+    public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId,HttpServletRequest request){
 
         List<Orders> list = orderService.queryOrder(userId);
+
         for (Orders orders : list) {
             List<Visitor> visitors = visitorService.queryByOrderId(orders.getOrderId());
             orders.setVisitorList(visitors);

@@ -103,20 +103,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
-                    <span class="current">${i}</span>
-                </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
-                    <a class="num" href="<%=request.getContextPath()%>/controllr/method/${i}">${i}</a>
-                </c:if>
-            </c:forEach>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
 
 </div>
 <script>
