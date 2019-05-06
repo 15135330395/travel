@@ -237,15 +237,16 @@ public class AttractionController {
 //    前台景点列表查询方法
     @RequestMapping("/placeList")
     public String placeList(HttpServletRequest request, Map<String, Object> map){
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
         PageBean pageBean = new PageBean();
+        System.out.println("================================================");
         // 页码
         String index = request.getParameter("index");
 
-        System.out.println("======================"+index);
         if (index == null) {
             index = "1";
         }
-        System.out.println("+++++++++++++++++++++++++"+index);
+
         pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
         String pageCount = "5";
@@ -260,23 +261,30 @@ public class AttractionController {
         //查询组团类型
         List<Type> types = attractionService.queryType();
 
-        System.out.println(pageBean);
         map.put("pageBean", pageBean);
         map.put("attractionList", attractionList);
         map.put("prices",prices);
         map.put("types",types);
-//        request.setAttribute("admins", admins);
         return "/desk/place";
     }
 
 //    搜索景点方法（暂不能用）
-    @RequestMapping("queryOneByName")
+    @RequestMapping("/queryOneByName")
     @ResponseBody
     public List queryOneByName(@RequestParam(name = "place") String place){
+        System.out.println("+++++++++++++++++++++++++++++++++++++++++++++++++++++");
+        List<Attraction> list = attractionService.queryOneByName(place);
+        System.out.println("================================================");
+        ArrayList<Integer> arrayList = new ArrayList<>();
+        for (int i = 0; i < list.size() ; i++) {
+            Integer attractionId = list.get(i).getAttractionId();
+            arrayList.add(attractionId);
+        }
 
-        List list = attractionService.queryOneByName(place);
-
-        return list;
+        for (int i = 0; i < arrayList.size() ; i++) {
+            System.out.println(arrayList);
+        }
+        return arrayList;
     }
 
 //    景点列表中转方法

@@ -38,7 +38,7 @@ public class UserController {
 
         System.out.println("userByPageBean...");
         PageBean pageBean = new PageBean();
-         String index="1";
+        String index="1";
         String strIndex = request.getParameter("index");
         if(strIndex!=null){
             index=strIndex;
@@ -55,7 +55,6 @@ public class UserController {
         modelAndView.addObject("userList",users);
         modelAndView.addObject("pageBean",pageBean);
         return modelAndView;
-
     }
 
     @RequestMapping("/userById/{id}")
@@ -74,16 +73,17 @@ public class UserController {
     @ResponseBody
     public Integer addUser(User user) {
         System.out.println("add...."+user);
-
         userService.addUser(user);
-        System.out.println(user);
         return 1;
     }
 
-    @RequestMapping("/updateUser")
-    public String updateUser(User user) {
+    @RequestMapping("/update")
+    @ResponseBody
+    public Integer updateUser(User user) {
+        System.out.println("updateUser...."+user);
+
         userService.updateUser(user);
-        return "redirect:/user/userByPageBean";
+        return 1;
     }
 
     @RequestMapping("/deleteUser")
@@ -99,9 +99,25 @@ public class UserController {
             }
         }
         userService.deleteUser(user);
+        System.out.println("toupdate..."+user);
         return 1;
     }
 
+    @RequestMapping("/toupdate/{userId}")
+    public ModelAndView toupdate(@PathVariable(name = "userId")Integer userId){
+        System.out.println("toupdate...."+userId);
+        List<User> list = userService.queryAll();
+        User user=null;
+        for(User u:list){
+            if(u.getUserId().equals(userId)){
+                user=u;
+                break;
+            }
+        }
+        ModelAndView mv=new ModelAndView("/background/user/userUpdate");
+        mv.addObject("user",user);
+        return mv;
 
+    }
 
 }

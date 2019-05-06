@@ -4,10 +4,13 @@ import com.chinasofti.base.PageBean;
 import com.chinasofti.user.dao.UserDao;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.utils.CreateCode;
+import com.chinasofti.utils.MailUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.mail.MessagingException;
+import java.security.GeneralSecurityException;
 import java.util.List;
 
 /**
@@ -50,7 +53,15 @@ public class UserService {
     public void addUser(User user) {
         CreateCode code = new CreateCode();
         user.setState(0);
-        user.setCode(code.generateCode());
+        String c = code.generateCode();
+        user.setCode(c);
+
+        try {
+            MailUtils.sendMail(user.getEmail(),c);
+        } catch (MessagingException|GeneralSecurityException e) {
+            e.printStackTrace();
+        }
+
         userDao.add(user);
     }
     /**

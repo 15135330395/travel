@@ -75,22 +75,21 @@
     <div class="page">
         <div>
 
-            <c:if test="${pageBean.pageIndex!=1}">
-                <a class="prev" href="<%=request.getContextPath()%>/visitor/visitorByPageBean/${pageBean.pageIndex-1}">&lt;&lt;</a>
+            <c:if test="${pageBean.ndex>1}">
+                <a class="prev" href="<%=request.getContextPath()%>/visitor/visitorByPageBean?index=${pageBean.index-1}">&lt;&lt;</a>
             </c:if>
 
-            <c:forEach
-                    var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
+            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
+                <c:if test="${i==pageBean.index}">
                     <span class="current">${i}</span>
                 </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
-                    <a class="num" href="<%=request.getContextPath()%>/visitor/visitorByPageBean/${i}">${i}</a>
+                <c:if test="${i!=pageBean.index}">
+                    <a class="num" href="<%=request.getContextPath()%>/visitor/visitorByPageBean?index=${i}">${i}</a>
                 </c:if>
             </c:forEach>
 
-            <c:if test="${pageBean.pageIndex < pageBean.pages}">
-                <a class="next" href="<%=request.getContextPath()%>/visitor/visitorByPageBean/${pageBean.pageIndex+1}">&gt;&gt;</a>
+            <c:if test="${pageBean.index < pageBean.pages}">
+                <a class="next" href="<%=request.getContextPath()%>/visitor/visitorByPageBean?index=${pageBean.index+1}">&gt;&gt;</a>
             </c:if>
 
         </div>

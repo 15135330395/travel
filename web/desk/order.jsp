@@ -27,7 +27,7 @@
 <body>
 <div class="x-nav">
       <span class="layui-breadcrumb">
-        <a href="index.jsp"><cite>首页</cite></a>
+        <a href="<%=request.getContextPath()%>/index.jsp"><cite>首页</cite></a>
         <a><cite>我的订单</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
@@ -103,20 +103,6 @@
         </c:forEach>
         </tbody>
     </table>
-    <div class="page">
-        <div>
-            <a class="prev" href="">&lt;&lt;</a>
-            <c:forEach var="i" begin="1" end="${pageBean.pages}" step="1">
-                <c:if test="${i==pageBean.pageIndex}">
-                    <span class="current">${i}</span>
-                </c:if>
-                <c:if test="${i!=pageBean.pageIndex}">
-                    <a class="num" href="<%=request.getContextPath()%>/controllr/method/${i}">${i}</a>
-                </c:if>
-            </c:forEach>
-            <a class="next" href="">&gt;&gt;</a>
-        </div>
-    </div>
 
 </div>
 <script>

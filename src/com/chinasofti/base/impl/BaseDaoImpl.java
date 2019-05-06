@@ -69,7 +69,7 @@ public class BaseDaoImpl<T> implements BaseDao<T> {
 
     @Override
     public void add(T t) {
-        hibernateTemplate.save(t);
+                 hibernateTemplate.save(t);
     }
 
     @Override

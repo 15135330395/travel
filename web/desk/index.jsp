@@ -94,7 +94,7 @@
                                                     <c:if test="${price.attractionId == attractions[i].attractionId}">
                                                         <c:forEach items="${types}" var="type">
                                                             <c:if test="${type.typeId == price.typeId}">
-                                                                <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                                                <h6><option value="${price.price}">${type.typeName}:${price.price}</option></h6>
                                                             </c:if>
                                                         </c:forEach>
                                                     </c:if>
@@ -132,7 +132,7 @@
                                                     <c:if test="${price.attractionId == attractions[i].attractionId}">
                                                         <c:forEach items="${types}" var="type">
                                                             <c:if test="${type.typeId == price.typeId}">
-                                                                <option value="${price.price}">${type.typeName}:${price.price}</option>
+                                                                <h6><option value="${price.price}">${type.typeName}:${price.price}</option></h6>
                                                             </c:if>
                                                         </c:forEach>
                                                     </c:if>
