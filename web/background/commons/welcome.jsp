@@ -65,7 +65,7 @@
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>总访问量</h3>
+                                            <h3>游客总人次</h3>
                                             <p>
                                                 <cite>数量${clickCount}</cite></p>
                                         </a>
@@ -111,7 +111,7 @@
             <table class="layui-table">
                 <tbody>
                 <tr>
-                    <th>xxx版本</th>
+                    <th>版本号</th>
                     <td>1.0.180420</td>
                 </tr>
                 <tr>
@@ -137,18 +137,6 @@
                 <tr>
                     <th>MYSQL版本</th>
                     <td>5.5.62</td>
-                </tr>
-                <tr>
-                    <th>上传附件限制</th>
-                    <td>2M</td>
-                </tr>
-                <tr>
-                    <th>执行时间限制</th>
-                    <td>30s</td>
-                </tr>
-                <tr>
-                    <th>剩余空间</th>
-                    <td>86015.2M</td>
                 </tr>
                 </tbody>
             </table>

@@ -12,12 +12,22 @@ import java.util.List;
  */
 public interface StaffInterface {
     public List<Staff> queryByPageBean(PageBean pageBean);
+
     public void save(Staff staff);
+
     public Staff query(Integer id);
+
     public void update(Staff staff);
+
     public void delete(Staff staff);
+
     public List<Staff> queryAll();
+
     public Integer getCount();
+
+    List<Staff> queryByPageBeanAndWorkspace(PageBean pageBean, String workspace);
+
+    public Integer getCountByWorkspace(String workspace);
 //    public List<String> queryWorkPlace(Session session);
 
 }

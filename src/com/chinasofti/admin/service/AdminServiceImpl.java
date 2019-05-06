@@ -68,5 +68,9 @@ public class AdminServiceImpl implements AdminInterface {
         return adminDao.queryBySid(id);
     }
 
+    @Override
+    public Admin queryByName(String adminName) {
+        return adminDao.queryByName("adminName", adminName);
+    }
 
 }

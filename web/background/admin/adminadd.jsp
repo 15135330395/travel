@@ -142,8 +142,6 @@
                     phone: data.field.phone,
                     job: data.field.job,
                     workplace: data.field.workplace
-
-
                 },
                 success: function (msg) {
                     if (msg == 1) {

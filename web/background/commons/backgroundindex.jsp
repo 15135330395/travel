@@ -36,11 +36,10 @@
     </ul>
     <ul class="layui-nav right" lay-filter="">
         <li class="layui-nav-item">
-            <a href="javascript:;">${admin.admin_name}</a>
+            <a href="javascript:;">${admin.adminName}</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
-                <dd><a onclick="x_admin_show('个人信息','http://www.baidu.com')">个人信息</a></dd>
                 <dd><a onclick="x_admin_show('切换帐号','login.jsp')">切换帐号</a></dd>
-                <dd><a href="<%=request.getContextPath()%>/LogoutServlet">退出</a></dd>
+                <dd><a href="<%=request.getContextPath()%>/logout">退出</a></dd>
             </dl>
         </li>
         <li class="layui-nav-item to-index"><a onclick="x_admin_show('前台首页','<%=request.getContextPath()%>/index.jsp')">前台首页</a>

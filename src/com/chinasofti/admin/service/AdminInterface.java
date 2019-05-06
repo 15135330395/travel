@@ -22,4 +22,5 @@ public interface AdminInterface {
     public Admin queryBySid(Integer id);
 
 
+    Admin queryByName(String adminName);
 }

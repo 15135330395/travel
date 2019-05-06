@@ -22,9 +22,7 @@ public class StaffServiceImpl implements StaffInterface {
 
     @Override
     public List<Staff> queryByPageBean(PageBean pageBean) {
-
             return staffDao.queryByPageBean(pageBean);
-
     }
 
     @Transactional
@@ -57,6 +55,16 @@ public class StaffServiceImpl implements StaffInterface {
     @Override
     public Integer getCount() {
         return staffDao.getCount();
+    }
+
+    @Override
+    public List<Staff> queryByPageBeanAndWorkspace(PageBean pageBean, String workspace) {
+        return staffDao.queryByPageBeanAndAdminId(pageBean,workspace);
+    }
+
+    @Override
+    public Integer getCountByWorkspace(String workspace) {
+        return staffDao.getCountByWorkspace(workspace);
     }
 
 //    public List<String> queryWorkPlace(Session session) {

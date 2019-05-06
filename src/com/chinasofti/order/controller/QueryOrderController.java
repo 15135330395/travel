@@ -85,20 +85,11 @@ public class QueryOrderController {
     @RequestMapping("/changeState/{orderId}")
     @ResponseBody
     public ModelAndView changeState(@PathVariable(name = "orderId") String orderId, HttpSession session){
-
         List<Staff> staffList = StaffService.queryAll();
-
         int id = (int) (Math.random() * (staffList.size()));
-
         Staff staff = staffList.get(id);
-
-
         orderService.changeState(Long.valueOf(orderId),staff);
-
-
-
         ModelAndView modelAndView = new ModelAndView("/desk/center");
-
         return modelAndView;
     }
 
@@ -121,7 +112,6 @@ public class QueryOrderController {
 
     @RequestMapping("queryOne")
     public String queryOne(HttpServletRequest request,Map<String,Object> map) {
-
         String a = request.getParameter("order_id");
         long orderId = Long.parseLong(a);
         Orders order = orderService.query(orderId);

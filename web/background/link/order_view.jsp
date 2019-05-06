@@ -94,9 +94,6 @@ table tr:nth-child(even) {
 			</span></td>
 
 		</tr>
-		
-
-
 
 </table>
 <div><h2>游客信息</h2></div>

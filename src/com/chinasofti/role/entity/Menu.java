@@ -80,4 +80,15 @@ public class Menu {
     public void setUrl(String url) {
         this.url = url;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", menuName='" + menuName + '\'' +
+                ", parentId=" + parentId +
+                ", img='" + img + '\'' +
+                ", url='" + url + '\'' +
+                '}';
+    }
 }

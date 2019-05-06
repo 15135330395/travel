@@ -21,21 +21,23 @@ public class MenuDaoImpl extends BaseDaoImpl<Menu> implements MenuDao {
 
     @Override
     public List<Menu> findMenuByUserId(Integer adminId) {
-        String hql = "from Menu" +
-                "where menuId in" +
+        String sql = "select * " +
+                "from menu " +
+                "where menu_id in" +
                 "      (" +
-                "        select menuId" +
-                "        from menuRole" +
-                "        where roleId = (" +
-                "          select roleId" +
-                "          from Role" +
-                "          where roleId = (" +
-                "            select roleId" +
+                "        select menu_id" +
+                "        from menu_role " +
+                "        where role_id = (" +
+                "          select role_id" +
+                "          from role" +
+                "          where role_id = (" +
+                "            select role_id" +
                 "            from admin" +
-                "            where adminId = ?" +
+                "            where admin_id = :id" +
                 "          )" +
                 "        )" +
                 "      );";
-        return hibernateTemplate.execute(session -> session.createQuery("hql").list());
+        List<Menu> id = hibernateTemplate.execute(session -> session.createSQLQuery(sql).addEntity(Menu.class).setParameter("id", adminId).list());
+        return id;
     }
 }

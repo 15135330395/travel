@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.UnsupportedEncodingException;
 import java.util.List;
 import java.util.Map;
 
@@ -34,25 +35,46 @@ public class StaffController {
     public String list(HttpServletRequest request, Map<String, Object> map) {
         PageBean pageBean = new PageBean();
         // 页码
-//        String index = request.getParameter("index");
-//        if (index == null) {
-//            index = "1";
-//        }
-//        pageBean.setIndex(Integer.parseInt(index));
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        pageBean.setIndex(Integer.parseInt(index));
         // 每页条数
         String pageCount = "5";
         pageBean.setPageCount(Integer.parseInt(pageCount));
         // 总条数
         pageBean.setCount(staffService.getCount());
-//        List<Staff> staffList = staffService.queryByPageBean(pageBean);
-//        for (Staff staff : staffList) {
-//            System.out.println(staff);
-//        }
+        List<Staff> staffList = staffService.queryByPageBean(pageBean);
+        for (Staff staff : staffList) {
+            System.out.println(staff);
+        }
         map.put("pageBean", pageBean);
-//        map.put("staffList", staffList);
-
-
+        map.put("staffList", staffList);
         return "/background/staff/stafflist";
+    }
+
+    @RequestMapping("/workspace")
+    public String list2(HttpServletRequest request, Map<String, Object> map) throws UnsupportedEncodingException {
+        request.setCharacterEncoding("utf-8");
+        String workspace = request.getParameter("workspace");
+        PageBean pageBean = new PageBean();
+        // 页码
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        pageBean.setIndex(Integer.parseInt(index));
+        // 每页条数
+        String pageCount = "5";
+        pageBean.setPageCount(Integer.parseInt(pageCount));
+        // 总条数
+        pageBean.setCount(staffService.getCountByWorkspace(workspace));
+        List<Staff> staffList = staffService.queryByPageBeanAndWorkspace(pageBean,workspace);
+        map.put("pageBean", pageBean);
+        map.put("staffList", staffList);
+        map.put("workspace", workspace);
+        return "/background/staff/stafflist2";
     }
 
 
@@ -61,7 +83,6 @@ public class StaffController {
         Staff staff = staffService.query(staffId);
         request.setAttribute("staff", staff);
         return "/background/staff/staffedit";
-
     }
 
     @RequestMapping("/to/{staffId}")
@@ -69,7 +90,6 @@ public class StaffController {
         Staff staff = staffService.query(staffId);
         map.put("staff", staff);
         return "/background/admin/adminadd";
-
     }
 
     @RequestMapping("/addAdmin")
@@ -95,10 +115,8 @@ public class StaffController {
     @RequestMapping("/update")
     @ResponseBody
     public Integer update(Staff staff) {
-
         staffService.update(staff);
         return 1;
-
     }
 
     /**
@@ -110,7 +128,6 @@ public class StaffController {
     @RequestMapping("/deleteAll")
     @ResponseBody
     public Integer deleteList(@RequestParam(name = "staffId") String ids) {
-
         //判断ids不为空
         if (StringUtils.isNoneBlank(ids)) {
             //分割ids

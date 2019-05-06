@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="info.jsp"%>
+<%@ include file="info.jsp" %>
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +20,7 @@
     <form method="post" class="layui-form">
         <input name="username" placeholder="用户名" type="text" lay-verify="username" class="layui-input">
         <hr class="hr15">
-        <input name="password" placeholder="密码" type="password" lay-verify="password"  class="layui-input">
+        <input name="password" placeholder="密码" type="password" lay-verify="password" class="layui-input">
         <hr class="hr15">
         <input value="登录" lay-submit lay-filter="login" style="width:100%;" type="submit">
         <hr class="hr20">
@@ -51,25 +51,26 @@
             form.on('submit(login)', function (data) {
                 $.ajax({
                     type: "post",
-                    url: "<%=request.getContextPath()%>/UserServlet",
-                    data: "username=" + data.field.username + "&password=" + data.field.password,
+                    url: "<%=request.getContextPath()%>/admin/login",
+                    data: "adminName=" + data.field.username + "&password=" + data.field.password,
                     success: function (msg) {
-                        // 将JSON对象转为js对象
-                        var obj = eval("(" + msg + ")");
-                        if (obj.code == "1000") {
-                            layer.msg(obj.message, function () {
-                                location.href = 'backgroundindex.jsp'
+                        if (msg == 2) {
+                            layer.msg("登录成功", function () {
+                                location.href = "<%=request.getContextPath()%>/background/commons/backgroundindex.jsp"
                             });
-                            if (${username!=null}){
+                            if (${admin!=null}) {
                                 // 获得frame索引
                                 var index = parent.layer.getFrameIndex(window.name);
                                 // 关闭当前frame
                                 parent.layer.close(index);
                                 // 刷新父frame
                                 window.parent.location.reload();
+                                location.href = "<%=request.getContextPath()%>/background/commons/backgroundindex.jsp"
                             }
-                        } else {
-                            layer.msg(obj.message)
+                        } else if (msg == 1) {
+                            layer.msg("密码错误")
+                        } else if (msg == 0) {
+                            layer.msg("用户名不存在")
                         }
                     }
                 });
