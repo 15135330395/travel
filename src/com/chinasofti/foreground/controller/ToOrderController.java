@@ -41,12 +41,27 @@ public class ToOrderController {
     @Autowired
     TypeService typeService;
 
+    /**
+     * 去下订单页面
+     * @param model
+     * @param attractionId
+     * @return
+     */
     @RequestMapping("/order/{attractionId}")
     public String toOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
         Attraction attraction = attractionService.query(attractionId);
         model.addAttribute("attraction",attraction);
         return "/order";
     }
+
+    /**
+     * 获取订单信息，写入数据库，并返回首页
+     * @param request
+     * @param order
+     * @param goTime
+     * @param visitor
+     * @return
+     */
     @ResponseBody
     @RequestMapping("/toOrder")
     public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){

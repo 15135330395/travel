@@ -30,12 +30,13 @@
                        autocomplete="off" class="layui-input">
             </div>
         </div>
+
         <div class="layui-form-item">
             <label for="email" class="layui-form-label">
-                <span class="x-red">*</span>用户邮箱
+                <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input value="${user.email}" type="email" id="email" name="email" required="" lay-verify="email"
+                <input value="${user.email}" type="hidden" id="email" name="email"  required="" lay-verify="email"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -51,12 +52,25 @@
         </div>
         <div class="layui-form-item">
             <label for="code" class="layui-form-label">
-                <span class="x-red">*</span>激活码
+                <span class="x-red"></span>
             </label>
             <div class="layui-input-inline">
-                <input  value="${user.code}" type="text" id="code" name="code" required="" lay-verify="text"
+                <input  value="${user.code}" type="hidden" id="code" name="code" required="" lay-verify="text"
                         autocomplete="off" class="layui-input">
             </div>
+        </div>
+
+        <div class="layui-form-item">
+        <label class="layui-form-label">
+        <span class="x-red">*</span>激活状态
+        </label>
+        <div class="layui-input-inline">
+        <select type="text" name="state" lay-verify="">
+        <option value="">请选择激活状态</option>
+        <option value="0">0</option>
+        <option value="1">1</option>
+        </select>
+        </div>
         </div>
 
         <div class="layui-form-item">
@@ -78,14 +92,18 @@
             var userId=data.field.userId;
             var email=data.field.email;
             var password=data.field.password;
+            var state=data.field.state;
+            var code=data.field.code;
             console.log(data)
             $.ajax({
                 type:"post",
-                url:"<%=request.getContextPath()%>/visitor/updateVisitor",
+                url:"<%=request.getContextPath()%>/user/update",
                 data:{
-                    "userId":userId,
+                    "userId":userId ,
                     "email":email,
-                    "password":password
+                    "password":password,
+                    "state":state,
+                    "code":code
                 },
                 success:function(msg){
                     if(msg=="1"){

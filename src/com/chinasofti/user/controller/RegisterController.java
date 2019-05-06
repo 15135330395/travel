@@ -3,10 +3,8 @@ package com.chinasofti.user.controller;
 import com.chinasofti.user.dao.UserDao;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.user.service.UserService;
-import com.chinasofti.utils.StringUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -23,24 +21,18 @@ public class RegisterController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("/sendCode/{code}/{email}")
+    @RequestMapping("/register")
     @ResponseBody
-    public Integer check(@PathVariable("code")String code, @PathVariable("email")String email){
-        User user = userDao.queryByName("email", email);
-        Integer state = 0;
-        if(email.equals(user.getEmail())){
-            if(StringUtil.isNotEmpty(code)&code.equalsIgnoreCase(user.getCode())){
-                user.setState(1);
-                state = 1;
-            }
+    public Integer register(User user){
+        User user1 = userDao.queryByName("email", user.getEmail());
+        Integer i = 0;
+        if (user1 != null) {
+            i = 1;
+        }else{
+            userService.addUser(user);
+            i = 2;
         }
-        return state;
-    }
-
-    @RequestMapping("/registe")
-    public void register(User user){
-        userService.addUser(user);
-
+        return i;
 
     }
 
