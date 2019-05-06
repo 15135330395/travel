@@ -55,6 +55,10 @@ public class AttractionDaoImpl extends BaseDaoImpl<Attraction> implements Attrac
             }
         });
     }
+
+
+
+
     @Override
     public List<Price> queryAttractionPrice() {
         return hibernateTemplate.execute(session -> session.createQuery("from Price").list());
