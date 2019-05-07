@@ -48,7 +48,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
             </div>
             <div class="form-group col-md-4">
                 <label for="type">旅游类型 <span class="required"></span></label>
-                <select id="type" name="type.typeId " class="form-control">
+                <select id="type" name="type.typeId" class="form-control">
                     <option value="">===请选择===</option>
                     <option value="1">个人游</option>
                     <option value="2">组团游</option>
@@ -130,7 +130,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
                 },
             },
                 messages: {
-                    goTime: "请输入集合时间",
+                    goTime: "请输入出发时间",
                     place: "请输入集合地点",
                     visitorName:"请输入游客姓名",
                     cardId: {
