@@ -125,6 +125,8 @@
 
                     var obj = eval("("+data+")");
                     alert(obj.name)
+
+                    window.location.reload(true);
                 }
             })
         });

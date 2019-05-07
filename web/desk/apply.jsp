@@ -1,4 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
+<%@ include file="info.jsp" %>
 <html>
 <head>
     <title>Title</title>
@@ -19,9 +21,18 @@
             <td align="center">${order.total}</td>
         </tr>
         <tr>
-            <td colspan="2" align="center"><input type="submit" value="支付" name="apply"></td>
+            <td colspan="2" align="center"><input type="submit" value="支付" name="apply" onclick="n()"></td>
         </tr>
     </table>
 </form>
+
 </body>
+
+<script>
+
+    function n() {
+        alert("支付成功");
+    }
+
+</script>
 </html>

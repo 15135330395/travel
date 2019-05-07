@@ -93,9 +93,7 @@ public class QueryOrderController {
 
         Staff staff = staffList.get(id);
 
-
         orderService.changeState(Long.valueOf(orderId), staff);
-
 
         ModelAndView modelAndView = new ModelAndView("/desk/center");
 
