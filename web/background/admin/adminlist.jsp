@@ -75,15 +75,20 @@
                     <%--<a title="删除" class="layui-btn layui-btn-danger layui-btn-xs"--%>
                        <%--onclick="admin_del(this,'${admin.adminId}')" href="javascript:;">删除--%>
                     <%--</a>--%>
-                    <a title="赋予角色" class="layui-btn layui-btn-normal layui-btn-xs"
-                       onclick="layer.open({
-                               title: '赋予角色',
-                               type: 2,
-                               skin: 'layui-layer-rim', // 加上边框
-                               area: [$(window).width() * 0.9 + 'px', $(window).height() * 0.9 + '620px'], // 宽高
-                               content: '<%=request.getContextPath()%>/admin/to/${admin.adminId}'
-                               });">赋予角色
-                    </a>
+                    <c:if test="${admin.role==null}">
+                        <a title="赋予角色" class="layui-btn layui-btn-normal layui-btn-xs"
+                           onclick="layer.open({
+                                   title: '赋予角色',
+                                   type: 2,
+                                   skin: 'layui-layer-rim', // 加上边框
+                                   area: [$(window).width() * 0.9 + 'px', $(window).height() * 0.9 + '620px'], // 宽高
+                                   content: '<%=request.getContextPath()%>/admin/to/${admin.adminId}'
+                                   });">赋予角色
+                        </a>
+                    </c:if>
+                    <c:if test="${admin.role!=null}">
+                        <a class="layui-btn layui-btn-normal layui-btn-xs">已赋予角色</a>
+                    </c:if>
                 </td>
             </tr>
         </c:forEach>

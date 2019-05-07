@@ -498,9 +498,11 @@ $(function(){
 	}
 
 	// ease scroll
+    /*
 	var easeScrollFunc = function() {
 		$("html").easeScroll();
 	}
+	*/
 
 	var toggleMobile = function() {
 		$(document).on("click", "[data-toggle=menu]", function() {
@@ -704,7 +706,7 @@ $(function(){
 
 	magnificGallery();
 
-	easeScrollFunc();
+	/*easeScrollFunc();*/
 
 	toggleMobile();
 

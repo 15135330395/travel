@@ -98,7 +98,7 @@ public class StaffController {
         admin.setStaff(staff);
         staff.setAdmin(admin);
 //        adminService.save(admin);
-        staffService.save(staff);
+        staffService.update(staff);
         return 1;
     }
 
