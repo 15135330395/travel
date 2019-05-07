@@ -51,7 +51,7 @@ public class ToOrderController {
     public String toOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
         Attraction attraction = attractionService.query(attractionId);
         model.addAttribute("attraction",attraction);
-        return "/order";
+        return "/order1";
     }
 
     /**
