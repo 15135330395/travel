@@ -7,7 +7,6 @@ import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import com.chinasofti.utils.JsonUtil;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
