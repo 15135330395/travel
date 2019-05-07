@@ -49,7 +49,6 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
             <div class="form-group col-md-4">
                 <label for="type">旅游类型 <span class="required"></span></label>
                 <select id="type" name="type.typeId" class="form-control">
-                    <option value="">===请选择===</option>
                     <option value="1">个人游</option>
                     <option value="2">组团游</option>
                 </select>
