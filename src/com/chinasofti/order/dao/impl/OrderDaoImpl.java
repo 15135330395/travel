@@ -1,5 +1,6 @@
 package com.chinasofti.order.dao.impl;
 
+import com.chinasofti.base.PageBean;
 import com.chinasofti.base.impl.BaseDaoImpl;
 import com.chinasofti.order.dao.OrderDao;
 import com.chinasofti.order.entity.Orders;
@@ -96,5 +97,26 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
                 .setParameter("id", orderId)
                 .list());
     }
+
+
+    @Override
+    public List<Orders> queryOrderBySid(int staffId) {
+        // TODO 自动生成的方法存根
+        return hibernateTemplate.execute(session -> session.createQuery("from Orders where staff_id=:id")
+                .setParameter("id", staffId)
+                .list());
+    }
+
+
+    @Override
+    public List<Orders> queryByPage(PageBean pageBean,int staffId) {
+        return hibernateTemplate.execute(session -> session.createQuery("from Orders where staff_id=:id" )
+                .setParameter("id", staffId)
+                .setFirstResult(pageBean.getPageIndex())
+                .setMaxResults(pageBean.getPageCount())
+                .list());
+    }
+
+
 
 }
