@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-3 col-sm-12">
                     <div class="brand">
-                        <a href="">
+                        <a href="<%=request.getContextPath()%>/index.jsp">
                             <img src="<%=request.getContextPath()%>/desk/images/logo.png" alt="Magz Logo">
                         </a>
                     </div>

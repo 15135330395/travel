@@ -51,18 +51,16 @@ public class UserService {
      */
     @Transactional
     public void addUser(User user) {
-        CreateCode code = new CreateCode();
         user.setState(0);
-        String c = code.generateCode();
+        String c = CreateCode.generateCode();
         user.setCode(c);
-
         try {
             MailUtils.sendMail(user.getEmail(),c);
+            userDao.add(user);
         } catch (MessagingException|GeneralSecurityException e) {
             e.printStackTrace();
         }
 
-        userDao.add(user);
     }
     /**
      * 修改用户信息

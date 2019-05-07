@@ -25,8 +25,8 @@ public class MenuRoleDaoImpl extends BaseDaoImpl<MenuRole> implements MenuRoleDa
     }
 
     @Override
-    public void deleteMenuRole(Integer menuRoleId) {
-        hibernateTemplate.execute(session -> session.createQuery("delete from MenuRole where roleId = :id").setParameter("id", menuRoleId));
+    public void deleteMenuRole(Integer roleId) {
+        Integer id = hibernateTemplate.execute(session -> session.createSQLQuery(" delete from menu_role where role_id = :roleId ").setParameter("roleId", roleId).executeUpdate());
     }
 
 }

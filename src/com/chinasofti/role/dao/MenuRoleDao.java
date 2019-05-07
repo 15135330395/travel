@@ -23,8 +23,8 @@ public interface MenuRoleDao extends BaseDao<MenuRole> {
     /**
      * 通过角色删除权限
      *
-     * @param menuRoleId
+     * @param roleId
      * @return
      */
-    void deleteMenuRole(Integer menuRoleId);
+    void deleteMenuRole(Integer roleId);
 }
