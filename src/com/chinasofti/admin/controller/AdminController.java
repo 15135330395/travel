@@ -55,7 +55,6 @@ public class AdminController {
 
         map.put("pageBean", pageBean);
         map.put("adminList", admins);
-//        request.setAttribute("admins", admins);
         return "/background/admin/adminlist";
 
     }
@@ -85,7 +84,7 @@ public class AdminController {
         Admin admin = adminService.query(adminId);
         Role role = roleService.queryRoleById(roleId);
         admin.setRole(role);
-        adminService.save(admin);
+        adminService.update(admin);
         return "1";
 
     }
