@@ -64,7 +64,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
                     <input type="text"
                            placeholder="请输入身份证号" style="height: 34px;padding: 6px 12px" name="cardId">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系方式:
-                    <input type="text"
+                    <input type="number"
                            placeholder="请输入联系方式" style="height: 34px;padding: 6px 12px" name="phone">
                     <i class="icon ion-plus-circled" onclick="add()" style="padding: 5px auto"></i>
                 </div>
@@ -85,7 +85,7 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
             "      style=\"height: 34px;padding: 6px 12px\"   placeholder=\"请输入姓名\" name=\"visitorName\">" +
             " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;身份证号: <input type=\"text\"\n" +
             "     style=\"height: 34px;padding: 6px 12px\"   placeholder=\"请输入身份证号\" name=\"cardId\">" +
-            " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系方式: <input type=\"text\"\n" +
+            " &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联系方式: <input type=\"number\"\n" +
             "  style=\"height: 34px;padding: 6px 12px\"   placeholder=\"请输入联系方式\" name=\"phone\">" +
             "  <i class=\"icon ion-minus-circled\" onclick='del(this)'></i></div>";
         document.getElementById("tb").appendChild(form);
@@ -122,24 +122,24 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
                 visitorName:"required",
                 cardId: {
                     required: true,
-                    minlength:18
+                    rangelength:[18,18]
                 },
                 phone: {
                     required: true,
-                    minlength:11
+                    rangelength:[11,11]
                 },
             },
                 messages: {
-                    goTime: "请输入出发时间",
+                    goTime: "请输入集合时间",
                     place: "请输入集合地点",
                     visitorName:"请输入游客姓名",
                     cardId: {
                         required: "请输入身份证号",
-                        minlength: "请输入正确的身份证号"
+                        rangelength: "请输入正确的身份证号"
                     },
                     phone: {
                         required: "请输入手机号",
-                        minlength: "请输入正确的手机号"
+                        rangelength: "请输入正确的手机号"
                     }
                 },
            onsubmit:true,
