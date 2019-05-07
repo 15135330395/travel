@@ -113,23 +113,6 @@
                                     </ul>
                                 </li>
                             </c:if>
-                            <li class="dropdown magz-dropdown">
-                                <a href="#">错误页面<i class="ion-ios-arrow-right"></i></a>
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="<%=request.getContextPath()%>/desk/403.jsp">403</a>
-                                    </li>
-                                    <li>
-                                        <a href="<%=request.getContextPath()%>/desk/404.jsp">404</a>
-                                    </li>
-                                    <li>
-                                        <a href="<%=request.getContextPath()%>/desk/500.jsp">500</a>
-                                    </li>
-                                    <li>
-                                        <a href="<%=request.getContextPath()%>/desk/503.jsp">503</a>
-                                    </li>
-                                </ul>
-                            </li>
                         </ul>
                     </li>
 

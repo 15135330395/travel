@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="info.jsp" %>
+<%@ include file="/desk/info.jsp" %>
 <html>
 <head>
     <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
@@ -7,7 +7,7 @@
 
 <body>
 <!-- 头部开始 -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="/desk/header.jsp"/>
 <!-- 头部结束 -->
 
 <section class="not-found">

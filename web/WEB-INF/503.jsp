@@ -1,5 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ include file="info.jsp" %>
+<%@ include file="../info.jsp" %>
 <html>
 <head>
     <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
@@ -7,7 +7,7 @@
 
 <body>
 <!-- 头部开始 -->
-<jsp:include page="header.jsp"/>
+<jsp:include page="/desk/header.jsp"/>
 <!-- 头部结束 -->
 
 <section class="not-found">
@@ -15,10 +15,10 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="code">
-                    404
+                    503
                 </div>
-                <h1>无法找到此页面</h1>
-                <p class="lead">您要访问的页面不存在，请查看您要访问的网址。</p>
+                <h1>Service Unavailable</h1>
+                <p class="lead">we're doing maintenance, come back later.</p>
                 <div class="search-form">
                     <form>
                         <div class="form-group">
@@ -31,7 +31,7 @@
                         </div>
                     </form>
                     <div class="link">
-                        或者 <a href="page.jsp">回到首页</a>
+                        or <a href="page.jsp">back to home</a>.
                     </div>
                 </div>
             </div>
