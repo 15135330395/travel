@@ -1,5 +1,6 @@
 package com.chinasofti.order.controller;
 
+import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.service.OrderService;
@@ -127,6 +128,38 @@ public class QueryOrderController {
         map.put("queryVisitorByOrder", queryVisitorByOrder);
         map.put("order", order);
         return "/background/link/order_view";
+    }
+
+
+    @RequestMapping("queryBySid")
+    public String queryList(HttpServletRequest request,HttpSession session,Map<String,Object> map) {
+
+        Admin attribute = (Admin) session.getAttribute("admin");
+
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+        PageBean pageBean = new PageBean();
+        pageBean.setIndex(Integer.parseInt(index));
+        pageBean.setPageCount(10);
+
+        Integer staffId = attribute.getStaff().getStaffId();
+        List<Orders> queryBySid = orderService.queryOrderBySid(5);
+
+        pageBean.setCount(queryBySid.size());
+
+//        Integer staffId = attribute.getStaff().getStaffId();
+//        List<Orders> queryOrderBySid = orderService.queryOrderBySid(staffId);
+
+        List<Orders> queryOrderBySid = orderService.queryByPage(pageBean,staffId);
+
+        System.out.println(queryOrderBySid.toString());
+
+        map.put("pageBean", pageBean);
+        map.put("queryOrderBySid", queryOrderBySid);
+
+        return "/background/link/order2";
     }
 
 }

@@ -34,5 +34,6 @@ public interface OrderService {
 
 
 	List<Visitor> queryVisitorByOrder(Long orderId);
-
+	List<Orders> queryOrderBySid(int staffId);
+	List<Orders> queryByPage(PageBean pageBean,int staffId);
 }

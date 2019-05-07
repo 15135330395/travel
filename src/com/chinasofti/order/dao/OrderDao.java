@@ -4,6 +4,7 @@ import com.chinasofti.base.BaseDao;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.visitor.entity.Visitor;
+import com.chinasofti.base.PageBean;
 
 import java.util.List;
 
@@ -24,6 +25,10 @@ public interface OrderDao extends BaseDao<Orders> {
     Orders queryById(Long orderId);
 
     List<Visitor> queryVisitorByOrder(Long orderId);
+
+    List<Orders> queryOrderBySid(int staffId);
+
+    List<Orders> queryByPage(PageBean pageBean,int staffId);
 }
 //	void addorder(Order orders);
 //

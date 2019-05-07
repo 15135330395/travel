@@ -27,7 +27,6 @@
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
 </div>
 <div class="x-body">
-        <span class="x-right" style="line-height:40px">共有数据：${pageBean.count} 条</span>
     <table class="layui-table">
         <thead>
         <tr>

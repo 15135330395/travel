@@ -84,4 +84,17 @@ public class OrderServiceImp implements OrderService{
 		// TODO 自动生成的方法存根
 		return orderDaoImp.queryVisitorByOrder(orderId);
 	}
+	@Override
+	public List<Orders> queryOrderBySid(int staffId) {
+		// TODO 自动生成的方法存根
+		return orderDaoImp.queryOrderBySid(staffId);
+	}
+
+
+	@Override
+	public List<Orders> queryByPage(PageBean pageBean,int staffId) {
+		// TODO 自动生成的方法存根
+
+		return orderDaoImp.queryByPage(pageBean,staffId);
+	}
 }
