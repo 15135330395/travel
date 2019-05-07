@@ -55,7 +55,7 @@ public class ToOrderController {
     }
 
     /**
-     * 获取订单信息，写入数据库，并返回首页
+     * 获取订单信息，写入数据库，并返回自己订单列表
      * @param request
      * @param order
      * @param goTime
@@ -85,7 +85,7 @@ public class ToOrderController {
             list.add(visitor);
         }
         orderService.addorder(order,list.size());
-        ModelAndView modelAndView = new ModelAndView("/index");
+        ModelAndView modelAndView = new ModelAndView("/desk/center");
         return modelAndView;
     }
 }

@@ -32,7 +32,7 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
             @Override
             public List doInHibernate(Session session) throws HibernateException {
 
-                String hql = "from Orders where user = " + userId;
+                String hql = "from Orders where user = " + userId +"order by createTime DESC";
                 Query query = session.createQuery(hql);
                 return query.list();
             }
