@@ -79,21 +79,6 @@
                        autocomplete="off" class="layui-input">
             </div>
         </div>
-        <%--<div class="layui-form-item">--%>
-            <%--<label class="layui-form-label">工作地点：</label>--%>
-            <%--<div class="layui-input-block">--%>
-                <%--<select name="workplace" lay-filter="workplace">--%>
-                    <%--<option value="">---请选择---</option>--%>
-                    <%--<option value="总部">总部</option>--%>
-                    <%--<option value="北京">北京</option>--%>
-                    <%--<option value="上海">上海</option>--%>
-                    <%--<option value="广州">广州</option>--%>
-                    <%--<option value="杭州">杭州</option>--%>
-                    <%--<option value="西安">西安</option>--%>
-
-                <%--</select>--%>
-            <%--</div>--%>
-        <%--</div>--%>
 
         <div class="layui-form-item">
             <label class="layui-form-label">

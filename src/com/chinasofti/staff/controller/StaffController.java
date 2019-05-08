@@ -27,8 +27,6 @@ import java.util.Map;
 public class StaffController {
     @Autowired
     StaffInterface staffService;
-//    @Autowired
-//    AdminInterface adminService;
 
 
     @RequestMapping("/list")
@@ -92,6 +90,12 @@ public class StaffController {
         return "/background/admin/adminadd";
     }
 
+    /**
+     * 给员工添加用户
+     * @param admin
+     * @param staff
+     * @return
+     */
     @RequestMapping("/addAdmin")
     @ResponseBody
     public Integer addAdmin(Admin admin, Staff staff) {

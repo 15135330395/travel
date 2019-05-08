@@ -78,6 +78,13 @@ public class AdminController {
 
     }
 
+    /**
+     * 给用户赋予角色
+     * @param adminId
+     * @param roleId
+     * @return
+     */
+
     @RequestMapping("giveUsersARole/{adminId}/{roleId}")
     @ResponseBody
     public String giant(@PathVariable(name = "adminId") Integer adminId, @PathVariable(name = "roleId") Integer roleId) {
@@ -143,7 +150,6 @@ public class AdminController {
             }
         }
         adminService.delete(admin);
-        /*  return "redirect:/attraction/query";*/
         return 1;
     }
 

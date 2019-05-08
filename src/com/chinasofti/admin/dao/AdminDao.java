@@ -9,8 +9,11 @@ import java.util.List;
 
 
 public interface AdminDao extends BaseDao<Admin> {
-    public List queryName();
-    public List queryRoleName();
+    /**
+     * 获得用户的分页列表
+     * @param pageBean
+     * @return
+     */
     public List<Admin> queryByPageBean(PageBean pageBean);
-    public Admin queryBySid(Integer id);
+
 }

@@ -48,25 +48,14 @@ public class AdminServiceImpl implements AdminInterface {
         return adminDao.queryAll();
     }
 
-    @Override
-    public List<String> queryName() {
-        return adminDao.queryName();
-    }
 
-    @Override
-    public List<String> queryRoleName() {
-        return adminDao.queryRoleName();
-    }
 
     @Override
     public List<Admin> queryByPageBean(PageBean pageBean) {
         return adminDao.queryByPageBean(pageBean);
     }
 
-    @Override
-    public Admin queryBySid(Integer id) {
-        return adminDao.queryBySid(id);
-    }
+
 
     @Override
     public Admin queryByName(String adminName) {
