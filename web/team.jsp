@@ -50,23 +50,22 @@
                     <td>${teamList.current}</td>
                     <td class="td-manage">
                         <c:if test="${teamList.current < teamList.predict}">
-                            <a title="参团" href="<%=request.getContextPath()%>/foreground/teamOrder/${teamList.teamId}">
-                                <i class="layui-icon">&#xe63c;</i>
-                            </a>
+                            <a title="参团" class="layui-btn layui-btn-normal layui-btn-xs"
+                               href="<%=request.getContextPath()%>/foreground/teamOrder/${teamList.teamId}">
+                                参团</a>
                         </c:if>
                         <c:if test="${teamList.current == teamList.predict}">
-                            <a title="已满">
-                                <i class="layui-icon">&#xe63c;</i>
-                            </a>
+                            <a title="已满" class="layui-btn layui-btn-danger layui-btn-xs">
+                                已满</a>
                         </c:if>
                     </td>
                 </c:if>
                 <c:if test="${teamList.current==null}">
                     <td>0</td>
                     <td class="td-manage">
-                        <a title="参团" href="<%=request.getContextPath()%>/foreground/teamOrder/${teamList.teamId}">
-                            <i class="layui-icon">&#xe63c;</i>
-                        </a>
+                        <a title="参团" class="layui-btn layui-btn-normal layui-btn-xs"
+                           href="<%=request.getContextPath()%>/foreground/teamOrder/${teamList.teamId}">
+                            参团</a>
                     </td>
                 </c:if>
             </tr>
