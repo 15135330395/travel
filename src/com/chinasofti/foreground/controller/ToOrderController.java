@@ -53,6 +53,19 @@ public class ToOrderController {
         model.addAttribute("attraction",attraction);
         return "/order";
     }
+    /**
+     * 去组团信息表
+     * @param model
+     * @param attractionId
+     * @return
+     */
+    @RequestMapping("/teamOrder/{attractionId}")
+    public String teamOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+        Attraction attraction = attractionService.query(attractionId);
+
+        model.addAttribute("attraction",attraction);
+        return "/team";
+    }
 
     /**
      * 获取订单信息，写入数据库，并返回自己订单列表
@@ -89,7 +102,7 @@ public class ToOrderController {
         return modelAndView;
     }
     /**
-     * 获取订单信息，写入数据库，并返回自己订单列表
+     * 获取组团信息，写入数据库
      * @param request
      * @param order
      * @param goTime
