@@ -7,6 +7,8 @@ import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
+import com.chinasofti.team.entity.Team;
+import com.chinasofti.team.service.TeamService;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +34,8 @@ import java.util.UUID;
 public class AttractionController {
     @Autowired
     private AttractionService attractionService;
-
     @Autowired
-    private AttractionDao attractionDao;
+    TeamService teamService;
     /**
      * 景点查询
      * @param model
@@ -355,6 +356,10 @@ public class AttractionController {
         model.addAttribute("list", list1);
         model.addAttribute("prices", prices);
         model.addAttribute("types", types);
+        List<Team> teams = teamService.queryByAttractionId(attraction.getAttractionId());
+        if (teams.size()!=0) {
+            model.addAttribute("flag", 1);
+        }
         return "/single";
     }
 }

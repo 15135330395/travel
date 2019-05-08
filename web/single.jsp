@@ -90,8 +90,14 @@
                     <div class="col-md-12">
                         <a href="<%=request.getContextPath()%>/foreground/order/${attraction.attractionId}"><h4>散客游：想要亲身体验么，就赶快下单吧，不要错过哦！！！</h4></a>
                     </div>
+                <div class="line"></div>
                     <div class="col-md-12">
+                        <c:if test="${flag==1}">
                         <a href="<%=request.getContextPath()%>/foreground/team/${attraction.attractionId}"><h4>拼团！！！</h4></a>
+                        </c:if>
+                        <c:if test="${flag!=1}">
+                        <h4 class="title">暂无组团游</h4>
+                        </c:if>
                     </div>
                 </div>
             </div>
