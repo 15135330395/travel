@@ -119,7 +119,7 @@
                 <a class="next"
                    href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index+1}">下一页</a>
             </c:if>
-            <c:if test="${pageBean.pageIndex>=pageBean.pages}">
+            <c:if test="${pageBean.index>=pageBean.pages}">
                 <a class="next"
                    href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index}">下一页</a>
             </c:if>
