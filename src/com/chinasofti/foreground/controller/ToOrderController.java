@@ -125,9 +125,9 @@ public class ToOrderController {
 
     /**
      * 获取组团信息，写入数据库,并返回自己订单列表
-     *
      * @param request
      * @param team
+     * @param order
      * @param goTime
      * @param visitor
      * @param typeId
