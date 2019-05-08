@@ -30,6 +30,7 @@
     <table class="layui-table">
         <thead>
         <tr>
+            <th>类型</th>
             <th>目的地</th>
             <th>导游姓名</th>
             <th>导游性别</th>
@@ -46,6 +47,7 @@
         <tbody>
         <c:forEach items="${orderList}" var="link">
             <tr>
+                <td>${link.type.typeName}</td>
                 <td>${link.attraction.attractionName}</td>
                 <td>${link.staff.staffName}</td>
                 <td>${link.staff.staffSex}</td>

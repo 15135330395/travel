@@ -57,11 +57,9 @@
                                         <footer>
                                                 <c:forEach items="${prices}" var="price">
                                                     <c:if test="${price.attractionId == attractions[i].attractionId}">
-                                                        <c:forEach items="${types}" var="type">
-                                                            <c:if test="${type.typeId == price.typeId}">
-                                                                <h6><option value="${price.price}">${type.typeName}:${price.price}</option></h6>
+                                                            <c:if test="${2 == price.typeId}">
+                                                                <h6><option value="${price.price}">散客游:${price.price}</option></h6>
                                                             </c:if>
-                                                        </c:forEach>
                                                     </c:if>
                                                 </c:forEach>
 
@@ -87,14 +85,11 @@
                                         <footer>
                                                 <c:forEach items="${prices}" var="price">
                                                     <c:if test="${price.attractionId == attractions[i].attractionId}">
-                                                        <c:forEach items="${types}" var="type">
-                                                            <c:if test="${type.typeId == price.typeId}">
-                                                                <h6><option value="${price.price}">${type.typeName}:${price.price}</option></h6>
+                                                            <c:if test="${2 == price.typeId}">
+                                                                <h6><option value="${price.price}">散客游:${price.price}</option></h6>
                                                             </c:if>
-                                                        </c:forEach>
                                                     </c:if>
                                                 </c:forEach>
-
                                            <a class="btn btn-primary more" href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
                                                 <div>更多</div>
                                                 <div><i class="ion-ios-arrow-thin-right"></i></div>
@@ -116,10 +111,8 @@
                 </div>
 
                     <div class="line transparent little"></div>
-
                 <div class="row">
                 </div>
-
                 <div class="row">
                     <c:forEach items="${newsByTypeList}" var="newsList">
                         <article class="col-md-12 article-list">
@@ -178,6 +171,34 @@
                     </div>
                 </aside>
                 <!-- 用户界面结束 -->
+
+                <aside>
+                    <h1 class="aside-title">活动
+                    </h1>
+                    <div class="aside-body">
+                        <c:forEach begin="0" end="3" var="i">
+                            <article class="article-mini">
+                                <div class="inner">
+                                    <figure>
+                                        <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
+                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
+                                        </a>
+                                    </figure>
+                                    <div class="padding">
+                                        <h1><a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">${attractions[i].attractionName}</a></h1>
+                                        <c:forEach items="${prices}" var="price">
+                                            <c:if test="${price.attractionId == attractions[i].attractionId}">
+                                                <c:if test="${1 == price.typeId}">
+                                                    <h6><option value="${price.price}">组团游:${price.price}</option></h6>
+                                                </c:if>
+                                            </c:if>
+                                        </c:forEach>
+                                    </div>
+                                </div>
+                            </article>
+                        </c:forEach>
+                    </div>
+                </aside>
 
                 <!-- 友情链接开始 -->
                 <aside id="sponsored">

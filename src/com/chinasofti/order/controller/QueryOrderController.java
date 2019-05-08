@@ -145,7 +145,7 @@ public class QueryOrderController {
         pageBean.setPageCount(10);
 
         Integer staffId = attribute.getStaff().getStaffId();
-        List<Orders> queryBySid = orderService.queryOrderBySid(5);
+        List<Orders> queryBySid = orderService.queryOrderBySid(staffId);
 
         pageBean.setCount(queryBySid.size());
 
