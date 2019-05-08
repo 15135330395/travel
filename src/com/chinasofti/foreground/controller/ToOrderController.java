@@ -6,6 +6,8 @@ import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.entity.Type;
 import com.chinasofti.order.service.OrderService;
+import com.chinasofti.team.entity.Team;
+import com.chinasofti.team.service.TeamService;
 import com.chinasofti.type.service.TypeService;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.utils.DateUtil;
@@ -40,6 +42,8 @@ public class ToOrderController {
     OrderService orderService;
     @Autowired
     TypeService typeService;
+    @Autowired
+    TeamService teamService;
 
     /**
      * 去下订单页面
@@ -59,12 +63,23 @@ public class ToOrderController {
      * @param attractionId
      * @return
      */
-    @RequestMapping("/teamOrder/{attractionId}")
-    public String teamOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
-        Attraction attraction = attractionService.query(attractionId);
-
-        model.addAttribute("attraction",attraction);
+    @RequestMapping("/team/{attractionId}")
+    public String team(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+        List<Team> teamList = teamService.queryByAttractionId(attractionId);
+        model.addAttribute("teamList",teamList);
         return "/team";
+    }
+    /**
+     * 组团下订单
+     * @param model
+     * @param teamId
+     * @return
+     */
+    @RequestMapping("/teamOrder/{teamId}")
+    public String teamOrder(Model model, @PathVariable(name = "teamId") Integer teamId){
+        Team team = teamService.queryByTeamId(teamId);
+        model.addAttribute("team",team);
+        return "/teamOrder";
     }
 
     /**
