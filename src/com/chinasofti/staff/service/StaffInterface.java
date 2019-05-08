@@ -66,4 +66,5 @@ public interface StaffInterface {
     public Integer getCountByWorkspace(String workspace);
 
 
+    public Integer queryByJob(String job);
 }

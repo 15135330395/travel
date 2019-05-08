@@ -22,4 +22,6 @@ public interface StaffDao extends BaseDao<Staff> {
      * @return
      */
     Integer getCountByWorkspace(String workspace);
+
+    Integer queryByJob(String job);
 }

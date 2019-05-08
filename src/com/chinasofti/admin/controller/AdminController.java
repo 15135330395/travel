@@ -2,21 +2,28 @@ package com.chinasofti.admin.controller;
 
 import com.chinasofti.admin.entity.Admin;
 import com.chinasofti.admin.service.AdminInterface;
+import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
+import com.chinasofti.order.service.OrderService;
 import com.chinasofti.role.entity.Menu;
 import com.chinasofti.role.entity.Role;
 import com.chinasofti.role.service.MenuService;
 import com.chinasofti.role.service.RoleService;
-import com.chinasofti.user.entity.User;
+import com.chinasofti.staff.service.StaffInterface;
+import com.chinasofti.team.service.TeamService;
+import com.chinasofti.user.service.UserService;
+import com.chinasofti.visitor.service.VisitorService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +41,19 @@ public class AdminController {
     RoleService roleService;
     @Autowired
     MenuService menuService;
+    @Autowired
+    AttractionService attractionService;
+    @Autowired
+    OrderService orderService;
+    @Autowired
+    VisitorService visitorService;
+    @Autowired
+    UserService userService;
+    @Autowired
+    StaffInterface staffService;
+    @Autowired
+    TeamService teamService;
+
 
     @RequestMapping("/list")
     public String query(HttpServletRequest request, Map<String, Object> map) {
@@ -168,6 +188,21 @@ public class AdminController {
                 session.setAttribute("admin", a);
                 List<Menu> menuList = menuService.findMenuByUserId(a.getAdminId());
                 session.setAttribute("menus", menuList);
+
+                session.setAttribute("adminName",a.getAdminName());
+                Integer attractionCount = attractionService.getCount();
+                Integer orderCount = orderService.getCount();
+                Integer visitorCount = visitorService.getCount();
+                Integer userCount = userService.getCount();
+                Integer teamCount = teamService.getCount();
+                Integer jobCount = staffService.queryByJob("导游");
+
+                session.setAttribute("attractionCount",attractionCount);
+                session.setAttribute("orderCount",orderCount);
+                session.setAttribute("visitorCount",visitorCount);
+                session.setAttribute("userCount",userCount);
+                session.setAttribute("teamCount",teamCount);
+                session.setAttribute("jobCount",jobCount);
                 return 2;
             } else {
                 // 密码错误
@@ -181,6 +216,5 @@ public class AdminController {
     public String goBack() {
         return "/background/commons/login";
     }
-
 
 }

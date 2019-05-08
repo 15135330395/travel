@@ -28,6 +28,11 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
+	public void changeState(Long orderId) {
+		orderDaoImp.changeState(orderId);
+	}
+
+	@Override
 	public void updateOrder(Orders orders) {
 		// TODO 自动生成的方法存根
 		orderDaoImp.update(orders);
@@ -96,5 +101,10 @@ public class OrderServiceImp implements OrderService{
 		// TODO 自动生成的方法存根
 
 		return orderDaoImp.queryByPage(pageBean,staffId);
+	}
+
+	@Override
+	public Integer getCount() {
+		return orderDaoImp.getCount();
 	}
 }

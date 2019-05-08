@@ -13,11 +13,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -42,15 +44,40 @@ public class QueryOrderController {
     @RequestMapping("/queryOrder/{userId}")
     public ModelAndView queryOrder(@PathVariable(name = "userId") Integer userId, HttpServletRequest request) {
 
+        String index = request.getParameter("index");
+        if (index == null) {
+            index = "1";
+        }
+
+        int startIndex = (Integer.parseInt(index)-1)*10;
+        int endIndex = (startIndex+9);
+
         List<Orders> list = orderService.queryOrder(userId);
 
         for (Orders orders : list) {
             List<Visitor> visitors = visitorService.queryByOrderId(orders.getOrderId());
             orders.setVisitorList(visitors);
         }
+
+        ArrayList<Object> arrayList = new ArrayList<>();
+
+        for (int i = startIndex; i <= endIndex; i++) {
+
+            if(i>list.size()-1){
+                break;
+            }else {
+                Orders orders = list.get(i);
+                arrayList.add(orders);
+            }
+        }
+
+        int pageNum = list.size() % 10 == 0 ? list.size() / 10 : list.size()/ 10 + 1;
+
         ModelAndView modelAndView = new ModelAndView("/desk/order");
 
-        modelAndView.addObject("orderList", list);
+        modelAndView.addObject("orderList", arrayList);
+        modelAndView.addObject("pageNum", pageNum);
+        modelAndView.addObject("index", index);
         return modelAndView;
     }
 
@@ -84,17 +111,21 @@ public class QueryOrderController {
     }
 
     //    前台用户订单支付状态修改方法
-    @RequestMapping("/changeState/{orderId}")
+    @RequestMapping("/changeState")
     @ResponseBody
-    public ModelAndView changeState(@PathVariable(name = "orderId") String orderId, HttpSession session) {
+    public ModelAndView changeState(@RequestParam(name = "orderId") String orderId, @RequestParam(name = "typeName") String typeName) {
 
-        List<Staff> staffList = StaffService.queryAll();
+        if("散客游".equals(typeName)){
+            List<Staff> staffList = StaffService.queryAll();
 
-        int id = (int) (Math.random() * (staffList.size()));
+            int id = (int) (Math.random() * (staffList.size()));
 
-        Staff staff = staffList.get(id);
+            Staff staff = staffList.get(id);
 
-        orderService.changeState(Long.valueOf(orderId), staff);
+            orderService.changeState(Long.valueOf(orderId), staff);
+        }else{
+            orderService.changeState(Long.valueOf(orderId));
+        }
 
         ModelAndView modelAndView = new ModelAndView("/desk/center");
 
@@ -132,7 +163,7 @@ public class QueryOrderController {
 
 
     @RequestMapping("queryBySid")
-    public String queryList(HttpServletRequest request,HttpSession session,Map<String,Object> map) {
+    public String queryList(HttpServletRequest request, HttpSession session, Map<String, Object> map) {
 
         Admin attribute = (Admin) session.getAttribute("admin");
 
@@ -145,14 +176,14 @@ public class QueryOrderController {
         pageBean.setPageCount(10);
 
         Integer staffId = attribute.getStaff().getStaffId();
-        List<Orders> queryBySid = orderService.queryOrderBySid(5);
+        List<Orders> queryBySid = orderService.queryOrderBySid(staffId);
 
         pageBean.setCount(queryBySid.size());
 
 //        Integer staffId = attribute.getStaff().getStaffId();
 //        List<Orders> queryOrderBySid = orderService.queryOrderBySid(staffId);
 
-        List<Orders> queryOrderBySid = orderService.queryByPage(pageBean,staffId);
+        List<Orders> queryOrderBySid = orderService.queryByPage(pageBean, staffId);
 
         System.out.println(queryOrderBySid.toString());
 

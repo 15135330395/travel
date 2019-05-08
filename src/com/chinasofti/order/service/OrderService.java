@@ -27,7 +27,7 @@ public interface OrderService {
 
 	void changeState(Long orderId, Staff staff);
 
-
+	void changeState(Long orderId);
 
 
 
@@ -36,4 +36,6 @@ public interface OrderService {
 	List<Visitor> queryVisitorByOrder(Long orderId);
 	List<Orders> queryOrderBySid(int staffId);
 	List<Orders> queryByPage(PageBean pageBean,int staffId);
+
+    Integer getCount();
 }

@@ -101,7 +101,10 @@
                     </footer>
                 </article>
                     <div class="col-md-12">
-                        <a href="<%=request.getContextPath()%>/foreground/order/${attraction.attractionId}"><h3>想要亲身体验么，就赶快下单吧，不要错过哦！！！</h3></a>
+                        <a href="<%=request.getContextPath()%>/foreground/order/${attraction.attractionId}"><h4>散客游：想要亲身体验么，就赶快下单吧，不要错过哦！！！</h4></a>
+                    </div>
+                    <div class="col-md-12">
+                        <a href="<%=request.getContextPath()%>/foreground/team/${attraction.attractionId}"><h4>拼团！！！</h4></a>
                     </div>
                 </div>
             </div>

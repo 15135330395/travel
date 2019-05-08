@@ -69,6 +69,13 @@ public class OrderDaoImpl extends BaseDaoImpl<Orders> implements OrderDao {
     }
 
     @Override
+    public void changeState(Long orderId) {
+        Orders orders = hibernateTemplate.get(Orders.class,Long.valueOf(orderId));
+        orders.setState(1);
+        hibernateTemplate.save(orders);
+    }
+
+    @Override
     public Double total(Long id) {
 
         return hibernateTemplate.execute(session -> {

@@ -32,7 +32,7 @@
                 <span class="x-red">*</span>用户邮箱
             </label>
             <div class="layui-input-inline">
-                <input type="email" id="email" name="email" required="" lay-verify="email"
+                <input type="email" id="email" name="email"  lay-verify="required|email" placeholder="请输入邮箱"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -41,23 +41,11 @@
                 <span class="x-red">*</span>用户密码
             </label>
             <div class="layui-input-inline">
-                <input type="text" id="password" name="password" required="" lay-verify="text"
+                <input type="text" id="password" name="password" lay-verify="required|pass" placeholder="由6到12位字母、数字组成"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
-        <%--<div class="layui-form-item">--%>
-            <%--<label class="layui-form-label">--%>
-                <%--<span class="x-red">*</span>激活状态--%>
-            <%--</label>--%>
-            <%--<div class="layui-input-inline">--%>
-                <%--<select type="text" name="state" lay-verify="">--%>
-                    <%--<option value="">请选择激活状态</option>--%>
-                    <%--<option value="0">0</option>--%>
-                    <%--<option value="1">1</option>--%>
-                <%--</select>--%>
 
-            <%--</div>--%>
-        <%--</div>--%>
         <div class="layui-form-item">
             <label  class="layui-form-label">
             </label>
@@ -72,6 +60,19 @@
         $ = layui.jquery;
         var form = layui.form
             ,layer = layui.layer;
+
+        form.verify({
+            pass:[
+                /*/^[\S]{6,12}$/
+                ,'密码必须6到12位，且不能出现空格'*/
+                /^[A-Za-z0-9]{6,16}$/
+                ,'密码必须由6到12位字母、数字组成'
+            ]
+        });
+
+
+
+
         //监听提交
         form.on('submit(add)', function(data){
             var userId=data.field.userId;

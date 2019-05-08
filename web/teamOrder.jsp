@@ -19,31 +19,23 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
 
 <div class="layui-container" style="padding: 20px">
     <div class="col-md-12">
-        <h1 >下订单</h1>
+        <h2 style="padding: 20px">下订单</h2>
     </div>
-    <form class="layui-form" action="<%=request.getContextPath()%>/foreground/toOrder" id="signupForm">
+    <form class="layui-form" action="<%=request.getContextPath()%>/foreground/toTeamOrder" id="signupForm">
         <input type="hidden" name="attraction.attractionId" value="${attraction.attractionId}">
         <div class="layui-form-item">
             <label class="layui-form-label">出发时间：</label>
             <div class="layui-input-inline">
-                <input type="text" name="goTime"  placeholder="请输入出发时间" lay-verify="required" class="layui-input" id="test1">
+                <input type="text" name="departure" readonly value="${team.departure}" lay-verify="required" class="layui-input" >
             </div>
             <label class="layui-form-label">集合地点：</label>
             <div class="layui-input-inline">
-                <select id="place" name="place" lay-verify="required">
-                    <option value=""></option>
-                    <option value="东门">东门</option>
-                    <option value="西门">西门</option>
-                    <option value="南门">南门</option>
-                    <option value="北门">北门</option>
-                    <option value="中门">中门</option>
-                </select>
+                <input type="text" name="place" readonly value="${team.place}" lay-verify="required" class="layui-input" >
+
             </div>
             <label class="layui-form-label">旅行类型：</label>
             <div class="layui-input-inline">
                 <select id="type" name="type.typeId" lay-verify="required">
-                    <option value=""></option>
-                    <option value="1">个人游</option>
                     <option value="2">组团游</option>
                 </select>
             </div>

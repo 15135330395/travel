@@ -6,6 +6,8 @@ import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.entity.Type;
 import com.chinasofti.order.service.OrderService;
+import com.chinasofti.team.entity.Team;
+import com.chinasofti.team.service.TeamService;
 import com.chinasofti.type.service.TypeService;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.utils.DateUtil;
@@ -40,6 +42,8 @@ public class ToOrderController {
     OrderService orderService;
     @Autowired
     TypeService typeService;
+    @Autowired
+    TeamService teamService;
 
     /**
      * 去下订单页面
@@ -51,7 +55,31 @@ public class ToOrderController {
     public String toOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
         Attraction attraction = attractionService.query(attractionId);
         model.addAttribute("attraction",attraction);
-        return "/order1";
+        return "/order";
+    }
+    /**
+     * 去组团信息表
+     * @param model
+     * @param attractionId
+     * @return
+     */
+    @RequestMapping("/team/{attractionId}")
+    public String team(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+        List<Team> teamList = teamService.queryByAttractionId(attractionId);
+        model.addAttribute("teamList",teamList);
+        return "/team";
+    }
+    /**
+     * 组团下订单
+     * @param model
+     * @param teamId
+     * @return
+     */
+    @RequestMapping("/teamOrder/{teamId}")
+    public String teamOrder(Model model, @PathVariable(name = "teamId") Integer teamId){
+        Team team = teamService.queryByTeamId(teamId);
+        model.addAttribute("team",team);
+        return "/teamOrder";
     }
 
     /**
@@ -65,6 +93,40 @@ public class ToOrderController {
     @ResponseBody
     @RequestMapping("/toOrder")
     public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
+        order.setOrderId(IdUtil.genItemId());
+        order.setCreateTime(new Date());
+        order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
+        order.setState(0);
+        Attraction attraction = attractionService.query(order.getAttraction().getAttractionId());
+        order.setAttraction(attraction);
+        Type type = typeService.query(order.getType().getTypeId());
+        order.setType(type);
+        User user = (User) request.getSession().getAttribute("user");
+        order.setUser(user);
+        String[] split1 = visitor.getVisitorName().split(",");
+        String[] split2 = visitor.getCardId().split(",");
+        String[] split3 = visitor.getPhone().split(",");
+        List<Visitor> list = new ArrayList<>();
+        for (int i = 0; i < split1.length; i++) {
+            visitor = new Visitor(split1[i], split2[i], split3[i],order);
+            visitorService.addVisitor(visitor);
+            list.add(visitor);
+        }
+        orderService.addorder(order,list.size());
+        ModelAndView modelAndView = new ModelAndView("/desk/center");
+        return modelAndView;
+    }
+    /**
+     * 获取组团信息，写入数据库
+     * @param request
+     * @param order
+     * @param goTime
+     * @param visitor
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/toTeamOrder")
+    public ModelAndView teamOrder(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
         order.setOrderId(IdUtil.genItemId());
         order.setCreateTime(new Date());
         order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));

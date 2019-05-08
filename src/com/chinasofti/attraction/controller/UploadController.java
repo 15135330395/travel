@@ -16,7 +16,7 @@ import java.util.UUID;
 
 @WebServlet(name = "UploadServlet",urlPatterns = "/uploadImage")
 @MultipartConfig
-public class UploadServlet extends HttpServlet {
+public class UploadController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
@@ -36,7 +36,6 @@ public class UploadServlet extends HttpServlet {
             fileName = uuid+"_"+strArr[strArr.length-1];
         }
 
-        System.out.println("fileName:"+fileName);
         //把文件写到指定路径
         part.write(savePath+"/"+fileName);
 
