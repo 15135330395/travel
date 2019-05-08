@@ -53,6 +53,19 @@ public class ToOrderController {
         model.addAttribute("attraction",attraction);
         return "/order";
     }
+    /**
+     * 去组团信息表
+     * @param model
+     * @param attractionId
+     * @return
+     */
+    @RequestMapping("/teamOrder/{attractionId}")
+    public String teamOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+        Attraction attraction = attractionService.query(attractionId);
+
+        model.addAttribute("attraction",attraction);
+        return "/team";
+    }
 
     /**
      * 获取订单信息，写入数据库，并返回自己订单列表
@@ -65,6 +78,40 @@ public class ToOrderController {
     @ResponseBody
     @RequestMapping("/toOrder")
     public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
+        order.setOrderId(IdUtil.genItemId());
+        order.setCreateTime(new Date());
+        order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
+        order.setState(0);
+        Attraction attraction = attractionService.query(order.getAttraction().getAttractionId());
+        order.setAttraction(attraction);
+        Type type = typeService.query(order.getType().getTypeId());
+        order.setType(type);
+        User user = (User) request.getSession().getAttribute("user");
+        order.setUser(user);
+        String[] split1 = visitor.getVisitorName().split(",");
+        String[] split2 = visitor.getCardId().split(",");
+        String[] split3 = visitor.getPhone().split(",");
+        List<Visitor> list = new ArrayList<>();
+        for (int i = 0; i < split1.length; i++) {
+            visitor = new Visitor(split1[i], split2[i], split3[i],order);
+            visitorService.addVisitor(visitor);
+            list.add(visitor);
+        }
+        orderService.addorder(order,list.size());
+        ModelAndView modelAndView = new ModelAndView("/desk/center");
+        return modelAndView;
+    }
+    /**
+     * 获取组团信息，写入数据库
+     * @param request
+     * @param order
+     * @param goTime
+     * @param visitor
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping("/toTeamOrder")
+    public ModelAndView teamOrder(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
         order.setOrderId(IdUtil.genItemId());
         order.setCreateTime(new Date());
         order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
