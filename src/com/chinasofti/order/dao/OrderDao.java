@@ -19,7 +19,7 @@ public interface OrderDao extends BaseDao<Orders> {
 
     void changeState(Long orderId, Staff staff);
 
-
+    void changeState(Long orderId);
 
 
     Orders queryById(Long orderId);

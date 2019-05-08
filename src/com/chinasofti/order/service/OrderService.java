@@ -27,7 +27,7 @@ public interface OrderService {
 
 	void changeState(Long orderId, Staff staff);
 
-
+	void changeState(Long orderId);
 
 
 

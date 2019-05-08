@@ -28,10 +28,12 @@
     <div class="message">伪支付</div>
     <div id="darkbannerwrap"></div>
 
-    <form class="layui-form" action="<%=request.getContextPath()%>/QueryOrderController/changeState/${order.orderId}">
-        订单号：<input name="username" readonly="readonly" type="text" class="layui-input" value="${order.orderId}">
+    <form class="layui-form" action="<%=request.getContextPath()%>/QueryOrderController/changeState">
+        订单号：<input name="orderId" readonly="readonly" type="text" class="layui-input" value="${order.orderId}">
         <hr class="hr15">
-        订单总额：<input name="password" readonly="readonly" type="text" class="layui-input" value="${order.total}">
+        类型：<input name="typeName" readonly="readonly" type="text" class="layui-input" value="${order.type.typeName}">
+        <hr class="hr15">
+        订单总额：<input name="total" readonly="readonly" type="text" class="layui-input" value="${order.total}">
         <hr class="hr15">
         <input value="支付" style="width:100%;" name="apply" type="submit" onclick="n()">
         <hr class="hr20">

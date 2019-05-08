@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -110,17 +111,21 @@ public class QueryOrderController {
     }
 
     //    前台用户订单支付状态修改方法
-    @RequestMapping("/changeState/{orderId}")
+    @RequestMapping("/changeState")
     @ResponseBody
-    public ModelAndView changeState(@PathVariable(name = "orderId") String orderId, HttpSession session) {
+    public ModelAndView changeState(@RequestParam(name = "orderId") String orderId, @RequestParam(name = "typeName") String typeName) {
 
-        List<Staff> staffList = StaffService.queryAll();
+        if("散客游".equals(typeName)){
+            List<Staff> staffList = StaffService.queryAll();
 
-        int id = (int) (Math.random() * (staffList.size()));
+            int id = (int) (Math.random() * (staffList.size()));
 
-        Staff staff = staffList.get(id);
+            Staff staff = staffList.get(id);
 
-        orderService.changeState(Long.valueOf(orderId), staff);
+            orderService.changeState(Long.valueOf(orderId), staff);
+        }else{
+            orderService.changeState(Long.valueOf(orderId));
+        }
 
         ModelAndView modelAndView = new ModelAndView("/desk/center");
 

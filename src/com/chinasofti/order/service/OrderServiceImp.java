@@ -28,6 +28,11 @@ public class OrderServiceImp implements OrderService{
 	}
 
 	@Override
+	public void changeState(Long orderId) {
+		orderDaoImp.changeState(orderId);
+	}
+
+	@Override
 	public void updateOrder(Orders orders) {
 		// TODO 自动生成的方法存根
 		orderDaoImp.update(orders);
