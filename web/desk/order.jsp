@@ -1,6 +1,6 @@
 <%@ page import="com.chinasofti.user.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@include file="static/info.jsp" %>
+<%@include file="../background/commons/info.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.chinasofti.user.entity.User" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
@@ -154,11 +154,14 @@
 
     /*用户-删除*/
     function member_del(obj, id) {
-        layer.confirm('确认要取消订单吗？', function (index) {
+
+        layer.confirm('确认要取消订单吗？', function () {
             $.ajax({
-                type: " post",
-                url: "<%=request.getContextPath()%>/QueryOrderController/deleteOrder/" + id,
-                data: {},
+                type: "post",
+                url: "<%=request.getContextPath()%>/QueryOrderController/deleteOrder/"+id,
+                data: {
+
+                },
                 success: function (data) {
 
                     var obj = eval("(" + data + ")");

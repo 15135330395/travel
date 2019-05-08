@@ -85,6 +85,7 @@ public class QueryOrderController {
     @ResponseBody
     public MsgUtil deleteOrder(@PathVariable(name = "orderId") String orderId) {
 
+        System.out.println("================================");
         int i = orderService.deleteById(orderId);
 
         if (i != 0) {
