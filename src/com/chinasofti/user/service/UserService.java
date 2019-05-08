@@ -50,15 +50,17 @@ public class UserService {
      * 添加用户信息
      */
     @Transactional
-    public void addUser(User user) {
+    public Integer addUser(User user) {
         user.setState(0);
         String c = CreateCode.generateCode();
         user.setCode(c);
         try {
             MailUtils.sendMail(user.getEmail(),c);
             userDao.add(user);
+            return 1;
         } catch (MessagingException|GeneralSecurityException e) {
             e.printStackTrace();
+            return 0;
         }
 
     }

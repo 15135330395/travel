@@ -31,4 +31,7 @@ public interface TeamService {
     List<Team> queryBypage(PageBean pageBean);
 
     Team queryOne(int tId);
+
+    Integer getCount();
+
 }

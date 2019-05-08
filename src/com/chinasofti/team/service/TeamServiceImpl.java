@@ -76,8 +76,10 @@ public class TeamServiceImpl implements TeamService {
         return teamDaoImp.queryById(teamId);
     }
 
-
-
+    @Override
+    public Integer getCount() {
+        return teamDao.getCount();
+    }
 
 
 }

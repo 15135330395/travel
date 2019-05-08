@@ -37,7 +37,7 @@ public class UserController {
             index=strIndex;
         }
         pageBean.setIndex(Integer.parseInt(index));
-        System.out.println("index===="+index);
+//        System.out.println("index===="+index);
         Integer pageCount=5;
         pageBean.setPageCount(pageCount);
         pageBean.setCount(userService.getCount());
@@ -51,8 +51,8 @@ public class UserController {
     @ResponseBody
     public Integer addUser(User user) {
         System.out.println("add...."+user);
-        userService.addUser(user);
-        return 1;
+        Integer i = userService.addUser(user);
+        return i;
     }
 
     @RequestMapping("/update")

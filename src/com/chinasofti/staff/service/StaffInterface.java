@@ -30,4 +30,5 @@ public interface StaffInterface {
     public Integer getCountByWorkspace(String workspace);
 //    public List<String> queryWorkPlace(Session session);
 
+    public Integer queryByJob(String job);
 }
