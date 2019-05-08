@@ -1,8 +1,8 @@
-<%@ page import="com.chinasofti.user.entity.User" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@include file="../background/commons/info.jsp" %>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="com.chinasofti.user.entity.User" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <script type="text/javascript" src="<%=request.getContextPath()%>/desk/js/jquery.min.js"></script>
 <html>
 <head>
@@ -10,8 +10,7 @@
     <title>我的订单</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <meta name="viewport"
-          content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi"/>
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
 </head>
 
 <body>
@@ -59,13 +58,12 @@
                     <c:forEach items="${link.visitorList}" var="visitor">
                         姓名：${visitor.visitorName}<br>
                         身份证号：${visitor.cardId}<br>
-                        联系方式：${visitor.phone}
-                        <hr>
+                        联系方式：${visitor.phone} <hr>
                     </c:forEach>
                 </td>
 
                 <td>${link.attraction.route}</td>
-                <td>${link.departure}</td>
+                <td><fmt:formatDate value="${link.departure}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${link.place}</td>
                 <td>${link.total}</td>
 
@@ -136,7 +134,6 @@
         </div>
     </div>
 </div>
-
 <script>
     layui.use('laydate', function () {
         var laydate = layui.laydate;
@@ -173,7 +170,6 @@
         });
     }
 </script>
-
 </body>
 
 </html>

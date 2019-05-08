@@ -47,43 +47,49 @@ public class ToOrderController {
 
     /**
      * 去下订单页面
+     *
      * @param model
      * @param attractionId
      * @return
      */
     @RequestMapping("/order/{attractionId}")
-    public String toOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+    public String toOrder(Model model, @PathVariable(name = "attractionId") Integer attractionId) {
         Attraction attraction = attractionService.query(attractionId);
-        model.addAttribute("attraction",attraction);
+        model.addAttribute("attraction", attraction);
         return "/order";
     }
+
     /**
      * 去组团信息表
+     *
      * @param model
      * @param attractionId
      * @return
      */
     @RequestMapping("/team/{attractionId}")
-    public String team(Model model, @PathVariable(name = "attractionId") Integer attractionId){
+    public String team(Model model, @PathVariable(name = "attractionId") Integer attractionId) {
         List<Team> teamList = teamService.queryByAttractionId(attractionId);
-        model.addAttribute("teamList",teamList);
+        model.addAttribute("teamList", teamList);
         return "/team";
     }
+
     /**
      * 组团下订单
+     *
      * @param model
      * @param teamId
      * @return
      */
     @RequestMapping("/teamOrder/{teamId}")
-    public String teamOrder(Model model, @PathVariable(name = "teamId") Integer teamId){
+    public String teamOrder(Model model, @PathVariable(name = "teamId") Integer teamId) {
         Team team = teamService.queryByTeamId(teamId);
-        model.addAttribute("team",team);
+        model.addAttribute("team", team);
         return "/teamOrder";
     }
 
     /**
      * 获取订单信息，写入数据库，并返回自己订单列表
+     *
      * @param request
      * @param order
      * @param goTime
@@ -92,10 +98,10 @@ public class ToOrderController {
      */
     @ResponseBody
     @RequestMapping("/toOrder")
-    public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
+    public ModelAndView order(HttpServletRequest request, Orders order, String goTime, Visitor visitor) {
         order.setOrderId(IdUtil.genItemId());
         order.setCreateTime(new Date());
-        order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
+        order.setDeparture(DateUtil.formatString(goTime, "yyyy-MM-dd HH:mm:ss"));
         order.setState(0);
         Attraction attraction = attractionService.query(order.getAttraction().getAttractionId());
         order.setAttraction(attraction);
@@ -108,46 +114,62 @@ public class ToOrderController {
         String[] split3 = visitor.getPhone().split(",");
         List<Visitor> list = new ArrayList<>();
         for (int i = 0; i < split1.length; i++) {
-            visitor = new Visitor(split1[i], split2[i], split3[i],order);
+            visitor = new Visitor(split1[i], split2[i], split3[i], order);
             visitorService.addVisitor(visitor);
             list.add(visitor);
         }
-        orderService.addorder(order,list.size());
+        orderService.addorder(order, list.size());
         ModelAndView modelAndView = new ModelAndView("/desk/center");
         return modelAndView;
     }
+
     /**
-     * 获取组团信息，写入数据库
+     * 获取组团信息，写入数据库,并返回自己订单列表
+     *
      * @param request
-     * @param order
+     * @param team
      * @param goTime
      * @param visitor
+     * @param typeId
      * @return
      */
     @ResponseBody
     @RequestMapping("/toTeamOrder")
-    public ModelAndView teamOrder(HttpServletRequest request, Orders order, String goTime, Visitor visitor){
+    public Integer teamOrder(HttpServletRequest request, Team team, Orders order, String goTime, Visitor visitor, Integer typeId) {
+        Team queryTeam = teamService.queryByTeamId(team.getTeamId());
         order.setOrderId(IdUtil.genItemId());
-        order.setCreateTime(new Date());
-        order.setDeparture(DateUtil.formatString(goTime,"yyyy-MM-dd HH:mm:ss"));
-        order.setState(0);
-        Attraction attraction = attractionService.query(order.getAttraction().getAttractionId());
-        order.setAttraction(attraction);
-        Type type = typeService.query(order.getType().getTypeId());
-        order.setType(type);
         User user = (User) request.getSession().getAttribute("user");
         order.setUser(user);
+        order.setAttraction(queryTeam.getAttraction());
+        Type type = typeService.query(typeId);
+        order.setType(type);
+        order.setStaff(queryTeam.getStaff());
+        order.setCreateTime(new Date());
+        order.setDeparture(DateUtil.formatString(goTime, "yyyy-MM-dd HH:mm:ss"));
+        order.setPlace(queryTeam.getPlace());
+        order.setState(0);
         String[] split1 = visitor.getVisitorName().split(",");
         String[] split2 = visitor.getCardId().split(",");
         String[] split3 = visitor.getPhone().split(",");
         List<Visitor> list = new ArrayList<>();
         for (int i = 0; i < split1.length; i++) {
-            visitor = new Visitor(split1[i], split2[i], split3[i],order);
-            visitorService.addVisitor(visitor);
+            visitor = new Visitor(split1[i], split2[i], split3[i], order);
             list.add(visitor);
         }
-        orderService.addorder(order,list.size());
-        ModelAndView modelAndView = new ModelAndView("/desk/center");
-        return modelAndView;
+        int predict = queryTeam.getPredict();
+        int current = queryTeam.getCurrent();
+        int sum = current + list.size();
+        if (sum <= predict) {
+            for (Visitor v : list) {
+                visitorService.addVisitor(v);
+            }
+            queryTeam.setCurrent(sum);
+            teamService.updateTeam(queryTeam);
+            order.setTeam(queryTeam);
+            orderService.addorder(order, list.size());
+            return  1;
+        }else {
+            return 0;
+        }
     }
 }

@@ -10,16 +10,4 @@ public interface TeamDao extends BaseDao<Team> {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 }

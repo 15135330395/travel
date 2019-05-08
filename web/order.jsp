@@ -18,17 +18,21 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
 <body>
 
 <div class="layui-container" style="padding: 20px">
-    <div class="col-md-12">
-        <h2 style="padding: 20px">下订单</h2>
+    <div class="col-md-12" style="padding: 20px">
+        <span class="layui-breadcrumb">
+        <a href="<%=request.getContextPath()%>/index.jsp" style="font: caption">首页</a>
+        <a>
+          <cite style="font: caption">订单</cite></a>
+      </span>
     </div>
     <form class="layui-form" action="<%=request.getContextPath()%>/foreground/toOrder" id="signupForm">
         <input type="hidden" name="attraction.attractionId" value="${attraction.attractionId}">
         <div class="layui-form-item">
-            <label class="layui-form-label">出发时间：</label>
+            <label class="layui-form-label" style="width: 111px;">出发时间：</label>
             <div class="layui-input-inline">
                 <input type="text" name="goTime"  placeholder="请输入出发时间" lay-verify="required" class="layui-input" id="test1">
             </div>
-            <label class="layui-form-label">集合地点：</label>
+            <label class="layui-form-label" style="width: 111px;">集合地点：</label>
             <div class="layui-input-inline">
                 <select id="place" name="place" lay-verify="required">
                     <option value=""></option>
@@ -39,16 +43,15 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
                     <option value="中门">中门</option>
                 </select>
             </div>
-            <label class="layui-form-label">旅行类型：</label>
+            <label class="layui-form-label" style="width: 111px;">旅行类型：</label>
             <div class="layui-input-inline">
                 <select id="type" name="type.typeId" lay-verify="required">
-                    <option value="1">散客游</option>
-                    <%--<option value="2">组团游</option>--%>
+                    <option value="2">散客游</option>
                 </select>
             </div>
         </div>
         <div class="layui-form-item">
-            <label class="layui-form-label">游客信息：</label>
+            <label class="layui-form-label" style="width: 111px;">游客信息：</label>
             <div role="group1" id="tb" class="layui-input-block">
                 姓名:
                 <input type="text" id="name1"
@@ -78,6 +81,8 @@ response.sendRedirect(request.getContextPath() + "/desk/login.jsp");
         laydate.render({
             elem: '#test1', //指定元素
             type:'datetime'
+            ,min:0
+            ,max:30
         });
     });
     function add() {

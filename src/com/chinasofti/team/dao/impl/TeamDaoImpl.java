@@ -18,10 +18,8 @@ public class TeamDaoImpl extends BaseDaoImpl<Team> implements TeamDao {
 
     public List<Team> queryByAttractionId(Integer id) {
         List list = hibernateTemplate.execute(session -> {
-            Query query = session.createQuery("from Team where attraction.attractionId = :attractionId ").setParameter("attractionId", id);
-
+            Query query = session.createQuery("from Team where attraction.attractionId = :attractionId order by departure desc ").setParameter("attractionId", id);
             return query.list();
-
         });
         return list;
     }

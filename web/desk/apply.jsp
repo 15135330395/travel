@@ -3,7 +3,7 @@
 <html class="x-admin-sm">
 <head>
     <meta charset="UTF-8">
-    <title>后台登录</title>
+    <title>Magz旅行社</title>
     <meta name="renderer" content="webkit|ie-comp|ie-stand">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport"

@@ -14,14 +14,6 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4 sidebar" id="sidebar">
-                <%--<aside>--%>
-                    <%--<div class="aside-body">--%>
-                        <%--<figure class="ads">--%>
-                            <%--<img src="<%=request.getContextPath()%>/images/ad.png">--%>
-                            <%--<figcaption>Advertisement</figcaption>--%>
-                        <%--</figure>--%>
-                    <%--</div>--%>
-                <%--</aside>--%>
                 <aside>
                     <h1 class="aside-title">世界时光</h1>
                     <div class="aside-body">
@@ -84,11 +76,6 @@
                         <p>${attraction.attractionDesc} </p>
                     </div>
                     <footer>
-                        <%--<div class="col">--%>
-                            <%--<a href="#" class="love"><i class="ion-android-favorite-outline"></i>--%>
-                                <%--<div>1220</div>--%>
-                            <%--</a>--%>
-                        <%--</div>--%>
                     <c:forEach items="${prices}" var="price">
                         <c:if test="${price.attractionId == attraction.attractionId}">
                             <c:forEach items="${types}" var="type">

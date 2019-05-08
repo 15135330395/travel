@@ -35,7 +35,7 @@ public class DateUtil {
 
     public static String getCurrentDateStr() throws Exception {
         Date date = new Date();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddhhmmss");
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
         return sdf.format(date);
     }
 }

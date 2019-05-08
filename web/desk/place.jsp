@@ -3,7 +3,7 @@
 <%@ include file="info.jsp" %>
 <html>
 <head>
-    <title>Magz &mdash; Responsive HTML5 &amp; CSS3 Magazine Template</title>
+    <title>Magz旅行社</title>
 </head>
 
 <body>

@@ -28,52 +28,37 @@ public class TeamServiceImpl implements TeamService {
         return teamDao.queryById(id);
     }
 
-
-
-
-
-
-
-
-
-
-
-
-    @Autowired
-    private TeamDao teamDaoImp;
-
-
     @Override
     public void addTeam(Team t) {
 
-        teamDaoImp.add(t);
+        teamDao.add(t);
     }
 
     @Override
     public void updateTeam(Team t) {
 
-        teamDaoImp.update(t);
+        teamDao.update(t);
     }
 
     @Override
     public void delete(Team t) {
 
-        teamDaoImp.delete(t);
+        teamDao.delete(t);
     }
 
     @Override
     public List<Team> queryAll() {
-        return teamDaoImp.queryAll();
+        return teamDao.queryAll();
     }
 
     @Override
     public List<Team> queryBypage(PageBean pageBean) {
-        return teamDaoImp.queryByPageBean(pageBean);
+        return teamDao.queryByPageBean(pageBean);
     }
 
     @Override
     public Team queryOne(int teamId) {
-        return teamDaoImp.queryById(teamId);
+        return teamDao.queryById(teamId);
     }
 
     @Override

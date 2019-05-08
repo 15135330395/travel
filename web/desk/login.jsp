@@ -2,7 +2,7 @@
 <%@ include file="info.jsp" %>
 <html>
 <head>
-    <title>Magz &mdash; 旅行社</title>
+    <title>Magz旅行社</title>
 </head>
 
 <body>

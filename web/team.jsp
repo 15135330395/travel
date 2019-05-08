@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ include file="/background/commons/info.jsp" %>
 <html class="x-admin-sm">
 <head>
@@ -21,7 +22,7 @@
 </div>
 <div class="x-body">
     <xblock>
-        <span class="x-right" style="line-height:40px">共有数据：${pageBean.count} 条</span>
+        <span class="x-right" style="line-height:40px"></span>
     </xblock>
     <table class="layui-table">
         <thead>
@@ -33,7 +34,7 @@
             <th>出发时间</th>
             <th>预计人数</th>
             <th>当前人数</th>
-            <th>操作</th>
+            <th>参团</th>
         </tr>
         </thead>
         <tbody>
@@ -43,18 +44,18 @@
                 <td>${teamList.staff.staffName}</td>
                 <td>${teamList.staff.staffSex}</td>
                 <td>${teamList.staff.phone}</td>
-                <td>${teamList.departure}</td>
+                <td><fmt:formatDate value="${teamList.departure}" pattern="yyyy-MM-dd HH:mm:ss"/></td>
                 <td>${teamList.predict}</td>
                 <c:if test="${teamList.current!=null}">
                     <td>${teamList.current}</td>
                     <td class="td-manage">
-                        <c:if test="${teamList.current < teamList.predict}" >
+                        <c:if test="${teamList.current < teamList.predict}">
                             <a title="参团" href="<%=request.getContextPath()%>/foreground/teamOrder/${teamList.teamId}">
-                                <i class="layui-icon">&#xe640;</i>
+                                <i class="layui-icon">&#xe63c;</i>
                             </a>
                         </c:if>
-                        <c:if test="${teamList.current == teamList.predict}" >
-                            <a title="已满"  >
+                        <c:if test="${teamList.current == teamList.predict}">
+                            <a title="已满">
                                 <i class="layui-icon">&#xe63c;</i>
                             </a>
                         </c:if>
