@@ -2,6 +2,7 @@ package com.chinasofti.order.entity;
 
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.staff.entity.Staff;
+import com.chinasofti.team.entity.Team;
 import com.chinasofti.user.entity.User;
 import com.chinasofti.visitor.entity.Visitor;
 
@@ -58,7 +59,16 @@ public class Orders {
      */
     private Double total;
 
+    /**
+     * 游客信息
+     */
     private List<Visitor> visitorList;
+    /**
+     * 组团信息
+     */
+    private Team team;
+
+
     @Id
     @Column(name = "order_id")
     public Long getOrderId() {
@@ -144,7 +154,7 @@ public class Orders {
     public void setUser(User user) {
         this.user = user;
     }
-
+    @Column(name = "total")
     public Double getTotal() {
         return total;
     }
@@ -162,6 +172,16 @@ public class Orders {
         this.visitorList = visitorList;
     }
 
+    @ManyToOne
+    @JoinColumn(name = "team_id")
+    public Team getTeam() {
+        return team;
+    }
+
+    public void setTeam(Team team) {
+        this.team = team;
+    }
+
     @Override
     public String toString() {
         return "Orders{" +
@@ -175,6 +195,8 @@ public class Orders {
                 ", state=" + state +
                 ", user=" + user +
                 ", total=" + total +
+                ", visitorList=" + visitorList +
+                ", team=" + team +
                 '}';
     }
 }

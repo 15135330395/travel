@@ -1,11 +1,13 @@
 package com.chinasofti.team.entity;
 
 import com.chinasofti.attraction.entity.Attraction;
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @Description Team
@@ -39,6 +41,10 @@ public class Team {
      * 当前人数
      */
     private Integer current;
+    /**
+     * 当前订单
+     */
+    private List<Orders> ordersList;
 
     @Id
     @GeneratedValue(generator = "_native")
@@ -97,5 +103,15 @@ public class Team {
 
     public void setCurrent(Integer current) {
         this.current = current;
+    }
+
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "team_id")
+    public List<Orders> getOrdersList() {
+        return ordersList;
+    }
+
+    public void setOrdersList(List<Orders> ordersList) {
+        this.ordersList = ordersList;
     }
 }
