@@ -102,14 +102,6 @@
     </table>
     <div class="page">
         <div>
-            <%--<c:if test="${pageBean.index>1}">--%>
-            <%--<a class="prev"--%>
-            <%--href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index-1}">上一页</a>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${pageBean.index<=1}">--%>
-            <%--<a class="prev"--%>
-            <%--href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index}">上一页</a>--%>
-            <%--</c:if>--%>
             <c:forEach var="i" begin="1" end="${pageNum}" step="1">
                 <c:if test="${i==index}">
             <span class="current">
@@ -123,14 +115,6 @@
                     </a>
                 </c:if>
             </c:forEach>
-            <%--<c:if test="${pageBean.index<pageBean.pages}">--%>
-            <%--<a class="next"--%>
-            <%--href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index+1}">下一页</a>--%>
-            <%--</c:if>--%>
-            <%--<c:if test="${pageBean.pageIndex>=pageBean.pages}">--%>
-            <%--<a class="next"--%>
-            <%--href="<%=request.getContextPath()%>/attraction/all?index=${pageBean.index}">下一页</a>--%>
-            <%--</c:if>--%>
         </div>
     </div>
 </div>
