@@ -97,4 +97,9 @@ public class OrderServiceImp implements OrderService{
 
 		return orderDaoImp.queryByPage(pageBean,staffId);
 	}
+
+	@Override
+	public Integer getCount() {
+		return orderDaoImp.getCount();
+	}
 }

@@ -46,7 +46,7 @@
                 <span class="x-red">*</span>用户密码
             </label>
             <div class="layui-input-inline">
-                <input value="${user.password}" type="text" id="password" name="password" required="" lay-verify="text"
+                <input value="${user.password}" type="text" id="password" name="password"  lay-verify="required|pass"
                        autocomplete="off" class="layui-input">
             </div>
         </div>
@@ -67,8 +67,8 @@
         <div class="layui-input-inline">
         <select type="text" name="state" lay-verify="">
         <option value="${user.state}">${user.state}</option>
-        <option value="0">0</option>
-        <option value="1">1</option>
+        <option value="0">未激活</option>
+        <option value="1">已激活</option>
         </select>
         </div>
         </div>
@@ -87,6 +87,15 @@
         $ = layui.jquery;
         var form = layui.form
             ,layer = layui.layer;
+//验证密码
+        form.verify({
+            pass:[
+                /^[A-Za-z0-9]{6,16}$/
+                ,'密码必须由6到12位字母、数字组成'
+            ]
+        });
+
+
         //监听提交
         form.on('submit(update)', function(data){
             var userId=data.field.userId;

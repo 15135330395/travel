@@ -14,7 +14,7 @@
 <body>
 <div class="x-body layui-anim layui-anim-up">
     <blockquote class="layui-elem-quote">欢迎管理员：
-        <span class="x-red">${username}</span>！
+        <span class="x-nav">${adminName}</span>！
         当前时间:
         <div id="time" style="display: inline;">
             2019-01-01 08:00:00
@@ -39,42 +39,42 @@
                                         <a href="javascript:;" class="x-admin-backlog-body">
                                             <h3>景点数</h3>
                                             <p>
-                                                <cite>数量${newsCount}</cite></p>
+                                                <cite>${attractionCount}</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>注册用户数</h3>
+                                            <h3>组团数</h3>
                                             <p>
-                                                <cite>123</cite></p>
+                                                <cite>${teamCount}</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
                                             <h3>订单数</h3>
                                             <p>
-                                                <cite>数量${commentCount}</cite></p>
-                                        </a>
-                                    </li>
-                                    <li class="layui-col-xs2">
-                                        <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>合作商</h3>
-                                            <p>
-                                                <cite>数量${linkCount}</cite></p>
+                                                <cite>${orderCount}</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
                                             <h3>游客总人次</h3>
                                             <p>
-                                                <cite>数量${clickCount}</cite></p>
+                                                <cite>${visitorCount}</cite></p>
                                         </a>
                                     </li>
                                     <li class="layui-col-xs2">
                                         <a href="javascript:;" class="x-admin-backlog-body">
-                                            <h3>新闻类型</h3>
+                                            <h3>导游数</h3>
                                             <p>
-                                                <cite>数量${newsTypeCount}</cite></p>
+                                                <cite>${jobCount}</cite></p>
+                                        </a>
+                                    </li>
+                                    <li class="layui-col-xs2">
+                                        <a href="javascript:;" class="x-admin-backlog-body">
+                                            <h3>注册用户数</h3>
+                                            <p>
+                                                <cite>${userCount}</cite></p>
                                         </a>
                                     </li>
                                 </ul>

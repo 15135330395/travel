@@ -4,7 +4,6 @@ package com.chinasofti.staff.service;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.staff.dao.StaffDao;
 import com.chinasofti.staff.entity.Staff;
-import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,7 +66,15 @@ public class StaffServiceImpl implements StaffInterface {
         return staffDao.getCountByWorkspace(workspace);
     }
 
+    @Override
+    public Integer queryByJob(String job) {
+        return staffDao.queryByJob(job);
+    }
+
 //    public List<String> queryWorkPlace(Session session) {
 //        return staffDao.queryWorkPlace(session);
 //    }
+
+
+
 }

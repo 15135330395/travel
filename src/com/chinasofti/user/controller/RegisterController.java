@@ -29,8 +29,10 @@ public class RegisterController {
         if (user1 != null) {
             i = 1;
         }else{
-            userService.addUser(user);
-            i = 2;
+            Integer integer = userService.addUser(user);
+            if (integer == null) {
+                i = 2;
+            }
         }
         return i;
 

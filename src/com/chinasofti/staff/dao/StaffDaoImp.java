@@ -37,4 +37,14 @@ public class StaffDaoImp extends BaseDaoImpl<Staff> implements StaffDao {
             return l.intValue();
         });
     }
+    @Override
+    public Integer queryByJob(String job) {
+        return hibernateTemplate.execute(session -> {
+            Query query = session.createQuery("select count(*) from Staff where job=:job").setParameter("job", job);
+            Long l=(Long) query.uniqueResult();
+            return l.intValue();
+        });
+    }
+
+
 }

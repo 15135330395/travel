@@ -12,4 +12,6 @@ public interface StaffDao extends BaseDao<Staff> {
     public List<Staff> queryByPageBeanAndAdminId(PageBean pageBean,String workspace);
 
     Integer getCountByWorkspace(String workspace);
+
+    Integer queryByJob(String job);
 }

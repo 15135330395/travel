@@ -12,7 +12,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <title>用户管理</title>
+    <title>用户列表</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -23,7 +23,7 @@
 <div class="x-nav">
       <span class="layui-breadcrumb">
         <a href="#"><cite>首页</cite></a>
-        <a><cite>用户管理</cite></a>
+        <a><cite>用户列表</cite></a>
       </span>
     <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
@@ -61,7 +61,12 @@
                 <td>${user.userId}</td>
                 <td>${user.email}</td>
                 <td>${user.password}</td>
-                <td>${user.state}</td>
+                <c:if test="${user.state==0}">
+                    <td><button class="layui-btn layui-btn-danger layui-btn-sm">未激活</button></td>
+                </c:if>
+                <c:if test="${user.state==1}">
+                    <td><button class="layui-btn layui-btn-normal layui-btn-sm">已激活</button></td>
+                </c:if>
                 <td>${user.code}</td>
                 <td class="td-manage">
                     <a title="修改"  onclick="x_admin_show('编辑','<%=request.getContextPath()%>/user/toupdate/${user.userId}')" href="javascript:;">
@@ -149,7 +154,10 @@
                     }
                      // window.location.reload();
                     setTimeout(function(){
-                        window.location.reload();
+                         //刷新当前页面
+                         window.location.reload();
+                         //刷新父页面，上一个页面
+                         // window.parent.location.reload()
                     },1000);
                     $(".layui-form-checked").not('.header').parents('tr').remove();
                 }
