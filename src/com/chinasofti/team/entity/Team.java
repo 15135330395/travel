@@ -34,6 +34,10 @@ public class Team {
      */
     private Date departure;
     /**
+     * 集合地点
+     */
+    private String place;
+    /**
      * 预计人数
      */
     private Integer predict;
@@ -85,6 +89,15 @@ public class Team {
 
     public void setDeparture(Date departure) {
         this.departure = departure;
+    }
+
+    @Column(name = "place")
+    public String getPlace() {
+        return place;
+    }
+
+    public void setPlace(String place) {
+        this.place = place;
     }
 
     @Column(name = "predict")
