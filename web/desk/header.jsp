@@ -26,14 +26,6 @@
                             </div>
                         </div>
                         <div class="help-block">
-                            <%--<div>热搜:</div>--%>
-                            <ul>
-                                <c:forEach begin="0" end="4" var="i">
-                                    <li>
-                                        <a href="">${visitedNewsList[i].newsTitle}</a>
-                                    </li>
-                                </c:forEach>
-                            </ul>
                         </div>
                     </form>
                 </div>
