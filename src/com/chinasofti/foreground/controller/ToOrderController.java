@@ -103,9 +103,6 @@ public class ToOrderController {
         order.setCreateTime(new Date());
         order.setDeparture(DateUtil.formatString(goTime, "yyyy-MM-dd HH:mm:ss"));
         order.setState(0);
-        Team team = new Team();
-        team.setTeamId(-1);
-        order.setTeam(team);
         Attraction attraction = attractionService.query(order.getAttraction().getAttractionId());
         order.setAttraction(attraction);
         Type type = typeService.query(order.getType().getTypeId());
