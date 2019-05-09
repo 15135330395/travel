@@ -15,7 +15,7 @@
 
         .nihao {
             /*background: #eeeeee 0 0 no-repeat;*/
-            background: url(/background/static/img/123.jpg) no-repeat center;
+            background: url(<%=request.getContextPath()%>/background/static/img/apply.jpg) no-repeat center;
             background-size: cover;
             overflow: hidden;
         }
