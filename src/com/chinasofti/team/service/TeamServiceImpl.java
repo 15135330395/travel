@@ -1,6 +1,7 @@
 package com.chinasofti.team.service;
 
 import com.chinasofti.base.PageBean;
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.team.dao.TeamDao;
 import com.chinasofti.team.entity.Team;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,7 +32,9 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public void addTeam(Team t) {
 
+        t.setCurrent(0);
         teamDao.add(t);
+
     }
 
     @Override
@@ -64,6 +67,10 @@ public class TeamServiceImpl implements TeamService {
     @Override
     public Integer getCount() {
         return teamDao.getCount();
+    }
+    @Override
+    public List<Orders> queryOrderByTid(int teamId) {
+        return teamDao.queryOrderByTid(teamId);
     }
 
 
