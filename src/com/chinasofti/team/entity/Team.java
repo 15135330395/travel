@@ -129,18 +129,4 @@ public class Team {
     public void setOrdersList(List<Orders> ordersList) {
         this.ordersList = ordersList;
     }
-
-    @Override
-    public String toString() {
-        return "Team{" +
-                "teamId=" + teamId +
-                ", attraction=" + attraction +
-                ", staff=" + staff +
-                ", departure=" + departure +
-                ", place='" + place + '\'' +
-                ", predict=" + predict +
-                ", current=" + current +
-                ", ordersList=" + ordersList +
-                '}';
-    }
 }

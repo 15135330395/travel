@@ -40,7 +40,7 @@ public class TeamController {
     @Autowired
     private StaffInterface staffService;
 
-    @RequestMapping("teamQuery")
+    @RequestMapping("/teamQuery")
     public String qureyAll(HttpServletRequest request, Map<String, Object> map) {
 
         String index = request.getParameter("index");
