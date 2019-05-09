@@ -6,7 +6,6 @@ import com.chinasofti.order.entity.Orders;
 import com.chinasofti.order.service.OrderService;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
-import com.chinasofti.utils.MsgUtil;
 import com.chinasofti.visitor.entity.Visitor;
 import com.chinasofti.visitor.service.VisitorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,17 +83,11 @@ public class QueryOrderController {
     //    前台退单方法
     @RequestMapping("/deleteOrder/{orderId}")
     @ResponseBody
-    public MsgUtil deleteOrder(@PathVariable(name = "orderId") String orderId) {
+    public int deleteOrder(@PathVariable(name = "orderId") String orderId) {
 
         int i = orderService.deleteById(orderId);
 
-        if (i != 0) {
-            MsgUtil 退单成功 = new MsgUtil("退单成功");
-            return 退单成功;
-        } else {
-            MsgUtil 退单失败 = new MsgUtil("退单失败");
-            return 退单失败;
-        }
+        return 1;
     }
 
     //    前台支付订单显示方法

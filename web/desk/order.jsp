@@ -143,12 +143,13 @@
                 data: {
 
                 },
-                success: function (data) {
+                success: function (msg) {
 
-                    var obj = eval("(" + data + ")");
-                    alert(obj.name)
-
-                    window.location.reload(true);
+                    if (msg == 1) {
+                        layer.alert("退单成功", {icon: 6});
+                    } else {
+                        layer.msg('已退单或不存在', {icon: 1, time: 2000});
+                    }
                 }
             })
         });
