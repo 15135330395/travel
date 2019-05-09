@@ -103,7 +103,8 @@
                     staffId: data.field.staffId,
                     goTime: data.field.goTime,
                     place: data.field.place,
-                    predict: data.field.predict
+                    predict: data.field.predict,
+                    current:${team2.current}
                 },
                 success: function (msg) {
                     if (msg == 1) {

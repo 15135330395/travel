@@ -28,7 +28,8 @@
                                 <div class="details">
                                     <h6><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></h6>
                                     <p>
-                                            ${fn:length(list.attractionDesc)>20?fn:substring(list.attractionDesc, 0, 20).concat("..."):list.attractionDesc}
+
+
                                     </p>
                                 </div>
                             </div>
