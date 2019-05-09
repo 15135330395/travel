@@ -120,7 +120,10 @@ public class AdminController {
     @RequestMapping("/update")
     @ResponseBody
     public Integer update(Admin admin) {
-        adminService.update(admin);
+        Admin query = adminService.query(admin.getAdminId());
+        query.setAdminName(admin.getAdminName());
+        query.setPassword(admin.getPassword());
+        adminService.update(query);
         return 1;
     }
 

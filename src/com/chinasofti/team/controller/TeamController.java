@@ -165,6 +165,7 @@ public class TeamController {
         String goTime = request.getParameter("goTime");
         String place = request.getParameter("place");
         String predict = request.getParameter("predict");
+        String current = request.getParameter("current");
 
         t.setTeamId(Integer.parseInt(teamId));
         Attraction attraction = attractionService.query(Integer.parseInt(attractionId));
@@ -180,6 +181,7 @@ public class TeamController {
         }
         t.setPlace(place);
         t.setPredict(Integer.parseInt(predict));
+        t.setCurrent(Integer.parseInt(current));
         teamService.updateTeam(t);
         return 1;
     }
