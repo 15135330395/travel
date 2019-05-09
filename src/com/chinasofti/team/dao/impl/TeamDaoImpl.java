@@ -1,6 +1,7 @@
 package com.chinasofti.team.dao.impl;
 
 import com.chinasofti.base.impl.BaseDaoImpl;
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.team.dao.TeamDao;
 import com.chinasofti.team.entity.Team;
 import com.chinasofti.visitor.entity.Visitor;
@@ -22,5 +23,15 @@ public class TeamDaoImpl extends BaseDaoImpl<Team> implements TeamDao {
             return query.list();
         });
         return list;
+    }
+
+
+
+    @Override
+    public List<Orders> queryOrderByTid(int teamId) {
+        // TODO 自动生成的方法存根
+        return hibernateTemplate.execute(session -> session.createQuery("from Orders where team_id=:id")
+                .setParameter("teamId", teamId)
+                .list());
     }
 }

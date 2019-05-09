@@ -1,6 +1,7 @@
 package com.chinasofti.team.service;
 
 import com.chinasofti.base.PageBean;
+import com.chinasofti.order.entity.Orders;
 import com.chinasofti.team.entity.Team;
 
 import java.util.List;
@@ -31,6 +32,8 @@ public interface TeamService {
     List<Team> queryBypage(PageBean pageBean);
 
     Team queryOne(int tId);
+
+    List<Orders> queryOrderByTid(int teamId);
 
     Integer getCount();
 

@@ -4,6 +4,7 @@ import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
 import org.hibernate.annotations.GenericGenerator;
+import org.springframework.context.annotation.Lazy;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -120,6 +121,7 @@ public class Team {
 
     @OneToMany(cascade = CascadeType.ALL)
     @JoinColumn(name = "team_id")
+    @Lazy(value = false)
     public List<Orders> getOrdersList() {
         return ordersList;
     }
