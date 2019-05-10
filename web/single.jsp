@@ -22,7 +22,7 @@
                             <div class="inner">
                                 <figure>
                                     <a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">
-                                        <img src="<%=request.getContextPath()%>/background/image/${list.imageUrl}">
+                                        <img src="/uploadImage/${list.imageUrl}">
                                     </a>
                                 </figure>
                                 <div class="details">
@@ -69,7 +69,7 @@
                         <p>${attraction.route}</p>
                         <div class="featured">
                             <figure>
-                                <img src="<%=request.getContextPath()%>/background/image/${attraction.imageUrl}">
+                                <img src="/uploadImage/${attraction.imageUrl}">
                                 <figcaption>Image by pexels.com</figcaption>
                             </figure>
                         </div>

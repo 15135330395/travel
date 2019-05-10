@@ -22,7 +22,7 @@ public class UploadController extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-        File savePath = new File(new File(request.getSession().getServletContext().getRealPath("/")).getParent(),"uploadImage");
+        File savePath = new File(new File(request.getSession().getServletContext().getRealPath("/")).getParent(), "uploadImage");
         System.out.println(savePath);
         savePath.mkdirs();
         String uuid = UUID.randomUUID().toString().replace("-", "");

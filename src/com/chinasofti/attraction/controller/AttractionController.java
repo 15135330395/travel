@@ -248,7 +248,7 @@ public class AttractionController {
         JSONObject json = new JSONObject();
         json.put("uploaded", 1);
         json.put("fileName", fileName);
-        json.put("url", "http://localhost/" + fileName);
+        json.put("url", "http://localhost:8080/uploadImage/" + fileName);
 
         request.getSession().setAttribute("image", fileName);
         out.print(json);
