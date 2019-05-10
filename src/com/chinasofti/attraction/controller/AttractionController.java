@@ -345,14 +345,8 @@ public class AttractionController {
         List<Price> prices = attractionService.queryAttractionPrice();
         //查询组团类型
         List<Type> types = attractionService.queryType();
-        List<Attraction> list1 = new ArrayList<>();
-        for (Attraction attraction1 : list) {
-            String s = StringUtil.html2Text(attraction1.getAttractionDesc());
-            attraction1.setAttractionDesc(s);
-            list1.add(attraction1);
-        }
         model.addAttribute("attraction", attraction);
-        model.addAttribute("list", list1);
+        model.addAttribute("list", list);
         model.addAttribute("prices", prices);
         model.addAttribute("types", types);
         List<Team> teams = teamService.queryByAttractionId(attraction.getAttractionId());
