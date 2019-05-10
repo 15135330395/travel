@@ -1,7 +1,6 @@
 package com.chinasofti.attraction.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
