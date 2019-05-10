@@ -3,14 +3,10 @@ package com.chinasofti.team.controller;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
-import com.chinasofti.order.entity.Orders;
 import com.chinasofti.staff.entity.Staff;
 import com.chinasofti.staff.service.StaffInterface;
-import com.chinasofti.staff.service.StaffServiceImpl;
 import com.chinasofti.team.entity.Team;
 import com.chinasofti.team.service.TeamService;
-import com.chinasofti.utils.DateUtil;
-import com.chinasofti.visitor.entity.Visitor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import javax.servlet.http.HttpServletRequest;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -29,8 +24,7 @@ import java.util.Map;
  * @CreateTime 2019-05-08 10:20
  */
 @Controller
-//@RequestMapping(name = "team")
-@RequestMapping("/team")
+@RequestMapping(name = "/team")
 public class TeamController {
 
     @Autowired
@@ -65,11 +59,11 @@ public class TeamController {
 
         map.put("pageBean", pageBean);
         map.put("teams", teams);
-        return "/background/link/team";
+        return  "/background/link/team";
     }
 
 
-    @RequestMapping("queryOne")
+    @RequestMapping("/queryOne")
     public String queryOne(HttpServletRequest request, Map<String, Object> map) {
 
         String a = request.getParameter("teamId");

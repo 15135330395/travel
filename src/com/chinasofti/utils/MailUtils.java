@@ -53,7 +53,7 @@ public class MailUtils {
         message.setSubject("亲爱的用户，欢迎注册");
         // 设置邮件内容
         // message.setText("邮件正文");
-        message.setContent("<h1>请点击以下链接址激活注册:</br><h3>（若无法点击，请复制到浏览器中打开）</h3></h1><h3><a href='http://localhost:8080/userLogin/check/" + toMail + "/" + code + "'>前往激活</a></h3>", "text/html;Charset=UTF-8");
+        message.setContent("<h1>请点击以下链接址激活注册:</br><h3>（若无法点击，请复制到浏览器中打开）</h3></h1><h3><a href='http://localhost:8080/travel/userLogin/check/" + toMail + "/" + code + "'>前往激活</a></h3>", "text/html;Charset=UTF-8");
 
         // 4、根据session对象获取邮件传输对象Transport
         Transport transport = session.getTransport();

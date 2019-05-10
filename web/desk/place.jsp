@@ -33,7 +33,7 @@
                         <div class="inner">
                             <figure>
                                 <a href="<%=request.getContextPath()%>/attraction/detail/${attractionList.attractionId}">
-                                    <img src="<%=request.getContextPath()%>/background/image/${attractionList.imageUrl}">
+                                    <img src="/uploadImage/${attractionList.imageUrl}">
                                 </a>
                             </figure>
                             <div class="details">

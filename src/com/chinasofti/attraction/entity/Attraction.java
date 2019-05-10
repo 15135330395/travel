@@ -84,7 +84,6 @@ public class Attraction {
                 ", attractionName='" + attractionName + '\'' +
                 ", route='" + route + '\'' +
                 ", imageUrl='" + imageUrl + '\'' +
-                ", attractionDesc='" + attractionDesc + '\'' +
                 '}';
     }
 }

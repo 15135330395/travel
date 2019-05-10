@@ -69,12 +69,15 @@
                 },
                 dataType: "json",
                 success: function (data) {
-                    if (data == 1) {
-                        alert("注册失败，邮箱已存在")
+                    if (data == 100) {
+                        alert("注册失败，邮箱已存在");
                         location.replace(location.href);
-                    } else if (data == 2) {
+                    } else if (data == 1) {
                         alert("注册成功，请接收邮件前往激活")
                         window.location.replace("<%=request.getContextPath()%>/desk/login.jsp")
+                    } else if (data == 0) {
+                        alert("注册失败，邮箱不存在或设置异常")
+                        location.replace(location.href);
                     }
                 }
             });

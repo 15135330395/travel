@@ -25,13 +25,18 @@ public class RegisterController {
     @ResponseBody
     public Integer register(User user){
         User user1 = userDao.queryByName("email", user.getEmail());
-        Integer i = 0;
+        Integer i;
         if (user1 != null) {
-            i = 1;
+            i = 100;
+            // 邮箱已存在
         }else{
             Integer integer = userService.addUser(user);
-            if (integer == null) {
-                i = 2;
+            if (integer == 1) {
+                // 1 成功
+                i = 1;
+            }else{
+                // 0 邮箱不存在
+                i = 0;
             }
         }
         return i;
