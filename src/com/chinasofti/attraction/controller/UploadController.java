@@ -14,14 +14,16 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.UUID;
 
-@WebServlet(name = "UploadServlet",urlPatterns = "/uploadImage")
+@WebServlet(name = "UploadServlet", urlPatterns = "/uploadImage")
 @MultipartConfig
 public class UploadController extends HttpServlet {
+    @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("utf-8");
         response.setContentType("text/html;charset=utf-8");
 
-        File savePath =  new File("D:\\files\\","image");
+        File savePath = new File(new File(request.getSession().getServletContext().getRealPath("/")).getParent(),"uploadImage");
+        System.out.println(savePath);
         savePath.mkdirs();
         String uuid = UUID.randomUUID().toString().replace("-", "");
 
@@ -30,30 +32,31 @@ public class UploadController extends HttpServlet {
         //获取请求头，请求头的格式：form-data; name="file"; filename="snmp4j--api.zip"
         String header = part.getHeader("content-disposition");
         //获取文件名
-        String fileName ="";
-        if(header.contains("filename")) {
+        String fileName = "";
+        if (header.contains("filename")) {
             String[] strArr = header.split("\"");
-            fileName = uuid+"_"+strArr[strArr.length-1];
+            fileName = uuid + "_" + strArr[strArr.length - 1];
         }
 
         //把文件写到指定路径
-        part.write(savePath+"/"+fileName);
+        part.write(savePath + "/" + fileName);
 
         PrintWriter out = response.getWriter();
         // CKEditorFuncNum是回调时显示的位置，这个参数必须有
         JSONObject json = new JSONObject();
-        json.put("uploaded",1);
-        json.put("fileName",fileName);
-        json.put("url","http://localhost/Image/"+fileName);
+        json.put("uploaded", 1);
+        json.put("fileName", fileName);
+        json.put("url", "http://localhost:8080/uploadImage/" + fileName);
 
-        request.getSession().setAttribute("image",fileName);
+        request.getSession().setAttribute("image", fileName);
         out.print(json);
         out.flush();
         out.close();
 
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        doPost(request,response);
+        doPost(request, response);
     }
 }

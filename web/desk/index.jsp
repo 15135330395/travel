@@ -25,7 +25,7 @@
                                 <article class="featured">
                                     <div class="overlay"></div>
                                     <figure>
-                                        <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}" alt="${attractions[i].attractionName}">
+                                        <img src="/uploadImage/${attractions[i].imageUrl}" alt="${attractions[i].attractionName}">
                                     </figure>
                                     <div class="details">
                                         <h1><a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">${attractions[i].attractionName}</a></h1>
@@ -49,7 +49,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
-                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
+                                            <img src="/uploadImage/${attractions[i].imageUrl}">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -77,7 +77,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
-                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
+                                            <img src="/uploadImage/${attractions[i].imageUrl}">
                                         </a>
                                     </figure>
                                     <div class="padding">
@@ -181,7 +181,7 @@
                                 <div class="inner">
                                     <figure>
                                         <a href="<%=request.getContextPath()%>/attraction/detail/${attractions[i].attractionId}">
-                                            <img src="<%=request.getContextPath()%>/background/image/${attractions[i].imageUrl}">
+                                            <img src="/uploadImage/${attractions[i].imageUrl}">
                                         </a>
                                     </figure>
                                     <div class="padding">

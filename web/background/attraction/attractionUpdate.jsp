@@ -21,7 +21,7 @@
 </head>
 <body>
 <div class="x-body">
-    <form class="layui-form">
+    <form class="layui-form" method="post" enctype="multipart/form-data">
         <div class="layui-form-item">
             <label for="attractionId" class="layui-form-label">
                 <span class="x-red"></span>
@@ -112,7 +112,7 @@
             $.ajax({
                 type: "post",
                 url: "<%=request.getContextPath()%>/attraction/save",
-                data: {
+            data: {
                     attractionId: data.field.attractionId,
                     attractionName: data.field.attractionName,
                     route: data.field.route,

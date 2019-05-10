@@ -7,6 +7,9 @@ import javax.persistence.*;
 @Entity
 @Table(name = "price")
 public class Price {
+    /**
+     * 价格编号
+     */
     private Integer id;
     /**
      * 景点编号

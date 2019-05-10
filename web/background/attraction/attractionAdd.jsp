@@ -15,7 +15,7 @@
 </head>
 <body>
 <div class="layui-container" style="padding: 20px">
-    <form class="layui-form" action="">
+    <form class="layui-form" action="" enctype="multipart/form-data">
         <div class="layui-form-item">
             <label class="layui-form-label">景点名称：</label>
             <div class="layui-input-block">

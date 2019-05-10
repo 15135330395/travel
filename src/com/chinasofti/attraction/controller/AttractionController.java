@@ -1,7 +1,6 @@
 package com.chinasofti.attraction.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.chinasofti.attraction.dao.AttractionDao;
 import com.chinasofti.attraction.entity.Attraction;
 import com.chinasofti.attraction.entity.Price;
 import com.chinasofti.attraction.entity.Type;
@@ -9,8 +8,10 @@ import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.team.entity.Team;
 import com.chinasofti.team.service.TeamService;
+import com.chinasofti.team.service.TeamServiceImpl;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,8 +37,10 @@ public class AttractionController {
     private AttractionService attractionService;
     @Autowired
     TeamService teamService;
+
     /**
      * 景点查询
+     *
      * @param model
      * @return
      */
@@ -51,8 +54,10 @@ public class AttractionController {
 
         return "/background/attraction/attractionList";
     }
+
     /**
      * 批量删除景点信息
+     *
      * @param ids
      * @return
      */
@@ -78,8 +83,10 @@ public class AttractionController {
         }
         return 1;
     }
+
     /**
      * 删除景点信息
+     *
      * @param attractionId
      * @return
      */
@@ -102,13 +109,17 @@ public class AttractionController {
 
     /**
      * 添加景点信息
+     *
      * @param attraction
      * @return
      */
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     @ResponseBody
     public Integer add(Attraction attraction, HttpServletRequest request) {
+        String image = (String) request.getSession().getAttribute("image");
+        attraction.setImageUrl(image);
         attractionService.add(attraction);
+        request.getSession().removeAttribute("image");
         System.out.println(attraction);
         String price1 = request.getParameter("price1");
         Price p1 = new Price();
@@ -127,6 +138,7 @@ public class AttractionController {
 
     /**
      * 分页查询景点信息
+     *
      * @param request
      * @return
      */
@@ -159,24 +171,33 @@ public class AttractionController {
 
         return "/background/attraction/attractionList";
     }
+
     /**
      * 景点信息修改
+     *
      * @param attraction
      * @return
      */
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     @ResponseBody
     public Integer update(Attraction attraction, HttpServletRequest request) {
-        attractionService.update(attraction);
+        String image = (String) request.getSession().getAttribute("image");
+        request.getSession().removeAttribute("image");
+        Attraction query = attractionService.query(attraction.getAttractionId());
+        query.setImageUrl("".equals(image) ? image : query.getImageUrl());
+        query.setAttractionDesc(attraction.getAttractionDesc());
+        query.setAttractionName(attraction.getAttractionName());
+        query.setRoute(attraction.getRoute());
+        attractionService.update(query);
         String price = request.getParameter("price1");
         String price3 = request.getParameter("price2");
         List<Price> prices = attractionService.queryAttractionPrice();
         Price price1 = null;
         Price price2 = null;
         for (Price p : prices) {
-            if (p.getTypeId()==1&&p.getAttractionId().equals(attraction.getAttractionId())) {
+            if (p.getTypeId() == 1 && p.getAttractionId().equals(attraction.getAttractionId())) {
                 price1 = p;
-            }else if(p.getTypeId()==2&&p.getAttractionId().equals(attraction.getAttractionId())){
+            } else if (p.getTypeId() == 2 && p.getAttractionId().equals(attraction.getAttractionId())) {
                 price2 = p;
             }
         }
@@ -196,6 +217,7 @@ public class AttractionController {
 
     /**
      * 富文本编辑器图片上传
+     *
      * @param
      * @return
      */
@@ -239,6 +261,7 @@ public class AttractionController {
 
     /**
      * 进入修改页面
+     *
      * @param id
      * @return
      */
@@ -258,9 +281,9 @@ public class AttractionController {
             }
         }
         for (Price p : prices) {
-            if (p.getTypeId()==1&&p.getAttractionId().equals(attraction.getAttractionId())) {
+            if (p.getTypeId() == 1 && p.getAttractionId().equals(attraction.getAttractionId())) {
                 price1 = p;
-            }else if(p.getTypeId()==2&&p.getAttractionId().equals(attraction.getAttractionId())){
+            } else if (p.getTypeId() == 2 && p.getAttractionId().equals(attraction.getAttractionId())) {
                 price2 = p;
             }
         }
@@ -288,7 +311,7 @@ public class AttractionController {
 
     //    前台景点列表查询方法
     @RequestMapping("/placeList")
-    public String placeList(HttpServletRequest request, Map<String, Object> map){
+    public String placeList(HttpServletRequest request, Map<String, Object> map) {
         PageBean pageBean = new PageBean();
         // 页码
         String index = request.getParameter("index");
@@ -334,6 +357,7 @@ public class AttractionController {
 
     /**
      * 前台查询一个景点得到详情信息
+     *
      * @param model
      * @param id
      * @return
@@ -347,17 +371,21 @@ public class AttractionController {
         //查询组团类型
         List<Type> types = attractionService.queryType();
         List<Attraction> list1 = new ArrayList<>();
+        /*
         for (Attraction attraction1 : list) {
             String s = StringUtil.html2Text(attraction1.getAttractionDesc());
             attraction1.setAttractionDesc(s);
             list1.add(attraction1);
         }
+        */
         model.addAttribute("attraction", attraction);
         model.addAttribute("list", list1);
         model.addAttribute("prices", prices);
         model.addAttribute("types", types);
+
+
         List<Team> teams = teamService.queryByAttractionId(attraction.getAttractionId());
-        if (teams.size()!=0) {
+        if (teams.size() != 0) {
             model.addAttribute("flag", 1);
         }
         return "/single";
