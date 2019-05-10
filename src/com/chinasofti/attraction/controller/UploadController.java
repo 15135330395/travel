@@ -46,6 +46,7 @@ public class UploadController extends HttpServlet {
         JSONObject json = new JSONObject();
         json.put("uploaded", 1);
         json.put("fileName", fileName);
+        String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+"/uploadImage/";
         json.put("url", "http://localhost:8080/uploadImage/" + fileName);
 
         request.getSession().setAttribute("image", fileName);
