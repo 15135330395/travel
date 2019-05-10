@@ -22,14 +22,13 @@
                             <div class="inner">
                                 <figure>
                                     <a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">
-                                        <img src="/uploadImage/${list.imageUrl}">
+                                        <img src="<%=request.getContextPath()%>/background/image/${list.imageUrl}">
                                     </a>
                                 </figure>
                                 <div class="details">
                                     <h6><a href="<%=request.getContextPath()%>/attraction/detail/${list.attractionId}">${list.attractionName}</a></h6>
                                     <p>
-
-
+                                            ${fn:length(list.route)>20?fn:substring(list.route, 0, 20).concat("..."):list.route}
                                     </p>
                                 </div>
                             </div>
@@ -70,7 +69,7 @@
                         <p>${attraction.route}</p>
                         <div class="featured">
                             <figure>
-                                <img src="/uploadImage/${attraction.imageUrl}">
+                                <img src="<%=request.getContextPath()%>/background/image/${attraction.imageUrl}">
                                 <figcaption>Image by pexels.com</figcaption>
                             </figure>
                         </div>

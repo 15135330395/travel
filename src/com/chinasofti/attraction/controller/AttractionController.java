@@ -8,10 +8,8 @@ import com.chinasofti.attraction.service.AttractionService;
 import com.chinasofti.base.PageBean;
 import com.chinasofti.team.entity.Team;
 import com.chinasofti.team.service.TeamService;
-import com.chinasofti.team.service.TeamServiceImpl;
 import com.chinasofti.utils.StringUtil;
 import org.apache.commons.lang3.StringUtils;
-import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -370,16 +368,8 @@ public class AttractionController {
         List<Price> prices = attractionService.queryAttractionPrice();
         //查询组团类型
         List<Type> types = attractionService.queryType();
-        List<Attraction> list1 = new ArrayList<>();
-        /*
-        for (Attraction attraction1 : list) {
-            String s = StringUtil.html2Text(attraction1.getAttractionDesc());
-            attraction1.setAttractionDesc(s);
-            list1.add(attraction1);
-        }
-        */
         model.addAttribute("attraction", attraction);
-        model.addAttribute("list", list1);
+        model.addAttribute("list", list);
         model.addAttribute("prices", prices);
         model.addAttribute("types", types);
 
